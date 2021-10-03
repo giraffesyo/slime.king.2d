@@ -134,8 +134,8 @@ GameObject:
   - component: {fileID: 458875610}
   - component: {fileID: 458875609}
   - component: {fileID: 458875608}
-  - component: {fileID: 458875607}
   - component: {fileID: 458875606}
+  - component: {fileID: 458875607}
   m_Layer: 0
   m_Name: Ooey
   m_TagString: Untagged
@@ -178,11 +178,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 458875605}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2283f63b45777b541b55fa7b5888d9ad, type: 3}
+  m_Script: {fileID: 11500000, guid: cec64bd8b0cf8a147819b9e966552854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
   rb: {fileID: 458875608}
+  gridLayout: {fileID: 1745089530}
+  currentCell: {x: 0, y: 0, z: 0}
 --- !u!50 &458875608
 Rigidbody2D:
   serializedVersion: 4
@@ -4302,6 +4304,7 @@ GameObject:
   - component: {fileID: 1619203183}
   - component: {fileID: 1619203182}
   - component: {fileID: 1619203181}
+  - component: {fileID: 1619203184}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -4374,6 +4377,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1619203184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1619203180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 910ecae922c0a42ee84ca80665ac569f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 458875607}
 --- !u!1 &1745089529
 GameObject:
   m_ObjectHideFlags: 0
