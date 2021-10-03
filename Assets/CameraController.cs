@@ -12,7 +12,7 @@ public class CameraController : MonoBehaviour
     }
 
     private void MoveCamera(Vector2Int nextScreen) {
-        Debug.Log("Camera event... " + nextScreen);
+        // Debug.Log("Camera event... " + nextScreen);
         float newX = 19f * nextScreen.x;
         float newY = 10.7f * nextScreen.y;
         Camera.main.transform.position = new Vector3(newX, newY, Camera.main.transform.position.z);
