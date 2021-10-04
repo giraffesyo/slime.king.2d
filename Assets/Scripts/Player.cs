@@ -22,7 +22,6 @@ public class Player : BaseCharacter
         base.Start();
         currentCell = getCurrentCell();
         currentScreen = getCurrentScreen();
-        attackPoint = GetComponent<Combat>().attackPoint;
     }
 
     private Vector2Int getCurrentScreen() {
