@@ -7,8 +7,9 @@ public class AI : BaseCharacter
     Transform playerPos;    // Transform object of the controllable player
 
     // Start is called before the first frame update
-    void Start()
+    protected new void Start()
     {
+        base.Start();
         setSpeed(2f);
         playerPos = GameObject.FindGameObjectWithTag("Player").transform;
     }
@@ -16,7 +17,7 @@ public class AI : BaseCharacter
     // Update is called once per frame
     void Update()
     {
-        Move();
+        //Move();
     }
 
 
@@ -40,6 +41,6 @@ public class AI : BaseCharacter
         {
             moveY = -1;
         }
-        Move(moveX, moveY);
+        base.Move(moveX, moveY);
     }
 }

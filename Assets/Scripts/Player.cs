@@ -11,11 +11,18 @@ public class Player : BaseCharacter
     
     [SerializeField] private Vector3Int currentCell;
     private Vector2Int currentScreen;
+
+    public float moveX = 0;
+    public float moveY = 0;
+    public Transform attackPoint;
+
     // Start is called before the first frame update
-    void Start()
+    protected new void Start()
     {
-         currentCell = getCurrentCell();
-         currentScreen = getCurrentScreen();
+        base.Start();
+        currentCell = getCurrentCell();
+        currentScreen = getCurrentScreen();
+        attackPoint = GetComponent<Combat>().attackPoint;
     }
 
     private Vector2Int getCurrentScreen() {
@@ -32,9 +39,10 @@ public class Player : BaseCharacter
     // Update is called once per frame
     void Update()
     {
-        float moveX = Input.GetAxisRaw("Horizontal");
-        float moveY = Input.GetAxisRaw("Vertical");
+        moveX = Input.GetAxisRaw("Horizontal");
+        moveY = Input.GetAxisRaw("Vertical");
 
+        moveAttackPoint();
         Move(moveX, moveY);
         currentCell = getCurrentCell();
         Vector2Int nextScreen = getCurrentScreen();
@@ -42,5 +50,16 @@ public class Player : BaseCharacter
             currentScreen = nextScreen;
             ScreenExited.Invoke(nextScreen);
         }
+    }
+
+    void moveAttackPoint()
+    {
+        if(moveX == 0 && moveY == 0){
+            attackPoint.localPosition = new Vector3(1, 0, 0);
+            return;
+        }
+        // Absoulte value used since when player turns left and right , the whole object gets rotated
+        // meaning we dont need to worry about placing attackPoint behind the object
+        attackPoint.localPosition = new Vector3(Mathf.Abs(moveX), moveY, 0);
     }
 }
