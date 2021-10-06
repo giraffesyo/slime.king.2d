@@ -25,7 +25,7 @@ public class Player : BaseCharacter
     }
 
     private Vector2Int getCurrentScreen() {
-        int x = (int) currentCell.x / 10;
+        int x = (int) currentCell.x / 17;
         int y = (int) currentCell.y / 10;
         return new Vector2Int(x, y);
     }
