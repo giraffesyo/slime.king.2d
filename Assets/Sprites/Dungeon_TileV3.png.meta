@@ -1,67 +1,67 @@
 fileFormatVersion: 2
-guid: e453eb5b1fefa5b4ea4b31ce99a756d0
+guid: 41e9842f439504e5185eaf5679557aff
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4153073632620283033
-    second: DungeonBasicTile5by4_0
+      213: -8151700419687857305
+    second: Dungeon_TileV3_0
   - first:
-      213: 434841969238361730
-    second: DungeonBasicTile5by4_1
+      213: 7106743974714724553
+    second: Dungeon_TileV3_1
   - first:
-      213: -8588575663881793529
-    second: DungeonBasicTile5by4_2
+      213: 6935674927830985280
+    second: Dungeon_TileV3_2
   - first:
-      213: -8481378840331128523
-    second: DungeonBasicTile5by4_3
+      213: -4466886859877510915
+    second: Dungeon_TileV3_3
   - first:
-      213: 1515378121923882895
-    second: DungeonBasicTile5by4_4
+      213: -1988597673328482062
+    second: Dungeon_TileV3_4
   - first:
-      213: -8916080944800159307
-    second: DungeonBasicTile5by4_5
+      213: 5974436931652438392
+    second: Dungeon_TileV3_5
   - first:
-      213: -6538696940721596030
-    second: DungeonBasicTile5by4_6
+      213: -6729946141512800746
+    second: Dungeon_TileV3_6
   - first:
-      213: 8511803754666827278
-    second: DungeonBasicTile5by4_7
+      213: -4837613725085504863
+    second: Dungeon_TileV3_7
   - first:
-      213: 1769501269539674398
-    second: DungeonBasicTile5by4_8
+      213: -309357034825838077
+    second: Dungeon_TileV3_8
   - first:
-      213: -4803044166612221292
-    second: DungeonBasicTile5by4_9
+      213: -6071583144915399382
+    second: Dungeon_TileV3_9
   - first:
-      213: -8744691790120947583
-    second: DungeonBasicTile5by4_10
+      213: 2970834565747874794
+    second: Dungeon_TileV3_10
   - first:
-      213: 7823157221692949757
-    second: DungeonBasicTile5by4_11
+      213: 2130387724396569775
+    second: Dungeon_TileV3_11
   - first:
-      213: -1130300370835468686
-    second: DungeonBasicTile5by4_12
+      213: 2578960196131507074
+    second: Dungeon_TileV3_12
   - first:
-      213: 2896654049256657851
-    second: DungeonBasicTile5by4_13
+      213: 6430073535371502598
+    second: Dungeon_TileV3_13
   - first:
-      213: -3700258539449692487
-    second: DungeonBasicTile5by4_14
+      213: -2909669219031409464
+    second: Dungeon_TileV3_14
   - first:
-      213: -4772652168681616445
-    second: DungeonBasicTile5by4_15
+      213: 6486526814561730177
+    second: Dungeon_TileV3_15
   - first:
-      213: 710027483470172810
-    second: DungeonBasicTile5by4_16
+      213: 483451783498763621
+    second: Dungeon_TileV3_16
   - first:
-      213: -8938791393937898536
-    second: DungeonBasicTile5by4_17
+      213: -7593957758543249779
+    second: Dungeon_TileV3_17
   - first:
-      213: -272665068014204404
-    second: DungeonBasicTile5by4_18
+      213: 2698874765989665676
+    second: Dungeon_TileV3_18
   - first:
-      213: -249327696477964153
-    second: DungeonBasicTile5by4_19
+      213: 6483696543209690412
+    second: Dungeon_TileV3_19
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -102,11 +102,11 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-  spriteExtrude: 2
-  spriteMeshType: 0
+  spriteExtrude: 1
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 450
+  spritePixelsToUnits: 442.5
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -151,7 +151,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: DungeonBasicTile5by4_0
+      name: Dungeon_TileV3_0
       rect:
         serializedVersion: 2
         x: 0
@@ -165,14 +165,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 76b70a9f8815d56c0800000000000000
-      internalID: -4153073632620283033
+      spriteID: 7634a1968a75fde80800000000000000
+      internalID: -8151700419687857305
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DungeonBasicTile5by4_1
+      name: Dungeon_TileV3_1
       rect:
         serializedVersion: 2
         x: 450
@@ -186,14 +186,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 28642e5977ed80600800000000000000
-      internalID: 434841969238361730
+      spriteID: 9c0d48aedf930a260800000000000000
+      internalID: 7106743974714724553
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DungeonBasicTile5by4_2
+      name: Dungeon_TileV3_2
       rect:
         serializedVersion: 2
         x: 900
@@ -207,14 +207,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 700d2cb10ff3fc880800000000000000
-      internalID: -8588575663881793529
+      spriteID: 04ae2fe9997704060800000000000000
+      internalID: 6935674927830985280
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DungeonBasicTile5by4_3
+      name: Dungeon_TileV3_3
       rect:
         serializedVersion: 2
         x: 1350
@@ -228,14 +228,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5317c8881e61c4a80800000000000000
-      internalID: -8481378840331128523
+      spriteID: df01429411e6202c0800000000000000
+      internalID: -4466886859877510915
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DungeonBasicTile5by4_4
+      name: Dungeon_TileV3_4
       rect:
         serializedVersion: 2
         x: 0
@@ -249,14 +249,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f8feba18f54b70510800000000000000
-      internalID: 1515378121923882895
+      spriteID: 2f86610c3f41764e0800000000000000
+      internalID: -1988597673328482062
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DungeonBasicTile5by4_5
+      name: Dungeon_TileV3_5
       rect:
         serializedVersion: 2
         x: 450
@@ -270,14 +270,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5b9ae80ce97b34480800000000000000
-      internalID: -8916080944800159307
+      spriteID: 8794e144cb679e250800000000000000
+      internalID: 5974436931652438392
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DungeonBasicTile5by4_6
+      name: Dungeon_TileV3_6
       rect:
         serializedVersion: 2
         x: 900
@@ -291,14 +291,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2891b52a6c1e145a0800000000000000
-      internalID: -6538696940721596030
+      spriteID: 6166e9d14ad6a92a0800000000000000
+      internalID: -6729946141512800746
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DungeonBasicTile5by4_7
+      name: Dungeon_TileV3_7
       rect:
         serializedVersion: 2
         x: 1350
@@ -312,14 +312,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e0e90cada60002670800000000000000
-      internalID: 8511803754666827278
+      spriteID: 1aa69b3a2f75ddcb0800000000000000
+      internalID: -4837613725085504863
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DungeonBasicTile5by4_8
+      name: Dungeon_TileV3_8
       rect:
         serializedVersion: 2
         x: 0
@@ -333,14 +333,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e19d38887088e8810800000000000000
-      internalID: 1769501269539674398
+      spriteID: 30210767a61f4bbf0800000000000000
+      internalID: -309357034825838077
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DungeonBasicTile5by4_9
+      name: Dungeon_TileV3_9
       rect:
         serializedVersion: 2
         x: 450
@@ -354,14 +354,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 492019037c8285db0800000000000000
-      internalID: -4803044166612221292
+      spriteID: a2d811f5c476dbba0800000000000000
+      internalID: -6071583144915399382
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DungeonBasicTile5by4_10
+      name: Dungeon_TileV3_10
       rect:
         serializedVersion: 2
         x: 900
@@ -375,14 +375,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 180f093f52d94a680800000000000000
-      internalID: -8744691790120947583
+      spriteID: aeb9ad12c468a3920800000000000000
+      internalID: 2970834565747874794
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DungeonBasicTile5by4_11
+      name: Dungeon_TileV3_11
       rect:
         serializedVersion: 2
         x: 1350
@@ -396,14 +396,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: df44a055b00719c60800000000000000
-      internalID: 7823157221692949757
+      spriteID: fa4a28a1958a09d10800000000000000
+      internalID: 2130387724396569775
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DungeonBasicTile5by4_12
+      name: Dungeon_TileV3_12
       rect:
         serializedVersion: 2
         x: 0
@@ -417,14 +417,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 27e0cd22dcd5050f0800000000000000
-      internalID: -1130300370835468686
+      spriteID: 28b4a4c62ae4ac320800000000000000
+      internalID: 2578960196131507074
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DungeonBasicTile5by4_13
+      name: Dungeon_TileV3_13
       rect:
         serializedVersion: 2
         x: 450
@@ -438,14 +438,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bb3d32bb28bf23820800000000000000
-      internalID: 2896654049256657851
+      spriteID: 604657bffc53c3950800000000000000
+      internalID: 6430073535371502598
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DungeonBasicTile5by4_14
+      name: Dungeon_TileV3_14
       rect:
         serializedVersion: 2
         x: 900
@@ -459,14 +459,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9becef2967a06acc0800000000000000
-      internalID: -3700258539449692487
+      spriteID: 8cc9eb9e247ce97d0800000000000000
+      internalID: -2909669219031409464
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DungeonBasicTile5by4_15
+      name: Dungeon_TileV3_15
       rect:
         serializedVersion: 2
         x: 1350
@@ -480,14 +480,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3cb0c31a32224cdb0800000000000000
-      internalID: -4772652168681616445
+      spriteID: 18e7fff45c5c40a50800000000000000
+      internalID: 6486526814561730177
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DungeonBasicTile5by4_16
+      name: Dungeon_TileV3_16
       rect:
         serializedVersion: 2
         x: 0
@@ -501,14 +501,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a82110dfb368ad900800000000000000
-      internalID: 710027483470172810
+      spriteID: 56d097de5d095b600800000000000000
+      internalID: 483451783498763621
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DungeonBasicTile5by4_17
+      name: Dungeon_TileV3_17
       rect:
         serializedVersion: 2
         x: 450
@@ -522,14 +522,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8d34303469803f380800000000000000
-      internalID: -8938791393937898536
+      spriteID: d8e35b237a7dc9690800000000000000
+      internalID: -7593957758543249779
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DungeonBasicTile5by4_18
+      name: Dungeon_TileV3_18
       rect:
         serializedVersion: 2
         x: 900
@@ -543,14 +543,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c0a0b56b09c473cf0800000000000000
-      internalID: -272665068014204404
+      spriteID: c8b5418ec44547520800000000000000
+      internalID: 2698874765989665676
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DungeonBasicTile5by4_19
+      name: Dungeon_TileV3_19
       rect:
         serializedVersion: 2
         x: 1350
@@ -564,8 +564,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 788b3c2f7c53a8cf0800000000000000
-      internalID: -249327696477964153
+      spriteID: c25117967a7baf950800000000000000
+      internalID: 6483696543209690412
       vertices: []
       indices: 
       edges: []

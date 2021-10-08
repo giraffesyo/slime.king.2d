@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: Ooey
+  m_Name: DungeonBasicTile5by4_13
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: 3ae8c65fa553d9f40a4b40aed8126587, type: 3}
+  m_Sprite: {fileID: 2896654049256657851, guid: e453eb5b1fefa5b4ea4b31ce99a756d0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
