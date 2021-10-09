@@ -51,4 +51,10 @@ public class Player : BaseCharacter
         }
     }
 
+    protected override void Die()
+    {
+        // base.Die();
+        // restart the level?
+    }
+
 }

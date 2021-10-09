@@ -127,4 +127,9 @@ public class AI : BaseCharacter
         }
         return 0;
     }
+    protected override void Die()
+    {
+        base.Die();
+        // drop some coins!
+    }
 }

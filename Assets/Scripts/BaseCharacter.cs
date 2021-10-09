@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class BaseCharacter : MonoBehaviour
 {
-    public int maxHealth = 100;
-    private int currentHealth;
+    [SerializeField] private int maxHealth = 3;
+    [SerializeField] private int currentHealth;
 
     public Transform attackPoint;
 
@@ -58,8 +58,15 @@ public class BaseCharacter : MonoBehaviour
 
         if ( currentHealth <= 0)
         {
-            Debug.Log("Died");
+            Die();
         }
+    }
+    protected virtual void Die() {
+        Debug.Log( $"{transform.name} died");
+        // play the dying animation 
+        // play dying sound for this unit
+        // then finally, delete the unit
+        Destroy(this.gameObject);
     }
 
     public void moveAttackPoint()
