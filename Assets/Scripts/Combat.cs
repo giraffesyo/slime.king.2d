@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.InputSystem;
 public class Combat : MonoBehaviour
 {
     public Transform attackPoint;
@@ -10,7 +10,7 @@ public class Combat : MonoBehaviour
     public bool isAi;
 
     public LayerMask enemyLayers;       // All enemies must be in a layer
-    
+
     int attackCooldown = 50; //Temporary variables
     int cooldownCounter = 0;
 
@@ -29,7 +29,8 @@ public class Combat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isAi && Input.GetKeyDown(KeyCode.Space))
+        var keyboard = Keyboard.current;
+        if (!isAi && keyboard.spaceKey.wasPressedThisFrame)
         {
             Attack();
         }
@@ -60,5 +61,5 @@ public class Combat : MonoBehaviour
 
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
-    
+
 }

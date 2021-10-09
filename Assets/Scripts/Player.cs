@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-// using UnityEngine.Til
+using UnityEngine.InputSystem;
 public class Player : BaseCharacter
 {
     public delegate void ScreenExitHandler(Vector2Int nextScreen);
@@ -11,7 +11,7 @@ public class Player : BaseCharacter
     [SerializeField] private int xScreenSize = 20;
     [SerializeField] private int yScreenSize = 20;
 
-    
+
     [SerializeField] private Vector3Int currentCell;
 
     [SerializeField] private Vector2Int currentScreen;
@@ -24,28 +24,49 @@ public class Player : BaseCharacter
         currentScreen = getCurrentScreen();
     }
 
-    private Vector2Int getCurrentScreen() {
-        int x = (int) Mathf.Round( (float)currentCell.x / xScreenSize);
-        int y = (int) Mathf.Round((float)currentCell.y / yScreenSize);
+    private Vector2Int getCurrentScreen()
+    {
+        int x = (int)Mathf.Round((float)currentCell.x / xScreenSize);
+        int y = (int)Mathf.Round((float)currentCell.y / yScreenSize);
         return new Vector2Int(x, y);
     }
 
-    private Vector3Int getCurrentCell() {
-        
+    private Vector3Int getCurrentCell()
+    {
+
         return gridLayout.WorldToCell(transform.position);
     }
 
     // Update is called once per frame
     void Update()
     {
-        moveX = Input.GetAxisRaw("Horizontal");
-        moveY = Input.GetAxisRaw("Vertical");
+
+        moveX = 0;
+        moveY = 0;
+        var keyboard = Keyboard.current;
+        if (keyboard.wKey.isPressed)
+        {
+            moveY = 1;
+        }
+        else if (keyboard.sKey.isPressed)
+        {
+            moveY = -1;
+        }
+        if (keyboard.aKey.isPressed)
+        {
+            moveX = -1;
+        }
+        else if (keyboard.dKey.isPressed)
+        {
+            moveX = 1;
+        }
 
         moveAttackPoint();
         Move(moveX, moveY);
         currentCell = getCurrentCell();
         Vector2Int nextScreen = getCurrentScreen();
-        if(currentScreen.x != nextScreen.x || currentScreen.y != nextScreen.y){
+        if (currentScreen.x != nextScreen.x || currentScreen.y != nextScreen.y)
+        {
             currentScreen = nextScreen;
             ScreenExited.Invoke(nextScreen);
         }
