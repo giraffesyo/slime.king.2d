@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class BaseCharacter : MonoBehaviour
 {
-    
     public int maxHealth = 100;
     private int currentHealth;
+
+    public Transform attackPoint;
 
     public Rigidbody2D rb;
     public float moveSpeed;
     public Vector2 moveDirection;
     public bool facingRight = true;
+
+
+    public float moveX = 0;
+    public float moveY = 0;
 
     protected void Start()
     {
@@ -24,7 +29,7 @@ public class BaseCharacter : MonoBehaviour
     {
     }
 
-    void FixedUpdate()
+    protected void FixedUpdate()
     {
         // Movement
         rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
@@ -55,5 +60,17 @@ public class BaseCharacter : MonoBehaviour
         {
             Debug.Log("Died");
         }
+    }
+
+    public void moveAttackPoint()
+    {
+        if (moveX == 0 && moveY == 0)
+        {
+            attackPoint.localPosition = new Vector3(1, 0, 0);
+            return;
+        }
+        // Absoulte value used since when player turns left and right , the whole object gets rotated
+        // meaning we dont need to worry about placing attackPoint behind the object
+        attackPoint.localPosition = new Vector3(Mathf.Abs(moveX), moveY, 0);
     }
 }
