@@ -12,10 +12,6 @@ public class Player : BaseCharacter
     [SerializeField] private Vector3Int currentCell;
     private Vector2Int currentScreen;
 
-    public float moveX = 0;
-    public float moveY = 0;
-    public Transform attackPoint;
-
     // Start is called before the first frame update
     protected new void Start()
     {
@@ -51,14 +47,4 @@ public class Player : BaseCharacter
         }
     }
 
-    void moveAttackPoint()
-    {
-        if(moveX == 0 && moveY == 0){
-            attackPoint.localPosition = new Vector3(1, 0, 0);
-            return;
-        }
-        // Absoulte value used since when player turns left and right , the whole object gets rotated
-        // meaning we dont need to worry about placing attackPoint behind the object
-        attackPoint.localPosition = new Vector3(Mathf.Abs(moveX), moveY, 0);
-    }
 }
