@@ -8,9 +8,13 @@ public class Player : BaseCharacter
     public delegate void ScreenExitHandler(Vector2Int nextScreen);
     public event ScreenExitHandler ScreenExited;
     [SerializeField] private GridLayout gridLayout;
+    [SerializeField] private int xScreenSize = 20;
+    [SerializeField] private int yScreenSize = 20;
+
     
     [SerializeField] private Vector3Int currentCell;
-    private Vector2Int currentScreen;
+
+    [SerializeField] private Vector2Int currentScreen;
 
     public float moveX = 0;
     public float moveY = 0;
@@ -25,8 +29,8 @@ public class Player : BaseCharacter
     }
 
     private Vector2Int getCurrentScreen() {
-        int x = (int) currentCell.x / 17;
-        int y = (int) currentCell.y / 10;
+        int x = (int) Mathf.Round( (float)currentCell.x / xScreenSize);
+        int y = (int) Mathf.Round((float)currentCell.y / yScreenSize);
         return new Vector2Int(x, y);
     }
 
