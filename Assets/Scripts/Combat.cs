@@ -8,11 +8,16 @@ public class Combat : MonoBehaviour
     public float attackRange = 0.5f;
     public int attackDamage = 40;
     public bool isAi;
+    private Animator animator;
 
     public LayerMask enemyLayers;       // All enemies must be in a layer
 
     int attackCooldown = 50; //Temporary variables
     int cooldownCounter = 0;
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     private void FixedUpdate()
     {
@@ -30,15 +35,18 @@ public class Combat : MonoBehaviour
     void Update()
     {
         var keyboard = Keyboard.current;
-        if (!isAi && keyboard.spaceKey.wasPressedThisFrame)
+        if (!isAi && (keyboard.spaceKey.wasPressedThisFrame || Mouse.current.rightButton.wasPressedThisFrame))
         {
-            Attack();
+            MeleeAttack();
         }
     }
 
-    public void Attack()
+    public void MeleeAttack()
     {
-        // Do animation here
+        if (animator != null)
+        {
+            animator.SetTrigger("Melee");
+        }
 
         // Temporary, flickers white circle showing hitboxes of attacks
         cooldownCounter = 1;

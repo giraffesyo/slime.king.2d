@@ -5,6 +5,7 @@ using UnityEngine.Tilemaps;
 using UnityEngine.InputSystem;
 public class Player : BaseCharacter
 {
+    [SerializeField] private Transform spawnPoint;
     public delegate void ScreenExitHandler(Vector2Int nextScreen);
     public event ScreenExitHandler ScreenExited;
     [SerializeField] private GridLayout gridLayout;
@@ -76,6 +77,8 @@ public class Player : BaseCharacter
     {
         // base.Die();
         // restart the level?
+        // for now teleporting to spawn.
+        transform.position = spawnPoint.position;
     }
 
 }

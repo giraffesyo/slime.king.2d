@@ -29,14 +29,14 @@ public class AI : BaseCharacter
         aiCombat = GetComponent<Combat>();
         playerPos = GameObject.FindGameObjectWithTag("Player").transform;
         playerLayer = LayerMask.GetMask("Player");
-        if(aiMode == AIType.RANGED)
+        if (aiMode == AIType.RANGED)
         {
             attackRange = 4f;
             playerRange = 3.8f;
             setSpeed(3f);
             attackCooldown = 100;
         }
-        else if(aiMode == AIType.MELEE)
+        else if (aiMode == AIType.MELEE)
         {
             attackRange = 1f;
             setSpeed(2f);
@@ -66,11 +66,12 @@ public class AI : BaseCharacter
 
         Collider2D[] playerCollider = Physics2D.OverlapCircleAll(transform.position, attackRange, playerLayer);
 
-        if (aiMode == AIType.MELEE && cooldownCounter == 0) { // MELEE
-            if(playerCollider.Length != 0) // Within melee ranged
+        if (aiMode == AIType.MELEE && cooldownCounter == 0)
+        { // MELEE
+            if (playerCollider.Length != 0) // Within melee ranged
             {
                 cooldownCounter = 1;
-                aiCombat.Attack();
+                aiCombat.MeleeAttack();
             }
             if (attackCooldown != 0)
             {
@@ -79,15 +80,15 @@ public class AI : BaseCharacter
                 moveAttackPoint();
             }
         }
-        else if(aiMode == AIType.RANGED && playerCollider.Length != 0) // RANGED
-        { 
+        else if (aiMode == AIType.RANGED && playerCollider.Length != 0) // RANGED
+        {
             Transform playerTransform = playerCollider[0].GetComponent<Transform>();
             float x1 = transform.position.x;
             float y1 = transform.position.y;
-           
+
             float x2 = playerTransform.position.x;
             float y2 = playerTransform.position.y;
-            if(Distance(x1, y1, x2, y2) < playerRange)
+            if (Distance(x1, y1, x2, y2) < playerRange)
             {
                 moveX = getMoveX() * -1;
                 moveY = getMoveY() * -1;
