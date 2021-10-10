@@ -17,8 +17,8 @@ TagManager:
   - SolidObjects
   - Enemies
   - Player
-  - Missile
-  - 
+  - MissileEnemy
+  - MisslePlayer
   - 
   - 
   - 

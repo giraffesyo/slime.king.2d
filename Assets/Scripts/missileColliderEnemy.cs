@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class missileCollider : MonoBehaviour
+public class missileColliderEnemy : MonoBehaviour
 {
+
     private void Start()
     {
-        // 12 = missile layer, 10 = enemies layer
+        // 10 = enemies, 11 = player, 12 = enemyMissiles, 13 = playerMissiles,
+        Physics2D.IgnoreLayerCollision(12, 13);
         Physics2D.IgnoreLayerCollision(12, 10);
+        Physics2D.IgnoreLayerCollision(13, 11);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -18,7 +21,6 @@ public class missileCollider : MonoBehaviour
         {
             c.TakeDamage(1);
         }
-
         Destroy(gameObject);
     }
 }
