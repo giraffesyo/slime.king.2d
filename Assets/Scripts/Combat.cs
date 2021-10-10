@@ -5,8 +5,10 @@ using UnityEngine.InputSystem;
 public class Combat : MonoBehaviour
 {
     public Transform attackPoint;
+    public GameObject missilePrefab;
+    public float missileForce = .5f;
     public float attackRange = 0.5f;
-    public int attackDamage = 40;
+    public int attackDamage = 1;
     public bool isAi;
     private Animator animator;
 
@@ -63,8 +65,16 @@ public class Combat : MonoBehaviour
         {
             BaseCharacter enemyChar = enemy.GetComponent<BaseCharacter>();
             enemyChar.TakeDamage(attackDamage);
+            StartCoroutine(enemyChar.Knockback(5, 1f, attackPoint.transform));
         }
 
+    }
+
+    public void RangedAttack(Vector2 direction)
+    {
+        GameObject missile = Instantiate(missilePrefab, attackPoint.position, attackPoint.rotation);
+        Rigidbody2D rb = missile.GetComponent<Rigidbody2D>();
+        rb.AddForce(direction * missileForce, ForceMode2D.Impulse);
     }
 
     // For debugging. Draws circle when in editing mode showing attack range (Must click on ooey to see circle)

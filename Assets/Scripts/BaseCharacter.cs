@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BaseCharacter : MonoBehaviour
 {
-    [SerializeField] private int maxHealth = 3;
+    [SerializeField] private int maxHealth = 30;
     [SerializeField] private int currentHealth;
 
     public Transform attackPoint;
@@ -73,11 +73,24 @@ public class BaseCharacter : MonoBehaviour
     {
         if (moveX == 0 && moveY == 0)
         {
-            attackPoint.localPosition = new Vector3(1, 0, 0);
+            attackPoint.localPosition = new Vector3(.65f, 0, 0);
             return;
         }
         // Absoulte value used since when player turns left and right , the whole object gets rotated
         // meaning we dont need to worry about placing attackPoint behind the object
-        attackPoint.localPosition = new Vector3(Mathf.Abs(moveX), moveY, 0);
+        attackPoint.localPosition = new Vector3(Mathf.Abs(moveX) * .65f, moveY  * .65f, 0);
+    }
+
+    public IEnumerator Knockback(float knockbackDuration, float knockbackPower, Transform obj)
+    {
+        float timer = 0;
+
+        while (timer < knockbackDuration)
+        {
+            timer += Time.deltaTime;
+            Vector2 direction = (obj.transform.position - this.transform.position).normalized;
+            rb.AddForce(-direction * knockbackPower);
+        }
+        yield return 0;
     }
 }

@@ -80,18 +80,30 @@ public class AI : BaseCharacter
                 moveAttackPoint();
             }
         }
-        else if (aiMode == AIType.RANGED && playerCollider.Length != 0) // RANGED
+        else if (aiMode == AIType.RANGED) // RANGED
         {
-            Transform playerTransform = playerCollider[0].GetComponent<Transform>();
-            float x1 = transform.position.x;
-            float y1 = transform.position.y;
-
-            float x2 = playerTransform.position.x;
-            float y2 = playerTransform.position.y;
-            if (Distance(x1, y1, x2, y2) < playerRange)
+            if (playerCollider.Length == 0)
             {
-                moveX = getMoveX() * -1;
-                moveY = getMoveY() * -1;
+                moveX = getMoveX();
+                moveY = getMoveY();
+            }
+            else { 
+                Transform playerTransform = playerCollider[0].GetComponent<Transform>();
+                float x1 = transform.position.x;
+                float y1 = transform.position.y;
+
+                float x2 = playerTransform.position.x;
+                float y2 = playerTransform.position.y;
+                if (Distance(x1, y1, x2, y2) < playerRange)
+                {
+                    moveX = getMoveX() * -1;
+                    moveY = getMoveY() * -1;
+                }
+                if (cooldownCounter == 0)
+                {
+                    cooldownCounter = 1;
+                    aiCombat.RangedAttack(new Vector2(x2 - x1, y2 - y1).normalized);
+                }
             }
         }
         base.Move(moveX, moveY);
