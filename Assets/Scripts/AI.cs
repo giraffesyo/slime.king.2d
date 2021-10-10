@@ -12,10 +12,7 @@ public class AI : BaseCharacter
 {
     Transform playerPos;    // Transform object of the controllable player
     public AIType aiMode;
-
-    Combat aiCombat;
-    int cooldownCounter = 0;
-    int attackCooldown;
+    Ability aiAbility;
     float attackRange;
     float playerRange;     // For ranged ai, how close the player will be before walking backwards
     public LayerMask playerLayer;
@@ -26,7 +23,7 @@ public class AI : BaseCharacter
     {
         base.Start();
 
-        aiCombat = GetComponent<Combat>();
+        aiAbility = GetComponent<Ability>();
         playerPos = GameObject.FindGameObjectWithTag("Player").transform;
         playerLayer = LayerMask.GetMask("Player");
         if (aiMode == AIType.RANGED)
@@ -34,22 +31,11 @@ public class AI : BaseCharacter
             attackRange = 4f;
             playerRange = 3.8f;
             setSpeed(3f);
-            attackCooldown = 100;
         }
         else if (aiMode == AIType.MELEE)
         {
             attackRange = 1f;
             setSpeed(2f);
-            attackCooldown = 50;
-        }
-    }
-
-    protected new void FixedUpdate()
-    {
-        base.FixedUpdate();
-        if (cooldownCounter != 0)
-        {
-            cooldownCounter = (cooldownCounter + 1) % attackCooldown;   // fixedUpdate gets called 50 times per second
         }
     }
 
@@ -66,19 +52,16 @@ public class AI : BaseCharacter
 
         Collider2D[] playerCollider = Physics2D.OverlapCircleAll(transform.position, attackRange, playerLayer);
 
-        if (aiMode == AIType.MELEE && cooldownCounter == 0)
+        if (aiMode == AIType.MELEE)
         { // MELEE
             if (playerCollider.Length != 0) // Within melee ranged
             {
-                cooldownCounter = 1;
-                aiCombat.MeleeAttack();
+                aiAbility.Use();
             }
-            if (attackCooldown != 0)
-            {
-                moveX = getMoveX();
-                moveY = getMoveY();
-                moveAttackPoint();
-            }
+            moveX = getMoveX();
+            moveY = getMoveY();
+            moveAttackPoint();
+
         }
         else if (aiMode == AIType.RANGED) // RANGED
         {
@@ -100,11 +83,9 @@ public class AI : BaseCharacter
                     moveX = getMoveX() * -1;
                     moveY = getMoveY() * -1;
                 }
-                if (cooldownCounter == 0)
-                {
-                    cooldownCounter = 1;
-                    aiCombat.RangedAttack(new Vector2(x2 - x1, y2 - y1).normalized);
-                }
+
+                aiAbility.Use(new Vector2(x2 - x1, y2 - y1).normalized);
+
             }
         }
         base.Move(moveX, moveY);
