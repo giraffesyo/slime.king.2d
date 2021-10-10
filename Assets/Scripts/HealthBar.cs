@@ -25,7 +25,11 @@ public class HealthBar : MonoBehaviour
         {
             // Find last filled heart, unfill it
             HeartUI lastFilled = hearts.FindLast(heart => heart.filled);
-            lastFilled.EmptyHeart();
+            if (lastFilled != null)
+            {
+                lastFilled.EmptyHeart();
+            }
+
         }
 
     }
@@ -37,7 +41,11 @@ public class HealthBar : MonoBehaviour
         {
             // Find first empty heart, fill it
             HeartUI firstEmpty = hearts.Find(heart => !heart.filled);
-            firstEmpty.FillHeart();
+            if (firstEmpty != null)
+            {
+                firstEmpty.FillHeart();
+            }
+
         }
     }
 
