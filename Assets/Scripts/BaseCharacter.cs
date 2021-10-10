@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class BaseCharacter : MonoBehaviour
 {
-    [SerializeField] private int maxHealth = 30;
-    [SerializeField] private int currentHealth;
+    [SerializeField] private int initialMaxHealth = 3;
+    protected int maxHealth;
+    [SerializeField] protected int currentHealth;
 
     public Transform attackPoint;
 
@@ -20,8 +21,17 @@ public class BaseCharacter : MonoBehaviour
 
     protected void Start()
     {
-        currentHealth = maxHealth;
+        SetMaxHealth(initialMaxHealth);
         moveSpeed = 5f;
+    }
+    protected virtual void RestoreHealth(int amount)
+    {
+        currentHealth += amount;
+    }
+    protected virtual void SetMaxHealth(int amount)
+    {
+        currentHealth = initialMaxHealth;
+        maxHealth = initialMaxHealth;
     }
 
     // Update is called once per frame
@@ -50,19 +60,20 @@ public class BaseCharacter : MonoBehaviour
         moveSpeed = speed;
     }
 
-    public void TakeDamage(int damage)
+    public virtual void TakeDamage(int damage)
     {
         currentHealth -= damage;
 
         // Do hurt animation
 
-        if ( currentHealth <= 0)
+        if (currentHealth <= 0)
         {
             Die();
         }
     }
-    protected virtual void Die() {
-        Debug.Log( $"{transform.name} died");
+    protected virtual void Die()
+    {
+        Debug.Log($"{transform.name} died");
         // play the dying animation 
         // play dying sound for this unit
         // then finally, delete the unit
