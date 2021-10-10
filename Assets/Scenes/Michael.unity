@@ -183,6 +183,7 @@ MonoBehaviour:
   rb: {fileID: 181482611}
   moveSpeed: 5
   moveDirection: {x: 0, y: 0}
+  invincible: 0
   facingRight: 1
   moveX: 0
   moveY: 0
@@ -3386,6 +3387,14 @@ PrefabInstance:
       propertyPath: spawnPoint
       value: 
       objectReference: {fileID: 766286396}
+    - target: {fileID: 26286675073671254, guid: af10b48d60b85443aba5780af888a8e8, type: 3}
+      propertyPath: initialMaxHealth
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 26286675073671254, guid: af10b48d60b85443aba5780af888a8e8, type: 3}
+      propertyPath: damageInvincibilitySeconds
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 26286675073671259, guid: af10b48d60b85443aba5780af888a8e8, type: 3}
       propertyPath: m_RootOrder
       value: 1

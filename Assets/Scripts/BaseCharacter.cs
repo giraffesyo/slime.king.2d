@@ -1,19 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class BaseCharacter : MonoBehaviour
+using DG.Tweening;
+public class BaseCharacter : Damageable
 {
-    [SerializeField] private int initialMaxHealth = 3;
-    protected int maxHealth;
-    [SerializeField] protected int currentHealth;
 
     public Transform attackPoint;
 
     public Rigidbody2D rb;
     public float moveSpeed;
     public Vector2 moveDirection;
+    public bool invincible;
+    private SpriteRenderer spriteRenderer;
     public bool facingRight = true;
+
 
 
     public float moveX = 0;
@@ -21,23 +21,28 @@ public class BaseCharacter : MonoBehaviour
 
     protected void Start()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
         SetMaxHealth(initialMaxHealth);
         moveSpeed = 5f;
     }
-    protected virtual void RestoreHealth(int amount)
+    protected IEnumerator ActivateInvincibility(float forSeconds)
     {
-        currentHealth += amount;
+        invincible = true;
+
+        // TODO: animate invincibility
+        yield return new WaitForSeconds(forSeconds);
     }
-    protected virtual void SetMaxHealth(int amount)
+    // Update is called once per frame
+    void LateUpdate()
     {
-        currentHealth = initialMaxHealth;
-        maxHealth = initialMaxHealth;
+        if (currentHealth < 1)
+        {
+            Debug.Log($"{transform.name} died");
+            Die();
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
+
 
     protected void FixedUpdate()
     {
@@ -60,24 +65,12 @@ public class BaseCharacter : MonoBehaviour
         moveSpeed = speed;
     }
 
-    public virtual void TakeDamage(int damage)
-    {
-        currentHealth -= damage;
 
-        // Do hurt animation
-
-        if (currentHealth <= 0)
-        {
-            Die();
-        }
-    }
     protected virtual void Die()
     {
-        Debug.Log($"{transform.name} died");
+
         // play the dying animation 
         // play dying sound for this unit
-        // then finally, delete the unit
-        Destroy(this.gameObject);
     }
 
     public void moveAttackPoint()
@@ -89,7 +82,7 @@ public class BaseCharacter : MonoBehaviour
         }
         // Absoulte value used since when player turns left and right , the whole object gets rotated
         // meaning we dont need to worry about placing attackPoint behind the object
-        attackPoint.localPosition = new Vector3(Mathf.Abs(moveX) * .65f, moveY  * .65f, 0);
+        attackPoint.localPosition = new Vector3(Mathf.Abs(moveX) * .65f, moveY * .65f, 0);
     }
 
     public IEnumerator Knockback(float knockbackDuration, float knockbackPower, Transform obj)

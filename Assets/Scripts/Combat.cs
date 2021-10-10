@@ -64,8 +64,11 @@ public class Combat : MonoBehaviour
         foreach (Collider2D enemy in hitEnemies)
         {
             BaseCharacter enemyChar = enemy.GetComponent<BaseCharacter>();
-            enemyChar.TakeDamage(attackDamage);
-            StartCoroutine(enemyChar.Knockback(5, 1f, attackPoint.transform));
+            if (!enemyChar.invincible)
+            {
+                enemyChar.TakeDamage(attackDamage);
+                StartCoroutine(enemyChar.Knockback(5, 1f, attackPoint.transform));
+            }
         }
 
     }

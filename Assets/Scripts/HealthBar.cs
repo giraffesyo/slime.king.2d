@@ -10,48 +10,49 @@ public class HealthBar : MonoBehaviour
     [SerializeField] private Player player;
     private List<HeartUI> hearts = new List<HeartUI>();
 
-    void Awake()
+    void OnEnable()
     {
-        player.DamageTaken += TakeDamage;
-        player.MaxHealthIncrased += IncreaseMaximumHealth;
+        player.CurrentHealthSet += SetHealth;
         player.MaxHealthSet += SetMaximumHealth;
-        player.HealthRestored += RestoreHealth;
+        player.DamageTaken += TakeDamage;
     }
 
-    public void TakeDamage(int amount = 1)
+    void OnDisable()
+    {
+        player.CurrentHealthSet -= SetHealth;
+        player.MaxHealthSet -= SetMaximumHealth;
+        player.DamageTaken -= TakeDamage;
+    }
+
+    public void TakeDamage(int damage)
     {
 
-        for (int i = 0; i < amount; i++)
+        // Find all the filled hearts
+        List<HeartUI> filledHearts = hearts.FindAll(heart => heart.filled);
+        // put them in reverse order
+        filledHearts.Reverse();
+        // determine how much damage to do
+        int damageToDo = damage > hearts.Count ? hearts.Count : damage;
+        // do the damage
+        filledHearts.GetRange(0, damageToDo).ForEach(heart => heart.EmptyHeart());
+    }
+
+    public void SetHealth(int hp)
+    {
+        Debug.Log($"Setting health to {hp}");
+        var count = 0;
+        hearts.ForEach(heart =>
         {
-            // Find last filled heart, unfill it
-            HeartUI lastFilled = hearts.FindLast(heart => heart.filled);
-            if (lastFilled != null)
+            if (count < hp)
             {
-                lastFilled.EmptyHeart();
+                count++;
+                heart.FillHeart();
             }
-
-        }
-
-    }
-
-
-    public void RestoreHealth(int amount = 1)
-    {
-        for (int i = 0; i < amount; i++)
-        {
-            // Find first empty heart, fill it
-            HeartUI firstEmpty = hearts.Find(heart => !heart.filled);
-            if (firstEmpty != null)
+            else
             {
-                firstEmpty.FillHeart();
+                heart.EmptyHeart();
             }
-
-        }
-    }
-
-    public void IncreaseMaximumHealth(int amount = 1)
-    {
-        SetMaximumHealth(hearts.Count + amount);
+        });
     }
 
     public void SetMaximumHealth(int amount)

@@ -7,19 +7,11 @@ public class Player : BaseCharacter
 {
     [SerializeField] private Transform spawnPoint;
     public delegate void ScreenExitHandler(Vector2Int nextScreen);
-    public delegate void TakeDamageHandler(int amount);
-    public delegate void RestoreHealthHandler(int amount);
-    public delegate void IncreaseMaxHealthHandler(int amount);
-    public delegate void SetMaxHealthHandler(int amount);
-
-    public event TakeDamageHandler DamageTaken;
-    public event RestoreHealthHandler HealthRestored;
-    public event IncreaseMaxHealthHandler MaxHealthIncrased;
-    public event SetMaxHealthHandler MaxHealthSet;
     public event ScreenExitHandler ScreenExited;
     [SerializeField] private GridLayout gridLayout;
     [SerializeField] private int xScreenSize = 20;
     [SerializeField] private int yScreenSize = 20;
+    [SerializeField] private float damageInvincibilitySeconds = 1.0f;
 
 
     [SerializeField] private Vector3Int currentCell;
@@ -71,6 +63,7 @@ public class Player : BaseCharacter
             moveX = 1;
         }
 
+
         moveAttackPoint();
         Move(moveX, moveY);
         currentCell = getCurrentCell();
@@ -84,35 +77,30 @@ public class Player : BaseCharacter
 
     protected override void Die()
     {
-        // base.Die();
+        base.Die();
         // restart the level?
         // for now teleporting to spawn.
         transform.position = spawnPoint.position;
-    }
-    public override void TakeDamage(int damage)
-    {
-        base.TakeDamage(damage);
-        DamageTaken.Invoke(damage);
-    }
-    protected override void SetMaxHealth(int amount)
-    {
-        base.SetMaxHealth(amount);
-        MaxHealthSet(amount);
+        // restore HP
+        SetCurrentHealth(maxHealth);
     }
 
+    // protected override void SetMaxHealth(int amount)
+    // {
+    //     base.SetMaxHealth(amount);
+    //     MaxHealthSet.Invoke(amount);
+    // }
+    // override public void SetCurrentHealth(int hp)
+    // {
+    //     base.SetCurrentHealth(hp);
+    //     HealthSet.Invoke(hp);
+    // }
+    // public override void TakeDamage(int damage)
+    // {
+    //     base.TakeDamage(damage);
+    //     ActivateInvincibility(damageInvincibilitySeconds);
 
-    protected void IncreaseMaxHealth(int amount)
-    {
-        maxHealth += amount;
-        currentHealth = maxHealth;
-        MaxHealthIncrased.Invoke(amount);
-    }
+    // }
 
-
-    protected override void RestoreHealth(int amount)
-    {
-        base.RestoreHealth(amount);
-        HealthRestored.Invoke(amount);
-    }
 
 }

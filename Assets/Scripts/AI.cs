@@ -87,7 +87,8 @@ public class AI : BaseCharacter
                 moveX = getMoveX();
                 moveY = getMoveY();
             }
-            else { 
+            else
+            {
                 Transform playerTransform = playerCollider[0].GetComponent<Transform>();
                 float x1 = transform.position.x;
                 float y1 = transform.position.y;
@@ -144,5 +145,7 @@ public class AI : BaseCharacter
     {
         base.Die();
         // drop some coins!
+        // Destroy the AI
+        Destroy(this.gameObject);
     }
 }
