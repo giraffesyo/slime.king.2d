@@ -7,6 +7,15 @@ public class Player : BaseCharacter
 {
     [SerializeField] private Transform spawnPoint;
     public delegate void ScreenExitHandler(Vector2Int nextScreen);
+    public delegate void TakeDamageHandler(int amount);
+    public delegate void RestoreHealthHandler(int amount);
+    public delegate void IncreaseMaxHealthHandler(int amount);
+    public delegate void SetMaxHealthHandler(int amount);
+
+    public event TakeDamageHandler DamageTaken;
+    public event RestoreHealthHandler HealthRestored;
+    public event IncreaseMaxHealthHandler MaxHealthIncrased;
+    public event SetMaxHealthHandler MaxHealthSet;
     public event ScreenExitHandler ScreenExited;
     [SerializeField] private GridLayout gridLayout;
     [SerializeField] private int xScreenSize = 20;
@@ -79,6 +88,31 @@ public class Player : BaseCharacter
         // restart the level?
         // for now teleporting to spawn.
         transform.position = spawnPoint.position;
+    }
+    public override void TakeDamage(int damage)
+    {
+        base.TakeDamage(damage);
+        DamageTaken.Invoke(damage);
+    }
+    protected override void SetMaxHealth(int amount)
+    {
+        base.SetMaxHealth(amount);
+        MaxHealthSet(amount);
+    }
+
+
+    protected void IncreaseMaxHealth(int amount)
+    {
+        maxHealth += amount;
+        currentHealth = maxHealth;
+        MaxHealthIncrased.Invoke(amount);
+    }
+
+
+    protected override void RestoreHealth(int amount)
+    {
+        base.RestoreHealth(amount);
+        HealthRestored.Invoke(amount);
     }
 
 }
