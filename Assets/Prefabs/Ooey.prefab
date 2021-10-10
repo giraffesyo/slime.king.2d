@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cec64bd8b0cf8a147819b9e966552854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  initialMaxHealth: 3
   currentHealth: 0
   attackPoint: {fileID: 4856516238580669718}
   rb: {fileID: 26286675073671257}
@@ -175,8 +175,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackPoint: {fileID: 4856516238580669718}
+  missilePrefab: {fileID: 3762343026231537455, guid: 6702bc3e390206d448a8baef9a466394, type: 3}
+  missileForce: 0.5
   attackRange: 0.5
-  attackDamage: 40
+  attackDamage: 1
   isAi: 0
   enemyLayers:
     serializedVersion: 2

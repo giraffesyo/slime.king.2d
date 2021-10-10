@@ -41,6 +41,13 @@ public class Combat : MonoBehaviour
         {
             MeleeAttack();
         }
+        if (!isAi && (keyboard.nKey.wasPressedThisFrame || Mouse.current.leftButton.wasPressedThisFrame))
+        {
+            missileForce = 10f;
+            Camera mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+            Vector3 worldPos = mainCam.ScreenToWorldPoint(new Vector3(Mouse.current.position.x.ReadValue(), Mouse.current.position.y.ReadValue(), 0));
+            RangedAttack(new Vector2(worldPos.x - attackPoint.position.x, worldPos.y - attackPoint.position.y).normalized);
+        }
     }
 
     public void MeleeAttack()
