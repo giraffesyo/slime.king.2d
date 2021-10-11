@@ -14,8 +14,6 @@ public class BaseCharacter : Damageable
     private SpriteRenderer spriteRenderer;
     public bool facingRight = true;
 
-
-
     public float moveX = 0;
     public float moveY = 0;
 
@@ -42,8 +40,6 @@ public class BaseCharacter : Damageable
         }
     }
 
-
-
     protected void FixedUpdate()
     {
         // Movement
@@ -55,9 +51,10 @@ public class BaseCharacter : Damageable
         if ((moveX < 0 && facingRight) || (moveX > 0 && !facingRight))
         {
             facingRight = !facingRight;
-            transform.Rotate(new Vector3(0, 180, 0));
+            spriteRenderer.flipX = !spriteRenderer.flipX;
         }
         moveDirection = new Vector2(moveX, moveY).normalized;
+        Debug.Log($"moveDirection is  {moveDirection}");
     }
 
     public void setSpeed(float speed)
@@ -77,12 +74,11 @@ public class BaseCharacter : Damageable
     {
         if (moveX == 0 && moveY == 0)
         {
+
             attackPoint.localPosition = new Vector3(.65f, 0, 0);
             return;
         }
-        // Absoulte value used since when player turns left and right , the whole object gets rotated
-        // meaning we dont need to worry about placing attackPoint behind the object
-        attackPoint.localPosition = new Vector3(Mathf.Abs(moveX) * .65f, moveY * .65f, 0);
+        attackPoint.localPosition = new Vector3(moveX * .65f, moveY * .65f, 0);
     }
 
     public IEnumerator Knockback(float knockbackDuration, float knockbackPower, Transform obj)
