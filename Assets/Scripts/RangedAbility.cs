@@ -9,8 +9,6 @@ public class RangedAbility : Ability
     public float missileForce = 10f;
     public bool isAi;
 
-    public LayerMask enemyLayers;  // All enemies must be in a layer
-
     void Update()
     {
         var keyboard = Keyboard.current;
@@ -22,7 +20,7 @@ public class RangedAbility : Ability
         }
     }
 
-    override public void Use(Vector2? target)
+    override public void Use(Vector2 target)
     {
         if (onCooldown)
         {

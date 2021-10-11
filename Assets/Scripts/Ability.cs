@@ -9,24 +9,33 @@ public class Ability : MonoBehaviour
     [SerializeField] protected bool onCooldown;
     [SerializeField] protected int currentCooldown;
 
+    [SerializeField] protected LayerMask enemyLayers;  // All enemies must be in a layer
+
     public delegate void CooldownCompleteHandler();
     public event CooldownCompleteHandler? CooldownCompleted;
 
-    public virtual void Use()
-    {
-        onCooldown = true;
-        Use(null);
-    }
-    public virtual void Use(Vector2? target)
+    private void MasterUse()
     {
         onCooldown = true;
         StartCoroutine(StartCooldown());
     }
 
+    public virtual void Use()
+    {
+        MasterUse();
+    }
+    public virtual void Use(Vector2 target)
+    {
+        MasterUse();
+    }
+
+    public virtual void Use(BaseCharacter target)
+    {
+        MasterUse();
+    }
     public virtual void Use(Vector2 target, Vector2 source)
     {
-        onCooldown = true;
-        StartCoroutine(StartCooldown());
+        MasterUse();
     }
 
     private IEnumerator StartCooldown()
@@ -40,6 +49,10 @@ public class Ability : MonoBehaviour
         }
         currentCooldown = 0;
         onCooldown = false;
+        if (CooldownCompleted != null)
+        {
+            CooldownCompleted.Invoke();
+        }
     }
 }
 

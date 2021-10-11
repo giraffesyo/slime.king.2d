@@ -4,6 +4,7 @@ using UnityEngine;
 
 public enum AIType
 {
+    NONE,
     MELEE,
     RANGED,
     NONE
@@ -13,11 +14,11 @@ public class AI : BaseCharacter
 {
     public AIType aiMode;
     Ability aiAbility;
-    
+
     Transform playerPos;    // Transform object of the controllable player
     float attackRange;
     float playerRange;     // For ranged ai, how close the player will be before walking backwards
-    
+
     public LayerMask playerLayer;
 
     Transform stunObject;
@@ -149,7 +150,7 @@ public class AI : BaseCharacter
     public override void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
-        if(currentHealth == 1)
+        if (currentHealth == 1)
         {
             StartCoroutine(Stun());
         }
