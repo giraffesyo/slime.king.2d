@@ -10,11 +10,12 @@ public class BaseCharacter : Damageable
     public Rigidbody2D rb;
     public float moveSpeed;
     public Vector2 moveDirection;
-    public bool invincible; 
+    public bool invincible;
     public bool facingRight = true;
     public bool stunned;
+    public bool beingKnockedBack;
     private SpriteRenderer spriteRenderer;
-   
+
 
     public float moveX = 0;
     public float moveY = 0;
@@ -85,12 +86,30 @@ public class BaseCharacter : Damageable
     }
 
     public IEnumerator Knockback(float knockbackPower, Transform obj)
-    { 
+    {
         stunned = true;
+        beingKnockedBack = true;
         Move(0, 0);
         Vector2 direction = (obj.transform.position - this.transform.position).normalized;
-        transform.DOMove(new Vector3(transform.position.x - (direction.x * knockbackPower), transform.position.y - (direction.y * knockbackPower),0), 0.5f);
+        transform.DOMove(new Vector3(transform.position.x - (direction.x * knockbackPower), transform.position.y - (direction.y * knockbackPower), 0), 0.5f).OnComplete(() => beingKnockedBack = false);
+
         stunned = false;
         yield return 0;
     }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (beingKnockedBack)
+        {
+            // check if the collision is a solid object
+            // maybe a better way to do this but lets see if we can get this to work...
+            if (other.gameObject.layer == 9)
+            { // "solid objects" is 9
+              // stop ongoing tweens
+                transform.DOKill(false);
+            }
+        }
+
+    }
+
 }
