@@ -268,9 +268,10 @@ MonoBehaviour:
   moveDirection: {x: 0, y: 0}
   invincible: 0
   facingRight: 1
+  stunned: 0
   moveX: 0
   moveY: 0
-  aiMode: 0
+  aiMode: 1
   playerLayer:
     serializedVersion: 2
     m_Bits: 2048
@@ -289,13 +290,13 @@ MonoBehaviour:
   cooldown: 2
   onCooldown: 0
   currentCooldown: 0
+  enemyLayers:
+    serializedVersion: 2
+    m_Bits: 2048
   attackPoint: {fileID: 6774084187991250562}
   attackRange: 0.5
   attackDamage: 1
   isAi: 0
-  enemyLayers:
-    serializedVersion: 2
-    m_Bits: 2048
 --- !u!1 &7259103202565822874
 GameObject:
   m_ObjectHideFlags: 0

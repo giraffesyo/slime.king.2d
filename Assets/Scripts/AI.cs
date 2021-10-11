@@ -7,7 +7,6 @@ public enum AIType
     NONE,
     MELEE,
     RANGED,
-    NONE
 }
 
 public class AI : BaseCharacter
