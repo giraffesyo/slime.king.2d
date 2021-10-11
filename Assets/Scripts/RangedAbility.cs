@@ -7,7 +7,6 @@ public class RangedAbility : Ability
     public Transform attackPoint;
     public GameObject missilePrefab;
     public float missileForce = 10f;
-    public int attackDamage = 1; // does this do  anything?
     public bool isAi;
 
     public LayerMask enemyLayers;  // All enemies must be in a layer
@@ -38,6 +37,4 @@ public class RangedAbility : Ability
             rb.AddForce(t * missileForce, ForceMode2D.Impulse);
         }
     }
-
-
 }

@@ -20,6 +20,7 @@ public class missileColliderEnemy : MonoBehaviour
         if (c != null)
         {
             c.TakeDamage(1);
+            StartCoroutine(c.Knockback(2f, this.transform));
         }
         Destroy(gameObject);
     }

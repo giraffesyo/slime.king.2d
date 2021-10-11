@@ -22,22 +22,22 @@ public class MeleeAbility : Ability
     {
         var keyboard = Keyboard.current;
         if (!isAi && !onCooldown && (keyboard.spaceKey.wasPressedThisFrame || Mouse.current.rightButton.wasPressedThisFrame))
-        {
-            Use();
+        {        
+            if (animator != null)
+            {
+                animator.SetTrigger("Melee");
+            }
         }
     }
 
     override public void Use()
-    {
+    {            
         if (onCooldown)
         {
             return;
         }
         base.Use();
-        if (animator != null)
-        {
-            animator.SetTrigger("Melee");
-        }
+
         // Temporary, flickers white circle showing hitboxes of attacks
         transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
 
@@ -49,7 +49,7 @@ public class MeleeAbility : Ability
             if (!enemyChar.invincible)
             {
                 enemyChar.TakeDamage(attackDamage);
-                StartCoroutine(enemyChar.Knockback(10, 1f, attackPoint.transform));
+                StartCoroutine(enemyChar.Knockback(2f, attackPoint.transform));
             }
         }
     }

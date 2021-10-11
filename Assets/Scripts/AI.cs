@@ -5,7 +5,8 @@ using UnityEngine;
 public enum AIType
 {
     MELEE,
-    RANGED
+    RANGED,
+    NONE
 }
 
 public class AI : BaseCharacter
@@ -19,8 +20,8 @@ public class AI : BaseCharacter
     
     public LayerMask playerLayer;
 
-    bool stunned = false;
     Transform stunObject;
+    bool engulfStunned = false;
 
     // Start is called before the first frame update
     protected new void Start()
@@ -53,7 +54,7 @@ public class AI : BaseCharacter
 
     protected IEnumerator Move()
     {
-        if (stunned)
+        if (engulfStunned)
             yield break;
 
         float x1 = transform.position.x;
@@ -62,6 +63,7 @@ public class AI : BaseCharacter
         float x2 = playerPos.position.x;
         float y2 = playerPos.position.y;
         float dist = Distance(x1, y1, x2, y2);
+
         if (dist >= 10f)    // Out of character sight range
             yield break;
 
@@ -75,6 +77,12 @@ public class AI : BaseCharacter
         {
             if (playerCollider.Length != 0) // Within melee ranged
             {
+                base.Move(0, 0);
+                stunned = true;
+
+                yield return new WaitForSecondsRealtime(1.0f);
+
+                stunned = false;
                 aiAbility.Use();
             }
             moveX = getMoveX();
@@ -97,6 +105,11 @@ public class AI : BaseCharacter
                 }
                 aiAbility.Use(new Vector2(x2 - x1, y2 - y1).normalized);
             }
+        }
+        else if (aiMode == AIType.NONE) // Just walks towards character
+        {
+            moveX = getMoveX();
+            moveY = getMoveY();
         }
         base.Move(moveX, moveY);
     }
@@ -145,11 +158,12 @@ public class AI : BaseCharacter
     IEnumerator Stun()
     {
         base.Move(0, 0);
-
         stunObject.GetComponent<SpriteRenderer>().enabled = true;
-        stunned = true;
+        engulfStunned = true;
+        
         yield return new WaitForSecondsRealtime(3.0f);
-        stunned = false;
+
+        engulfStunned = false;
         stunObject.GetComponent<SpriteRenderer>().enabled = false;
     }
 

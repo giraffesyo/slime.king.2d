@@ -10,9 +10,11 @@ public class BaseCharacter : Damageable
     public Rigidbody2D rb;
     public float moveSpeed;
     public Vector2 moveDirection;
-    public bool invincible;
-    private SpriteRenderer spriteRenderer;
+    public bool invincible; 
     public bool facingRight = true;
+    public bool stunned;
+    private SpriteRenderer spriteRenderer;
+   
 
     public float moveX = 0;
     public float moveY = 0;
@@ -48,6 +50,9 @@ public class BaseCharacter : Damageable
 
     public void Move(float moveX, float moveY)
     {
+        if (stunned)
+            return;
+
         if ((moveX < 0 && facingRight) || (moveX > 0 && !facingRight))
         {
             facingRight = !facingRight;
@@ -64,7 +69,6 @@ public class BaseCharacter : Damageable
 
     protected virtual void Die()
     {
-
         // play the dying animation 
         // play dying sound for this unit
     }
@@ -79,16 +83,14 @@ public class BaseCharacter : Damageable
         attackPoint.localPosition = new Vector3(Mathf.Abs(moveX) * .65f, moveY * .65f, 0);
     }
 
-    public IEnumerator Knockback(float knockbackDuration, float knockbackPower, Transform obj)
-    {
-        float timer = 0;
-
-        while (timer < knockbackDuration)
-        {
-            timer += Time.deltaTime;
-            Vector2 direction = (obj.transform.position - this.transform.position).normalized;
-            rb.AddForce(-direction * knockbackPower);
-        }
+    public IEnumerator Knockback(float knockbackPower, Transform obj)
+    { 
+        stunned = true;
+        Move(0, 0);
+        Vector2 direction = (obj.transform.position - this.transform.position).normalized;
+            Debug.Log(direction);
+        transform.DOMove(new Vector3(transform.position.x - (direction.x * knockbackPower), transform.position.y - (direction.y * knockbackPower),0), 0.5f);
+        stunned = false;
         yield return 0;
     }
 }
