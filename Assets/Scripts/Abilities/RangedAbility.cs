@@ -7,7 +7,6 @@ public class RangedAbility : Ability
     public Transform attackPoint;
     public GameObject missilePrefab;
     public float missileForce = 10f;
-    public int attackDamage = 1; // does this do  anything?
     public bool isAi;
 
     void Update()

@@ -287,9 +287,10 @@ MonoBehaviour:
   moveDirection: {x: 0, y: 0}
   invincible: 0
   facingRight: 1
+  stunned: 0
   moveX: 0
   moveY: 0
-  aiMode: 1
+  aiMode: 2
   playerLayer:
     serializedVersion: 2
     m_Bits: 2048
@@ -308,11 +309,10 @@ MonoBehaviour:
   cooldown: 2
   onCooldown: 0
   currentCooldown: 0
-  attackPoint: {fileID: 6921055277837176684}
-  missilePrefab: {fileID: 3762343026231537455, guid: f3f4a28ff39b82f40a3802095f42485d, type: 3}
-  missileForce: 10
-  attackDamage: 1
-  isAi: 1
   enemyLayers:
     serializedVersion: 2
     m_Bits: 2048
+  attackPoint: {fileID: 6921055277837176684}
+  missilePrefab: {fileID: 3762343026231537455, guid: f3f4a28ff39b82f40a3802095f42485d, type: 3}
+  missileForce: 10
+  isAi: 1
