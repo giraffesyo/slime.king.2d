@@ -10,13 +10,17 @@ public enum AIType
 
 public class AI : BaseCharacter
 {
-    Transform playerPos;    // Transform object of the controllable player
     public AIType aiMode;
     Ability aiAbility;
+    
+    Transform playerPos;    // Transform object of the controllable player
     float attackRange;
     float playerRange;     // For ranged ai, how close the player will be before walking backwards
+    
     public LayerMask playerLayer;
 
+    bool stunned = false;
+    Transform stunObject;
 
     // Start is called before the first frame update
     protected new void Start()
@@ -24,6 +28,7 @@ public class AI : BaseCharacter
         base.Start();
 
         aiAbility = GetComponent<Ability>();
+        stunObject = transform.GetChild(1);
         playerPos = GameObject.FindGameObjectWithTag("Player").transform;
         playerLayer = LayerMask.GetMask("Player");
         if (aiMode == AIType.RANGED)
@@ -34,6 +39,7 @@ public class AI : BaseCharacter
         }
         else if (aiMode == AIType.MELEE)
         {
+
             attackRange = 1f;
             setSpeed(2f);
         }
@@ -42,18 +48,31 @@ public class AI : BaseCharacter
     // Update is called once per frame
     void Update()
     {
-        Move();
+        StartCoroutine(Move());
     }
 
-    protected void Move()
+    protected IEnumerator Move()
     {
+        if (stunned)
+            yield break;
+
+        float x1 = transform.position.x;
+        float y1 = transform.position.y;
+
+        float x2 = playerPos.position.x;
+        float y2 = playerPos.position.y;
+        float dist = Distance(x1, y1, x2, y2);
+        if (dist >= 10f)    // Out of character sight range
+            yield break;
+
+
         moveX = 0;
         moveY = 0;
 
         Collider2D[] playerCollider = Physics2D.OverlapCircleAll(transform.position, attackRange, playerLayer);
 
         if (aiMode == AIType.MELEE)
-        { // MELEE
+        {
             if (playerCollider.Length != 0) // Within melee ranged
             {
                 aiAbility.Use();
@@ -61,31 +80,22 @@ public class AI : BaseCharacter
             moveX = getMoveX();
             moveY = getMoveY();
             moveAttackPoint();
-
         }
         else if (aiMode == AIType.RANGED) // RANGED
         {
-            if (playerCollider.Length == 0)
+            if (playerCollider.Length == 0) // Gotta get closer
             {
                 moveX = getMoveX();
                 moveY = getMoveY();
             }
             else
             {
-                Transform playerTransform = playerCollider[0].GetComponent<Transform>();
-                float x1 = transform.position.x;
-                float y1 = transform.position.y;
-
-                float x2 = playerTransform.position.x;
-                float y2 = playerTransform.position.y;
-                if (Distance(x1, y1, x2, y2) < playerRange)
+                if (dist < playerRange) // Player too close, back away
                 {
                     moveX = getMoveX() * -1;
                     moveY = getMoveY() * -1;
                 }
-
                 aiAbility.Use(new Vector2(x2 - x1, y2 - y1).normalized);
-
             }
         }
         base.Move(moveX, moveY);
@@ -122,6 +132,27 @@ public class AI : BaseCharacter
         }
         return 0;
     }
+
+    public override void TakeDamage(int damage)
+    {
+        base.TakeDamage(damage);
+        if(currentHealth == 1)
+        {
+            StartCoroutine(Stun());
+        }
+    }
+
+    IEnumerator Stun()
+    {
+        base.Move(0, 0);
+
+        stunObject.GetComponent<SpriteRenderer>().enabled = true;
+        stunned = true;
+        yield return new WaitForSecondsRealtime(3.0f);
+        stunned = false;
+        stunObject.GetComponent<SpriteRenderer>().enabled = false;
+    }
+
     protected override void Die()
     {
         base.Die();
