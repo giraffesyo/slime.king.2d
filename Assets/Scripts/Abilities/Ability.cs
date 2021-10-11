@@ -1,17 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-#nullable enable
+using UnityEngine.UI;
 
-public class Ability : MonoBehaviour
+public abstract class Ability : MonoBehaviour
 {
+
+    public Sprite icon;
     [SerializeField] protected int cooldown;
     [SerializeField] protected bool onCooldown;
     [SerializeField] protected int currentCooldown;
 
     [SerializeField] protected LayerMask enemyLayers;  // All enemies must be in a layer
 
+    public delegate void StartCooldownHandler(float duration);
     public delegate void CooldownCompleteHandler();
+    public event StartCooldownHandler? CooldownStarted;
     public event CooldownCompleteHandler? CooldownCompleted;
 
     private void MasterUse()
@@ -41,7 +45,10 @@ public class Ability : MonoBehaviour
     private IEnumerator StartCooldown()
     {
         currentCooldown = cooldown;
-
+        if (CooldownStarted != null)
+        {
+            CooldownStarted.Invoke(cooldown);
+        }
         while (currentCooldown > 0)
         {
             yield return new WaitForSecondsRealtime(1.0f);

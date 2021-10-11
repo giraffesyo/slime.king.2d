@@ -54,7 +54,6 @@ public class BaseCharacter : Damageable
             spriteRenderer.flipX = !spriteRenderer.flipX;
         }
         moveDirection = new Vector2(moveX, moveY).normalized;
-        Debug.Log($"moveDirection is  {moveDirection}");
     }
 
     public void setSpeed(float speed)

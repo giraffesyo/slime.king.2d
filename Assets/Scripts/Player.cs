@@ -17,13 +17,14 @@ public class Player : BaseCharacter
     [SerializeField] private Vector3Int currentCell;
 
     [SerializeField] private Vector2Int currentScreen;
-
+    [SerializeField] private List<Ability> abilities = new List<Ability>();
     // Start is called before the first frame update
     protected new void Start()
     {
         base.Start();
         currentCell = getCurrentCell();
         currentScreen = getCurrentScreen();
+
     }
 
     private Vector2Int getCurrentScreen()
@@ -87,23 +88,5 @@ public class Player : BaseCharacter
         // restore HP
         SetCurrentHealth(maxHealth);
     }
-
-    // protected override void SetMaxHealth(int amount)
-    // {
-    //     base.SetMaxHealth(amount);
-    //     MaxHealthSet.Invoke(amount);
-    // }
-    // override public void SetCurrentHealth(int hp)
-    // {
-    //     base.SetCurrentHealth(hp);
-    //     HealthSet.Invoke(hp);
-    // }
-    // public override void TakeDamage(int damage)
-    // {
-    //     base.TakeDamage(damage);
-    //     ActivateInvincibility(damageInvincibilitySeconds);
-
-    // }
-
 
 }

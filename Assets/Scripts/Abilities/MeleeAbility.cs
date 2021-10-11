@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class MeleeAbility : Ability
 {
+
     public Transform attackPoint;
     public float attackRange = 0.5f;
     public int attackDamage = 1;
