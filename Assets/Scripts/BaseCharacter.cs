@@ -88,7 +88,6 @@ public class BaseCharacter : Damageable
         stunned = true;
         Move(0, 0);
         Vector2 direction = (obj.transform.position - this.transform.position).normalized;
-            Debug.Log(direction);
         transform.DOMove(new Vector3(transform.position.x - (direction.x * knockbackPower), transform.position.y - (direction.y * knockbackPower),0), 0.5f);
         stunned = false;
         yield return 0;
