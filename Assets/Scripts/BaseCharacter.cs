@@ -14,8 +14,6 @@ public class BaseCharacter : Damageable
     private SpriteRenderer spriteRenderer;
     public bool facingRight = true;
 
-
-
     public float moveX = 0;
     public float moveY = 0;
 
@@ -41,8 +39,6 @@ public class BaseCharacter : Damageable
             Die();
         }
     }
-
-
 
     protected void FixedUpdate()
     {
@@ -80,8 +76,6 @@ public class BaseCharacter : Damageable
             attackPoint.localPosition = new Vector3(.65f, 0, 0);
             return;
         }
-        // Absoulte value used since when player turns left and right , the whole object gets rotated
-        // meaning we dont need to worry about placing attackPoint behind the object
         attackPoint.localPosition = new Vector3(Mathf.Abs(moveX) * .65f, moveY * .65f, 0);
     }
 

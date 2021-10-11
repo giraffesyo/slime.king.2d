@@ -305,14 +305,14 @@ MonoBehaviour:
   cooldown: 0
   onCooldown: 0
   currentCooldown: 0
-  enemyLayers:
-    serializedVersion: 2
-    m_Bits: 1024
   attackPoint: {fileID: 4856516238580669718}
   missilePrefab: {fileID: 3762343026231537455, guid: 6702bc3e390206d448a8baef9a466394, type: 3}
   missileForce: 10
   attackDamage: 1
   isAi: 0
+  enemyLayers:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!1 &5947321607573800973
 GameObject:
   m_ObjectHideFlags: 0

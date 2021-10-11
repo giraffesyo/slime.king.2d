@@ -41,17 +41,16 @@ public class MeleeAbility : Ability
         transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
 
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-        // FIXME: Won't this make it so enemies can kill each other?
+
         foreach (Collider2D enemy in hitEnemies)
         {
             BaseCharacter enemyChar = enemy.GetComponent<BaseCharacter>();
             if (!enemyChar.invincible)
             {
                 enemyChar.TakeDamage(attackDamage);
-                StartCoroutine(enemyChar.Knockback(5, 1f, attackPoint.transform));
+                StartCoroutine(enemyChar.Knockback(10, 1f, attackPoint.transform));
             }
         }
-
     }
 
     // For debugging. Draws circle when in editing mode showing attack range (Must click on ooey to see circle)
