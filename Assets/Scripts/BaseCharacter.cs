@@ -51,7 +51,7 @@ public class BaseCharacter : Damageable
         if ((moveX < 0 && facingRight) || (moveX > 0 && !facingRight))
         {
             facingRight = !facingRight;
-            transform.Rotate(new Vector3(0, 180, 0));
+            spriteRenderer.flipX = !spriteRenderer.flipX;
         }
         moveDirection = new Vector2(moveX, moveY).normalized;
     }

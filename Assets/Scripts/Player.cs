@@ -71,7 +71,10 @@ public class Player : BaseCharacter
         if (currentScreen.x != nextScreen.x || currentScreen.y != nextScreen.y)
         {
             currentScreen = nextScreen;
-            ScreenExited.Invoke(nextScreen);
+            if (ScreenExited != null)
+            {
+                ScreenExited.Invoke(nextScreen);
+            }
         }
     }
 
