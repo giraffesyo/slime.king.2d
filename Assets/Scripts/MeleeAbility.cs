@@ -8,7 +8,6 @@ public class MeleeAbility : Ability
     public float attackRange = 0.5f;
     public int attackDamage = 1;
     public bool isAi;
-    public LayerMask enemyLayers;       // All enemies must be in a layer
     protected Animator animator;
 
 

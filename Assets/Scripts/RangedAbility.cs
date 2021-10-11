@@ -10,8 +10,6 @@ public class RangedAbility : Ability
     public int attackDamage = 1; // does this do  anything?
     public bool isAi;
 
-    public LayerMask enemyLayers;  // All enemies must be in a layer
-
     void Update()
     {
         var keyboard = Keyboard.current;
@@ -23,7 +21,7 @@ public class RangedAbility : Ability
         }
     }
 
-    override public void Use(Vector2? target)
+    override public void Use(Vector2 target)
     {
         if (onCooldown)
         {
@@ -38,6 +36,4 @@ public class RangedAbility : Ability
             rb.AddForce(t * missileForce, ForceMode2D.Impulse);
         }
     }
-
-
 }
