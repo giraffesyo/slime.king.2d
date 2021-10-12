@@ -4,7 +4,6 @@ using UnityEngine;
 using DG.Tweening;
 public class BaseCharacter : Damageable
 {
-
     public Transform attackPoint;
 
     public Rigidbody2D rb;
@@ -76,13 +75,28 @@ public class BaseCharacter : Damageable
 
     public void moveAttackPoint()
     {
+        float rotation = 0f;
+        // Is there a formula for this?
+        if (moveX == -1 && moveY == 0)
+            rotation = 180;
+        else if (moveX == 0)
+            rotation = moveY * 90f;
+        else if(moveX == 1)
+            rotation = moveY * 45f;
+        else // moveX == -1
+            rotation = moveY * 135f;
+
+
         if (moveX == 0 && moveY == 0)
         {
-
-            attackPoint.localPosition = new Vector3(.65f, 0, 0);
+            float temp = 1f;
+            if (!facingRight)
+                temp *= -1;
+            attackPoint.localPosition = new Vector3(temp, 0, 0);
             return;
         }
-        attackPoint.localPosition = new Vector3(moveX * .65f, moveY * .65f, 0);
+        attackPoint.localPosition = new Vector3(moveX * 1f, moveY * 1f, 0);
+        attackPoint.transform.rotation = new Quaternion(0, 0, rotation, 1);
     }
 
     public IEnumerator Knockback(float knockbackPower, Transform obj)

@@ -6,15 +6,8 @@ public class MeleeAbility : Ability
 {
 
     public Transform attackPoint;
-    public float attackRange = 0.5f;
+    public float attackRange = .65f;
     public int attackDamage = 1;
-    protected Animator animator;
-
-
-    private void Start()
-    {
-        animator = GetComponent<Animator>();
-    }
 
     // Update is called once per frame
     void Update()
@@ -24,21 +17,25 @@ public class MeleeAbility : Ability
         {        
             if (animator != null)
             {
-                animator.SetTrigger("Melee");
+                if(!onCooldown)
+                    animator.SetTrigger("Melee");
             }
         }
     }
 
-    override public void Use()
-    {            
+    override public void Use(int key)
+    {
+        if (key != 0)
+            return;
+
         if (onCooldown)
         {
             return;
         }
-        base.Use();
+        base.Use(key);
 
         // Temporary, flickers white circle showing hitboxes of attacks
-        transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
+        transform.GetChild(0).GetComponent<Animator>().SetTrigger("Swipe");
 
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
 
@@ -49,9 +46,10 @@ public class MeleeAbility : Ability
             {
                 enemyChar.TakeDamage(attackDamage);
                 if(!isAi)
-                    StartCoroutine(enemyChar.Knockback(2f, attackPoint.transform));
+                    StartCoroutine(enemyChar.Knockback(2f, GetComponent<Transform>().transform));
             }
         }
+        //transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
     }
 
     // For debugging. Draws circle when in editing mode showing attack range (Must click on ooey to see circle)

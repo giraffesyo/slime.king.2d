@@ -112,7 +112,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6921055277837176684}
   m_Layer: 1
-  m_Name: AttackPoint
+  m_Name: RangedPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -288,6 +288,7 @@ MonoBehaviour:
   invincible: 0
   facingRight: 1
   stunned: 0
+  beingKnockedBack: 0
   moveX: 0
   moveY: 0
   aiMode: 2
@@ -306,13 +307,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 332aa21dfd5d0481eae18aca86b80744, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  icon: {fileID: 0}
   cooldown: 2
   onCooldown: 0
   currentCooldown: 0
   enemyLayers:
     serializedVersion: 2
     m_Bits: 2048
+  isAi: 1
   attackPoint: {fileID: 6921055277837176684}
   missilePrefab: {fileID: 3762343026231537455, guid: f3f4a28ff39b82f40a3802095f42485d, type: 3}
-  missileForce: 10
-  isAi: 1
+  missileForce: 5

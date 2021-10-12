@@ -19,6 +19,13 @@ public abstract class Ability : MonoBehaviour
     public event CooldownCompleteHandler? CooldownCompleted;
 
     public bool isAi;
+    protected Animator animator;
+
+    private void Start()
+    {
+        //
+        animator = GetComponent<Animator>();
+    }
 
     private void MasterUse()
     {
@@ -26,7 +33,8 @@ public abstract class Ability : MonoBehaviour
         StartCoroutine(StartCooldown());
     }
 
-    public virtual void Use()
+    // Added key so animation events call the correct Use function (melee calls melee Use() and ranged calls ranged Use())
+    public virtual void Use(int key)
     {
         MasterUse();
     }

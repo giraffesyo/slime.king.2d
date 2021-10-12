@@ -41,7 +41,7 @@ public class AI : BaseCharacter
         else if (aiMode == AIType.MELEE)
         {
 
-            attackRange = 1f;
+            attackRange = .65f;
             setSpeed(2f);
         }
     }
@@ -71,7 +71,7 @@ public class AI : BaseCharacter
         moveX = 0;
         moveY = 0;
 
-        Collider2D[] playerCollider = Physics2D.OverlapCircleAll(transform.position, attackRange, playerLayer);
+        Collider2D[] playerCollider = Physics2D.OverlapCircleAll(attackPoint.position, attackRange - .2f, playerLayer);
 
         if (aiMode == AIType.MELEE)
         {
@@ -83,10 +83,13 @@ public class AI : BaseCharacter
                 yield return new WaitForSecondsRealtime(1.0f);
 
                 stunned = false;
-                aiAbility.Use();
+                aiAbility.Use(0);
             }
-            moveX = getMoveX();
-            moveY = getMoveY();
+            else
+            {
+                moveX = getMoveX();
+                moveY = getMoveY();
+            }                
             moveAttackPoint();
         }
         else if (aiMode == AIType.RANGED) // RANGED
