@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class missileColliderEnemy : MonoBehaviour
 {
+    public bool isAi;
 
     private void Start()
     {
@@ -20,7 +21,8 @@ public class missileColliderEnemy : MonoBehaviour
         if (c != null)
         {
             c.TakeDamage(1);
-            StartCoroutine(c.Knockback(2f, this.transform));
+            if(!isAi)
+                StartCoroutine(c.Knockback(2f, this.transform));
         }
         Destroy(gameObject);
     }

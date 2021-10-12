@@ -7,7 +7,6 @@ public class RangedAbility : Ability
     public Transform attackPoint;
     public GameObject missilePrefab;
     public float missileForce = 10f;
-    public bool isAi;
 
     void Update()
     {
@@ -32,6 +31,7 @@ public class RangedAbility : Ability
             Vector2 t = (Vector2)target;
             GameObject missile = Instantiate(missilePrefab, attackPoint.position, attackPoint.rotation);
             Rigidbody2D rb = missile.GetComponent<Rigidbody2D>();
+            missile.GetComponent<missileColliderEnemy>().isAi = this.isAi;
             rb.AddForce(t * missileForce, ForceMode2D.Impulse);
         }
     }

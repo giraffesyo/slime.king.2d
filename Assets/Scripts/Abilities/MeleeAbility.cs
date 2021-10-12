@@ -8,7 +8,6 @@ public class MeleeAbility : Ability
     public Transform attackPoint;
     public float attackRange = 0.5f;
     public int attackDamage = 1;
-    public bool isAi;
     protected Animator animator;
 
 
@@ -49,7 +48,8 @@ public class MeleeAbility : Ability
             if (!enemyChar.invincible)
             {
                 enemyChar.TakeDamage(attackDamage);
-                StartCoroutine(enemyChar.Knockback(2f, attackPoint.transform));
+                if(!isAi)
+                    StartCoroutine(enemyChar.Knockback(2f, attackPoint.transform));
             }
         }
     }

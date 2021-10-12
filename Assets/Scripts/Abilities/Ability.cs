@@ -18,6 +18,8 @@ public abstract class Ability : MonoBehaviour
     public event StartCooldownHandler? CooldownStarted;
     public event CooldownCompleteHandler? CooldownCompleted;
 
+    public bool isAi;
+
     private void MasterUse()
     {
         onCooldown = true;

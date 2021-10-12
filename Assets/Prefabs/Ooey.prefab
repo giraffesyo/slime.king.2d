@@ -207,7 +207,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.20728412, y: 0.16222233}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -218,7 +218,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.5664062, y: 1.2980615}
+  m_Size: {x: 1.1518381, y: 0.9736167}
   m_EdgeRadius: 0
 --- !u!114 &26286675073671254
 MonoBehaviour:
@@ -240,6 +240,8 @@ MonoBehaviour:
   moveDirection: {x: 0, y: 0}
   invincible: 0
   facingRight: 1
+  stunned: 0
+  beingKnockedBack: 0
   moveX: 0
   moveY: 0
   spawnPoint: {fileID: 0}
@@ -249,6 +251,7 @@ MonoBehaviour:
   damageInvincibilitySeconds: 1
   currentCell: {x: 0, y: 0, z: 0}
   currentScreen: {x: 0, y: 0}
+  abilities: []
 --- !u!95 &576957884
 Animator:
   serializedVersion: 3
@@ -280,6 +283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f625d47fbd7240cc82a2843de50de3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  icon: {fileID: 0}
   cooldown: 1
   onCooldown: 0
   currentCooldown: 0
@@ -302,6 +306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 332aa21dfd5d0481eae18aca86b80744, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  icon: {fileID: 0}
   cooldown: 0
   onCooldown: 0
   currentCooldown: 0
@@ -311,7 +316,6 @@ MonoBehaviour:
   attackPoint: {fileID: 4856516238580669718}
   missilePrefab: {fileID: 3762343026231537455, guid: 6702bc3e390206d448a8baef9a466394, type: 3}
   missileForce: 10
-  attackDamage: 1
   isAi: 0
 --- !u!1 &5947321607573800973
 GameObject:

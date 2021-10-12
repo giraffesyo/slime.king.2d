@@ -269,6 +269,7 @@ MonoBehaviour:
   invincible: 0
   facingRight: 1
   stunned: 0
+  beingKnockedBack: 0
   moveX: 0
   moveY: 0
   aiMode: 1
@@ -287,16 +288,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f625d47fbd7240cc82a2843de50de3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  icon: {fileID: 0}
   cooldown: 2
   onCooldown: 0
   currentCooldown: 0
   enemyLayers:
     serializedVersion: 2
     m_Bits: 2048
+  isAi: 1
   attackPoint: {fileID: 6774084187991250562}
   attackRange: 0.5
   attackDamage: 1
-  isAi: 0
 --- !u!1 &7259103202565822874
 GameObject:
   m_ObjectHideFlags: 0
