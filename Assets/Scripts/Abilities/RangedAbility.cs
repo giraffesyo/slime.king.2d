@@ -10,22 +10,24 @@ public class RangedAbility : Ability
 
     Vector2 direction;
 
-    void Update()
+    public override void RequestUse(InputAction.CallbackContext ctx)
     {
-        var keyboard = Keyboard.current;
-        if (!isAi && !onCooldown && (keyboard.nKey.wasPressedThisFrame || Mouse.current.leftButton.wasPressedThisFrame))
+        if (!onCooldown && animator != null)
         {
             Camera mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
             Vector3 worldPos = mainCam.ScreenToWorldPoint(new Vector3(Mouse.current.position.x.ReadValue(), Mouse.current.position.y.ReadValue(), 0));
-            //Use(new Vector2(worldPos.x - attackPoint.position.x, worldPos.y - attackPoint.position.y).normalized);
             direction = new Vector2(worldPos.x - attackPoint.position.x, worldPos.y - attackPoint.position.y).normalized;
+            // not sure if we'll run into this but if we're moving quickly at the time we shoot we could detach from the place the bullet is launched from
+            // would need to store "target" location here, and move the calculation into Use if we run into that issue
             animator.SetTrigger("Ranged");
         }
     }
-    public override void Use(int key)
+    override public void Use(int key)
     {
-        if (key != 1)
+        if (key != (int)Ability.Keys.Ranged)
+        {
             return;
+        }
         Use(direction);
     }
 

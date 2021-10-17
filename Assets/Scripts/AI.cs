@@ -77,7 +77,7 @@ public class AI : BaseCharacter
         {
             if (playerCollider.Length != 0) // Within melee ranged
             {
-                base.Move(0, 0);
+                base.Move(Vector2.zero);
                 stunned = true;
 
                 yield return new WaitForSecondsRealtime(1.0f);
@@ -89,7 +89,7 @@ public class AI : BaseCharacter
             {
                 moveX = getMoveX();
                 moveY = getMoveY();
-            }                
+            }
             moveAttackPoint();
         }
         else if (aiMode == AIType.RANGED) // RANGED
@@ -114,7 +114,7 @@ public class AI : BaseCharacter
             moveX = getMoveX();
             moveY = getMoveY();
         }
-        base.Move(moveX, moveY);
+        base.Move(new Vector2(moveX, moveY));
     }
 
     float Distance(float x1, float y1, float x2, float y2)
@@ -160,10 +160,10 @@ public class AI : BaseCharacter
 
     IEnumerator Stun()
     {
-        base.Move(0, 0);
+        base.Move(new Vector2(0, 0));
         stunObject.GetComponent<SpriteRenderer>().enabled = true;
         engulfStunned = true;
-        
+
         yield return new WaitForSecondsRealtime(3.0f);
 
         engulfStunned = false;

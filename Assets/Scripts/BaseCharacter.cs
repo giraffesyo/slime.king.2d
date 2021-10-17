@@ -42,23 +42,26 @@ public class BaseCharacter : Damageable
         }
     }
 
-    protected void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         // Movement
-        rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+        rb.velocity = moveDirection * moveSpeed;
     }
 
-    public void Move(float moveX, float moveY)
+    public void Move(Vector2 direction)
     {
         if (stunned)
+        {
+            moveDirection = Vector2.zero;
             return;
+        }
 
-        if ((moveX < 0 && facingRight) || (moveX > 0 && !facingRight))
+        if ((direction.x < 0 && facingRight) || (direction.x > 0 && !facingRight))
         {
             facingRight = !facingRight;
             spriteRenderer.flipX = !spriteRenderer.flipX;
         }
-        moveDirection = new Vector2(moveX, moveY).normalized;
+        moveDirection = direction.normalized;
     }
 
     public void setSpeed(float speed)
@@ -81,7 +84,7 @@ public class BaseCharacter : Damageable
             rotation = 180;
         else if (moveX == 0)
             rotation = moveY * 90f;
-        else if(moveX == 1)
+        else if (moveX == 1)
             rotation = moveY * 45f;
         else // moveX == -1
             rotation = moveY * 135f;
@@ -103,7 +106,7 @@ public class BaseCharacter : Damageable
     {
         stunned = true;
         beingKnockedBack = true;
-        Move(0, 0);
+        Move(Vector2.zero);
         Vector2 direction = (obj.transform.position - this.transform.position).normalized;
         transform.DOMove(new Vector3(transform.position.x - (direction.x * knockbackPower), transform.position.y - (direction.y * knockbackPower), 0), 0.5f).OnComplete(() => beingKnockedBack = false);
 

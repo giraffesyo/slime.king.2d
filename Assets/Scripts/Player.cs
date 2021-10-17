@@ -18,7 +18,39 @@ public class Player : BaseCharacter
 
     [SerializeField] private Vector2Int currentScreen;
     [SerializeField] private List<Ability> abilities = new List<Ability>();
-    // Start is called before the first frame update
+
+    private SlimeKingActions slimeKingActions;
+    private InputAction movement;
+
+
+    private void Awake()
+    {
+        slimeKingActions = new SlimeKingActions();
+    }
+    private void OnEnable()
+    {
+        movement = slimeKingActions.Player.Move;
+        movement.Enable();
+
+        slimeKingActions.Player.Slap.performed += abilities[0].RequestUse;
+        slimeKingActions.Player.Slap.Enable();
+        slimeKingActions.Player.Shoot.performed += abilities[1].RequestUse;
+        slimeKingActions.Player.Shoot.Enable();
+    }
+
+    private void OnDisable()
+    {
+        movement.Disable();
+        slimeKingActions.Player.Slap.Disable();
+        slimeKingActions.Player.Shoot.Disable();
+    }
+
+    override protected void FixedUpdate()
+    {
+        Move(movement.ReadValue<Vector2>());
+        base.FixedUpdate();
+    }
+
     protected new void Start()
     {
         base.Start();
@@ -40,33 +72,12 @@ public class Player : BaseCharacter
         return gridLayout.WorldToCell(transform.position);
     }
 
+
     // Update is called once per frame
     void Update()
     {
-
-        moveX = 0;
-        moveY = 0;
-        var keyboard = Keyboard.current;
-        if (keyboard.wKey.isPressed)
-        {
-            moveY = 1;
-        }
-        else if (keyboard.sKey.isPressed)
-        {
-            moveY = -1;
-        }
-        if (keyboard.aKey.isPressed)
-        {
-            moveX = -1;
-        }
-        else if (keyboard.dKey.isPressed)
-        {
-            moveX = 1;
-        }
-
-
         moveAttackPoint();
-        Move(moveX, moveY);
+        Move(new Vector2(moveX, moveY));
         currentCell = getCurrentCell();
         Vector2Int nextScreen = getCurrentScreen();
         if (currentScreen.x != nextScreen.x || currentScreen.y != nextScreen.y)

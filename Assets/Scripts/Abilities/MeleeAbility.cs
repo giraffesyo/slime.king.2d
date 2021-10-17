@@ -9,23 +9,22 @@ public class MeleeAbility : Ability
     public float attackRange = .65f;
     public int attackDamage = 1;
 
-    // Update is called once per frame
-    void Update()
+
+    public override void RequestUse(InputAction.CallbackContext ctx)
     {
-        var keyboard = Keyboard.current;
-        if (!isAi && !onCooldown && (keyboard.spaceKey.wasPressedThisFrame || Mouse.current.rightButton.wasPressedThisFrame))
-        {        
+        Debug.Log("Player using melee attack");
+        if (!onCooldown && animator != null)
+        {
             if (animator != null)
             {
-                if(!onCooldown)
-                    animator.SetTrigger("Melee");
+                animator.SetTrigger("Melee");
             }
         }
     }
 
     override public void Use(int key)
     {
-        if (key != 0)
+        if (key != (int)Ability.Keys.Melee)
             return;
 
         if (onCooldown)
@@ -45,7 +44,7 @@ public class MeleeAbility : Ability
             if (!enemyChar.invincible)
             {
                 enemyChar.TakeDamage(attackDamage);
-                if(!isAi)
+                if (!isAi)
                     StartCoroutine(enemyChar.Knockback(2f, GetComponent<Transform>().transform));
             }
         }

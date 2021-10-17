@@ -2,10 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public abstract class Ability : MonoBehaviour
 {
 
+    protected enum Keys
+    {
+        Melee,
+        Ranged
+    }
     public Sprite icon;
     [SerializeField] protected int cooldown;
     [SerializeField] protected bool onCooldown;
@@ -33,7 +39,9 @@ public abstract class Ability : MonoBehaviour
         StartCoroutine(StartCooldown());
     }
 
-    // Added key so animation events call the correct Use function (melee calls melee Use() and ranged calls ranged Use())
+    // Animation events set in Animation Clip Editor call Use with their key, then we return if its not supposed to be handled by us.
+    // i.e. melee calls melee Use() and ranged calls ranged Use()
+    // This is an effect of having multiple Use functions on a single game object
     public virtual void Use(int key)
     {
         MasterUse();
@@ -51,6 +59,9 @@ public abstract class Ability : MonoBehaviour
     {
         MasterUse();
     }
+
+    // Player input triggers this function to be called
+    public abstract void RequestUse(InputAction.CallbackContext ctx);
 
     private IEnumerator StartCooldown()
     {
