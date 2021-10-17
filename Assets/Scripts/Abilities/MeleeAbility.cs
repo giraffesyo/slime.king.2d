@@ -10,9 +10,8 @@ public class MeleeAbility : Ability
     public int attackDamage = 1;
 
 
-    public override void RequestUse(InputAction.CallbackContext ctx)
+    public override void RequestUse(InputAction.CallbackContext ctx, Vector2 aimingDirection)
     {
-        Debug.Log("Player using melee attack");
         if (!onCooldown && animator != null)
         {
             if (animator != null)

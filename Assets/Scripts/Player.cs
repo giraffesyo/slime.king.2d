@@ -21,6 +21,9 @@ public class Player : BaseCharacter
 
     private SlimeKingActions slimeKingActions;
     private InputAction movement;
+    private InputAction aiming;
+
+    private Vector2 aimingDirection = new Vector2();
 
 
     private void Awake()
@@ -32,22 +35,28 @@ public class Player : BaseCharacter
         movement = slimeKingActions.Player.Move;
         movement.Enable();
 
-        slimeKingActions.Player.Slap.performed += abilities[0].RequestUse;
+        aiming = slimeKingActions.Player.Aim;
+        aiming.Enable();
+
+        slimeKingActions.Player.Slap.performed += (InputAction.CallbackContext ctx) => abilities[0].RequestUse(ctx, aimingDirection);
         slimeKingActions.Player.Slap.Enable();
-        slimeKingActions.Player.Shoot.performed += abilities[1].RequestUse;
+        slimeKingActions.Player.Shoot.performed += (InputAction.CallbackContext ctx) => abilities[1].RequestUse(ctx, aimingDirection);
         slimeKingActions.Player.Shoot.Enable();
     }
 
     private void OnDisable()
     {
+        aiming.Disable();
         movement.Disable();
         slimeKingActions.Player.Slap.Disable();
         slimeKingActions.Player.Shoot.Disable();
+
     }
 
     override protected void FixedUpdate()
     {
         Move(movement.ReadValue<Vector2>());
+        aimingDirection = aiming.ReadValue<Vector2>();
         base.FixedUpdate();
     }
 

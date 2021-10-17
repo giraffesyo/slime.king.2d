@@ -3836,7 +3836,6 @@ GameObject:
   - component: {fileID: 1889897041}
   - component: {fileID: 1889897040}
   - component: {fileID: 1889897039}
-  - component: {fileID: 1889897038}
   m_Layer: 9
   m_Name: Foreground/Side walls
   m_TagString: Untagged
@@ -3858,28 +3857,6 @@ Transform:
   m_Father: {fileID: 1745089531}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!66 &1889897038
-CompositeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1889897036}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: 32f20bd6933019945b1d8d38ef8c9a49, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_GeometryType: 0
-  m_GenerationType: 0
-  m_EdgeRadius: 0
-  m_ColliderPaths: []
-  m_CompositePaths:
-    m_Paths: []
-  m_VertexDistance: 0.0005
-  m_OffsetDistance: 0.00005
 --- !u!50 &1889897039
 Rigidbody2D:
   serializedVersion: 4

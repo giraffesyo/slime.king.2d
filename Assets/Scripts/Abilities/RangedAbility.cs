@@ -10,12 +10,11 @@ public class RangedAbility : Ability
 
     Vector2 direction;
 
-    public override void RequestUse(InputAction.CallbackContext ctx)
+    public override void RequestUse(InputAction.CallbackContext ctx, Vector2 aimingDirection)
     {
         if (!onCooldown && animator != null)
         {
-            Camera mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-            Vector3 worldPos = mainCam.ScreenToWorldPoint(new Vector3(Mouse.current.position.x.ReadValue(), Mouse.current.position.y.ReadValue(), 0));
+            Vector3 worldPos = Camera.main.ScreenToWorldPoint(aimingDirection);
             direction = new Vector2(worldPos.x - attackPoint.position.x, worldPos.y - attackPoint.position.y).normalized;
             // not sure if we'll run into this but if we're moving quickly at the time we shoot we could detach from the place the bullet is launched from
             // would need to store "target" location here, and move the calculation into Use if we run into that issue

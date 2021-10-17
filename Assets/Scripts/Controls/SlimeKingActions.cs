@@ -89,13 +89,21 @@ public class @SlimeKingActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Aim"",
+                    ""type"": ""Value"",
+                    ""id"": ""2b446581-64cc-4835-a1c8-9bbcd3d23f82"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": """",
                     ""id"": ""99002a6a-1454-415b-8fde-b116c8685846"",
-                    ""path"": ""<Gamepad>/rightStick"",
+                    ""path"": ""<Gamepad>/leftStick"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -245,6 +253,28 @@ public class @SlimeKingActions : IInputActionCollection, IDisposable
                     ""action"": ""Use Ability"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""013dd666-08ba-4a27-936a-71f2cae14154"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""43b15f17-d031-408e-8116-4cb95939915f"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -262,6 +292,7 @@ public class @SlimeKingActions : IInputActionCollection, IDisposable
         m_Player_SelectAbility3 = m_Player.FindAction("Select Ability 3", throwIfNotFound: true);
         m_Player_SelectAbility4 = m_Player.FindAction("Select Ability 4", throwIfNotFound: true);
         m_Player_UseAbility = m_Player.FindAction("Use Ability", throwIfNotFound: true);
+        m_Player_Aim = m_Player.FindAction("Aim", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -320,6 +351,7 @@ public class @SlimeKingActions : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_SelectAbility3;
     private readonly InputAction m_Player_SelectAbility4;
     private readonly InputAction m_Player_UseAbility;
+    private readonly InputAction m_Player_Aim;
     public struct PlayerActions
     {
         private @SlimeKingActions m_Wrapper;
@@ -333,6 +365,7 @@ public class @SlimeKingActions : IInputActionCollection, IDisposable
         public InputAction @SelectAbility3 => m_Wrapper.m_Player_SelectAbility3;
         public InputAction @SelectAbility4 => m_Wrapper.m_Player_SelectAbility4;
         public InputAction @UseAbility => m_Wrapper.m_Player_UseAbility;
+        public InputAction @Aim => m_Wrapper.m_Player_Aim;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -369,6 +402,9 @@ public class @SlimeKingActions : IInputActionCollection, IDisposable
                 @UseAbility.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUseAbility;
                 @UseAbility.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUseAbility;
                 @UseAbility.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUseAbility;
+                @Aim.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAim;
+                @Aim.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAim;
+                @Aim.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAim;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -400,6 +436,9 @@ public class @SlimeKingActions : IInputActionCollection, IDisposable
                 @UseAbility.started += instance.OnUseAbility;
                 @UseAbility.performed += instance.OnUseAbility;
                 @UseAbility.canceled += instance.OnUseAbility;
+                @Aim.started += instance.OnAim;
+                @Aim.performed += instance.OnAim;
+                @Aim.canceled += instance.OnAim;
             }
         }
     }
@@ -415,5 +454,6 @@ public class @SlimeKingActions : IInputActionCollection, IDisposable
         void OnSelectAbility3(InputAction.CallbackContext context);
         void OnSelectAbility4(InputAction.CallbackContext context);
         void OnUseAbility(InputAction.CallbackContext context);
+        void OnAim(InputAction.CallbackContext context);
     }
 }
