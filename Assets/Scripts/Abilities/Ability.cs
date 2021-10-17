@@ -13,7 +13,7 @@ public abstract class Ability : MonoBehaviour
         Ranged,
         Engulf
     }
-    public Sprite icon;
+    
     [SerializeField] protected int cooldown;
     [SerializeField] protected bool onCooldown;
     [SerializeField] protected int currentCooldown;
@@ -22,8 +22,8 @@ public abstract class Ability : MonoBehaviour
 
     public delegate void StartCooldownHandler(float duration);
     public delegate void CooldownCompleteHandler();
-    public event StartCooldownHandler? CooldownStarted;
-    public event CooldownCompleteHandler? CooldownCompleted;
+    public event StartCooldownHandler CooldownStarted;
+    public event CooldownCompleteHandler CooldownCompleted;
 
     public bool isAi;
     protected Animator animator;
