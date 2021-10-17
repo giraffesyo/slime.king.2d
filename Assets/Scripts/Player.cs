@@ -42,6 +42,9 @@ public class Player : BaseCharacter
         slimeKingActions.Player.Slap.Enable();
         slimeKingActions.Player.Shoot.performed += (InputAction.CallbackContext ctx) => abilities[1].RequestUse(ctx, aimingDirection);
         slimeKingActions.Player.Shoot.Enable();
+
+        slimeKingActions.Player.Engulf.performed += (InputAction.CallbackContext ctx) => abilities[2].RequestUse(ctx, aimingDirection);
+        slimeKingActions.Player.Engulf.Enable();
     }
 
     private void OnDisable()
@@ -50,6 +53,7 @@ public class Player : BaseCharacter
         movement.Disable();
         slimeKingActions.Player.Slap.Disable();
         slimeKingActions.Player.Shoot.Disable();
+        slimeKingActions.Player.Engulf.Disable();
 
     }
 
@@ -65,6 +69,10 @@ public class Player : BaseCharacter
         base.Start();
         currentCell = getCurrentCell();
         currentScreen = getCurrentScreen();
+        abilities[(int)Ability.BasicAbilityKeys.Melee] = GetComponent<MeleeAbility>();
+        abilities[(int)Ability.BasicAbilityKeys.Engulf] = GetComponent<EngulfAbility>();
+        abilities[(int)Ability.BasicAbilityKeys.Ranged] = GetComponent<RangedAbility>();
+
 
     }
 

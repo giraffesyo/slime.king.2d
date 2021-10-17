@@ -7,10 +7,11 @@ using UnityEngine.InputSystem;
 public abstract class Ability : MonoBehaviour
 {
 
-    protected enum Keys
+    public enum BasicAbilityKeys
     {
         Melee,
-        Ranged
+        Ranged,
+        Engulf
     }
     public Sprite icon;
     [SerializeField] protected int cooldown;
@@ -27,7 +28,7 @@ public abstract class Ability : MonoBehaviour
     public bool isAi;
     protected Animator animator;
 
-    private void Start()
+    protected virtual void Start()
     {
         //
         animator = GetComponent<Animator>();

@@ -23,7 +23,7 @@ public class RangedAbility : Ability
     }
     override public void Use(int key)
     {
-        if (key != (int)Ability.Keys.Ranged)
+        if (key != (int)Ability.BasicAbilityKeys.Ranged)
         {
             return;
         }

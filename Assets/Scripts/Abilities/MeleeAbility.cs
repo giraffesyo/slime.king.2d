@@ -23,7 +23,7 @@ public class MeleeAbility : Ability
 
     override public void Use(int key)
     {
-        if (key != (int)Ability.Keys.Melee)
+        if (key != (int)Ability.BasicAbilityKeys.Melee)
             return;
 
         if (onCooldown)
