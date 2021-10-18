@@ -5,7 +5,6 @@ using DG.Tweening;
 public class BaseCharacter : Damageable
 {
     public Transform attackPoint;
-
     public Rigidbody2D rb;
     public float moveSpeed;
     public Vector2 moveDirection;
