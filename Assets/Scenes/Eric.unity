@@ -884,7 +884,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6774084189301813483, guid: e102c20cdce024e09ba069accd3a704c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6774084189301813489, guid: e102c20cdce024e09ba069accd3a704c, type: 3}
       propertyPath: m_RootOrder
@@ -5401,7 +5401,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6921055279037541356, guid: f357d4afd5ffb4104a6902a390520dd7, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6921055279037541358, guid: f357d4afd5ffb4104a6902a390520dd7, type: 3}
       propertyPath: aiMode
@@ -5595,7 +5595,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1881456128354450592, guid: af10b48d60b85443aba5780af888a8e8, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6897655307642088470, guid: af10b48d60b85443aba5780af888a8e8, type: 3}
       propertyPath: attackDamage

@@ -61,7 +61,7 @@ public class AI : BaseCharacter
 
     protected IEnumerator Move()
     {
-        if (engulfStunned)
+        if (engulfStunned || stunned)
             yield break;
 
         float x1 = transform.position.x;
@@ -97,7 +97,6 @@ public class AI : BaseCharacter
                 moveX = getMoveX();
                 moveY = getMoveY();
             }
-            moveAttackPoint();
         }
         else if (aiMode == AIType.RANGED) // RANGED
         {

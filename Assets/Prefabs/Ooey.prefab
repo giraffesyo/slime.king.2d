@@ -124,8 +124,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cec64bd8b0cf8a147819b9e966552854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  absoluteMaxHealth: 5
   initialMaxHealth: 5
-  currentHealth: 0
   attackPoint: {fileID: 4856516238580669718}
   rb: {fileID: 26286675073671257}
   moveSpeed: 5
@@ -137,12 +137,7 @@ MonoBehaviour:
   moveX: 0
   moveY: 0
   spawnPoint: {fileID: 0}
-  gridLayout: {fileID: 0}
-  xScreenSize: 20
-  yScreenSize: 20
   damageInvincibilitySeconds: 1
-  currentCell: {x: 0, y: 0, z: 0}
-  currentScreen: {x: 0, y: 0}
   abilities:
   - {fileID: 0}
   - {fileID: 0}
@@ -182,7 +177,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f625d47fbd7240cc82a2843de50de3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
   cooldown: 1
   onCooldown: 0
   currentCooldown: 0
@@ -205,7 +199,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 332aa21dfd5d0481eae18aca86b80744, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
   cooldown: 0
   onCooldown: 0
   currentCooldown: 0
@@ -734,7 +727,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30deed50de8f742c5b709afee1fab298, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
   cooldown: 0
   onCooldown: 0
   currentCooldown: 0

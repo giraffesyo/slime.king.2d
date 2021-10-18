@@ -5,24 +5,28 @@ using UnityEngine.InputSystem;
 public class MeleeAbility : Ability
 {
 
-    public Transform attackPoint;
-    public float attackRange = .65f;
+    private PolygonCollider2D meleeCollider;
+    private ContactFilter2D enemyFilter;
+
     public int attackDamage = 1;
-    Vector2 aimingDirection;
     float rotation;
     bool flipped;
+    bool locked;    // Band-aid fix? Prevents from melee being spammed in the short window from when animation starts and Use() is called
 
+    override protected void Start()
+    {
+        base.Start();
+        enemyFilter = new ContactFilter2D();
+        enemyFilter.SetLayerMask(enemyLayers);
+    }
     public override void RequestUse(InputAction.CallbackContext ctx, Vector2 aimingDirection)
     {
-        if (!onCooldown && animator != null)
+        if (!onCooldown && animator != null && !locked)
         {
-            if (animator != null)
-            {
-                Vector3 worldPos = Camera.main.ScreenToWorldPoint(aimingDirection);
-                this.aimingDirection = new Vector2(worldPos.x - transform.position.x, worldPos.y - transform.position.y).normalized;
-                rotation = Mathf.Atan2(this.aimingDirection.y, this.aimingDirection.x) * Mathf.Rad2Deg;
-                animator.SetTrigger("Melee");
-            }
+            Vector3 worldPos = Camera.main.ScreenToWorldPoint(aimingDirection);
+            aimingDirection = new Vector2(worldPos.x - transform.position.x, worldPos.y - transform.position.y).normalized;
+            rotation = Mathf.Atan2(aimingDirection.y, aimingDirection.x) * Mathf.Rad2Deg;
+            animator.SetTrigger("Melee");
         }
     }
 
@@ -37,11 +41,17 @@ public class MeleeAbility : Ability
         }
         base.Use(key);
 
-        // Temporary, flickers white circle showing hitboxes of attacks
+        if (meleeCollider == null)
+        {
+            meleeCollider = gameObject.AddComponent<PolygonCollider2D>();
+            meleeCollider.isTrigger = true;
+        }
+
         transform.GetChild(0).GetComponent<Animator>().SetTrigger("Swipe");
 
+        List<Collider2D> hitEnemies = new List<Collider2D>();
 
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+        Physics2D.OverlapCollider(meleeCollider, enemyFilter, hitEnemies);
 
         foreach (Collider2D enemy in hitEnemies)
         {
@@ -59,12 +69,13 @@ public class MeleeAbility : Ability
     // This gets called from an animation event at first frame and last frame
     public void Rotate(int firstFrame)
     {            
-        bool facingRight = GetComponent<Player>().facingRight;
+        Player plyr = GetComponent<Player>();
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         float rt = rotation;
         if (firstFrame == 0)
         {
-            if (!facingRight)
+            locked = true;
+            if (!plyr.facingRight)
             {
                 sr.flipX = !sr.flipX;
                 flipped = true;
@@ -72,6 +83,7 @@ public class MeleeAbility : Ability
         }
         else
         {
+            locked = false;
             if (flipped)
                 sr.flipX = !sr.flipX;
             flipped = false;
@@ -82,14 +94,4 @@ public class MeleeAbility : Ability
             sr.flipY = !sr.flipY;    
         transform.Rotate(new Vector3(0, 0, 1), rt);
     }
-
-    // For debugging. Draws circle when in editing mode showing attack range (Must click on ooey to see circle)
-    private void OnDrawGizmosSelected()
-    {
-        if (attackPoint == null)
-            Debug.Log("Attack point is null");
-
-        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
-    }
-
 }
