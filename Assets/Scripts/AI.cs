@@ -11,6 +11,7 @@ public enum AIType
 
 public class AI : BaseCharacter
 {
+    public Transform attackPoint;
     public AIType aiMode;
     Ability aiAbility;
 
@@ -171,7 +172,7 @@ public class AI : BaseCharacter
         engulfStunned = true;
 
         yield return new WaitForSecondsRealtime(3.0f);
-
+        SetCurrentHealth(currentHealth + 1);
         engulfStunned = false;
         stunObject.GetComponent<SpriteRenderer>().enabled = false;
     }

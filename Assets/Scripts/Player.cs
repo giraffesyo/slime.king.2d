@@ -61,11 +61,6 @@ public class Player : BaseCharacter
         abilities[(int)Ability.BasicAbilityKeys.Ranged] = GetComponent<RangedAbility>();
     }
 
-    void Update()
-    {
-        //moveAttackPoint();
-    }
-
     public override void Die()
     {
         base.Die();
