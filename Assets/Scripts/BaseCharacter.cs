@@ -19,7 +19,7 @@ public class BaseCharacter : Damageable
     public float moveX = 0;
     public float moveY = 0;
 
-    protected void Start()
+    protected virtual void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         SetMaxHealth(initialMaxHealth);

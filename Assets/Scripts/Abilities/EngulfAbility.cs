@@ -70,7 +70,7 @@ public class EngulfAbility : Ability
                 }
                 else
                 {
-                    player.SetCurrentHealth(1);
+                    player.SetCurrentHealth(player.currentHealth + 1);
                 }
 
             }

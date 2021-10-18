@@ -18,7 +18,7 @@ public class Damageable : MonoBehaviour
         }
     }
     // Current amount of HP available
-    protected int currentHealth;
+    public int currentHealth;
     public bool atMaxHealth
     {
         get

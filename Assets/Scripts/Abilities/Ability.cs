@@ -11,7 +11,8 @@ public abstract class Ability : MonoBehaviour
     {
         Melee,
         Ranged,
-        Engulf
+        Engulf,
+        Charge
     }
     
     [SerializeField] protected int cooldown;

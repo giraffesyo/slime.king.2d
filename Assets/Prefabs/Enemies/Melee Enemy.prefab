@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 6774084189301813488}
   - component: {fileID: 6774084189301813495}
   - component: {fileID: 6774084189301813494}
-  - component: {fileID: 6774084189301813493}
-  - component: {fileID: 6774084189301813492}
+  - component: {fileID: 7486720954519182752}
+  - component: {fileID: 353920968955917778}
   m_Layer: 10
   m_Name: Melee Enemy
   m_TagString: Untagged
@@ -135,35 +135,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.77020884, y: 0.7103926}
   m_EdgeRadius: 0
---- !u!114 &6774084189301813493
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6774084189301813483}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d91db78689301a40999180d9c726b09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  initialMaxHealth: 3
-  currentHealth: 0
-  attackPoint: {fileID: 1214610667831318445}
-  rb: {fileID: 6774084189301813495}
-  moveSpeed: 5
-  moveDirection: {x: 0, y: 0}
-  invincible: 0
-  facingRight: 1
-  stunned: 0
-  beingKnockedBack: 0
-  moveX: 0
-  moveY: 0
-  aiMode: 1
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 2048
---- !u!114 &6774084189301813492
+--- !u!114 &7486720954519182752
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -175,17 +147,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f625d47fbd7240cc82a2843de50de3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
-  cooldown: 2
+  cooldown: 0
   onCooldown: 0
   currentCooldown: 0
   enemyLayers:
     serializedVersion: 2
-    m_Bits: 2048
-  isAi: 1
-  attackPoint: {fileID: 1214610667831318445}
-  attackRange: 0.5
+    m_Bits: 0
+  isAi: 0
   attackDamage: 1
+--- !u!114 &353920968955917778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6774084189301813483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a65053383d43824791be210981b4ed7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  absoluteMaxHealth: 5
+  initialMaxHealth: 3
+  rb: {fileID: 6774084189301813495}
+  moveSpeed: 0
+  moveDirection: {x: 0, y: 0}
+  invincible: 0
+  facingRight: 1
+  stunned: 0
+  beingKnockedBack: 0
+  attacking: 0
+  moveX: 0
+  moveY: 0
+  attackPoint: {fileID: 1214610667831318445}
+  aiMode: 0
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!1 &7259103202565822874
 GameObject:
   m_ObjectHideFlags: 0
