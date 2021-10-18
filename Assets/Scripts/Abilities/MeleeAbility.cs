@@ -8,7 +8,9 @@ public class MeleeAbility : Ability
     public Transform attackPoint;
     public float attackRange = .65f;
     public int attackDamage = 1;
-
+    Vector2 aimingDirection;
+    float rotation;
+    bool flipped;
 
     public override void RequestUse(InputAction.CallbackContext ctx, Vector2 aimingDirection)
     {
@@ -16,6 +18,9 @@ public class MeleeAbility : Ability
         {
             if (animator != null)
             {
+                Vector3 worldPos = Camera.main.ScreenToWorldPoint(aimingDirection);
+                this.aimingDirection = new Vector2(worldPos.x - transform.position.x, worldPos.y - transform.position.y).normalized;
+                rotation = Mathf.Atan2(this.aimingDirection.y, this.aimingDirection.x) * Mathf.Rad2Deg;
                 animator.SetTrigger("Melee");
             }
         }
@@ -35,6 +40,7 @@ public class MeleeAbility : Ability
         // Temporary, flickers white circle showing hitboxes of attacks
         transform.GetChild(0).GetComponent<Animator>().SetTrigger("Swipe");
 
+
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
 
         foreach (Collider2D enemy in hitEnemies)
@@ -48,6 +54,34 @@ public class MeleeAbility : Ability
             }
         }
         //transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
+    }
+
+    // This gets called from an animation event at first frame and last frame
+    public void Rotate(bool firstFrame)
+    {            
+        bool facingRight = GetComponent<Player>().facingRight;
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        float rt = rotation;
+        if (firstFrame)
+        {
+            if (!facingRight)
+            {
+                sr.flipX = !sr.flipX;
+                flipped = true;
+            }
+        }
+        else
+        {
+            if (flipped)
+                sr.flipX = !sr.flipX;
+            flipped = false;
+            rt = rt * -1;
+        }
+
+        if (rt > 90f || rt < -90f)
+            sr.flipY = !sr.flipY;    
+        transform.Rotate(new Vector3(0, 0, 1), rotation);
+
     }
 
     // For debugging. Draws circle when in editing mode showing attack range (Must click on ooey to see circle)

@@ -30,7 +30,7 @@ public abstract class Ability : MonoBehaviour
 
     protected virtual void Start()
     {
-        //
+        
         animator = GetComponent<Animator>();
     }
 

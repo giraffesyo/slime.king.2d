@@ -93,7 +93,7 @@ public class Player : BaseCharacter
     // Update is called once per frame
     void Update()
     {
-        moveAttackPoint();
+        // moveAttackPoint();
         Move(new Vector2(moveX, moveY));
         currentCell = getCurrentCell();
         Vector2Int nextScreen = getCurrentScreen();
