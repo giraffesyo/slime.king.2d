@@ -63,7 +63,7 @@ public class Player : BaseCharacter
 
     void Update()
     {
-        moveAttackPoint();
+        //moveAttackPoint();
     }
 
     public override void Die()

@@ -8,14 +8,14 @@ public class RangedAbility : Ability
     public GameObject missilePrefab;
     public float missileForce;
 
-    Vector2 direction;
+    Vector2 aimingDirection;
 
     public override void RequestUse(InputAction.CallbackContext ctx, Vector2 aimingDirection)
     {
         if (!onCooldown && animator != null)
         {
             Vector3 worldPos = Camera.main.ScreenToWorldPoint(aimingDirection);
-            direction = new Vector2(worldPos.x - attackPoint.position.x, worldPos.y - attackPoint.position.y).normalized;
+            this.aimingDirection = new Vector2(worldPos.x - attackPoint.position.x, worldPos.y - attackPoint.position.y).normalized;
             // not sure if we'll run into this but if we're moving quickly at the time we shoot we could detach from the place the bullet is launched from
             // would need to store "target" location here, and move the calculation into Use if we run into that issue
             animator.SetTrigger("Ranged");
@@ -27,7 +27,7 @@ public class RangedAbility : Ability
         {
             return;
         }
-        Use(direction);
+        Use(aimingDirection);
     }
 
     override public void Use(Vector2 target)
