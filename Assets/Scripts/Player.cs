@@ -60,16 +60,11 @@ public class Player : BaseCharacter
         abilities[(int)Ability.BasicAbilityKeys.Melee] = GetComponent<MeleeAbility>();
         abilities[(int)Ability.BasicAbilityKeys.Engulf] = GetComponent<EngulfAbility>();
         abilities[(int)Ability.BasicAbilityKeys.Ranged] = GetComponent<RangedAbility>();
-
-
     }
 
-
-    // Update is called once per frame
     void Update()
     {
         moveAttackPoint();
-        Move(new Vector2(moveX, moveY));
     }
 
     protected override void Die()
