@@ -12,6 +12,7 @@ public class BaseCharacter : Damageable
     public bool facingRight = true;
     public bool stunned;
     public bool beingKnockedBack;
+    public bool attacking = false;
     private SpriteRenderer spriteRenderer;
 
 
@@ -55,7 +56,7 @@ public class BaseCharacter : Damageable
             return;
         }
 
-        if ((direction.x < 0 && facingRight) || (direction.x > 0 && !facingRight))
+        if (((direction.x < 0 && facingRight) || (direction.x > 0 && !facingRight)) && !attacking)
         {
             facingRight = !facingRight;
             spriteRenderer.flipX = !spriteRenderer.flipX;

@@ -28,6 +28,9 @@ public abstract class Ability : MonoBehaviour
     public bool isAi;
     protected Animator animator;
 
+    protected float rotation;
+    protected bool locked;    // Band-aid fix? Prevents from melee being spammed in the short window from when animation starts and Use() is called
+
     protected virtual void Start()
     {
         
@@ -82,6 +85,34 @@ public abstract class Ability : MonoBehaviour
         {
             CooldownCompleted.Invoke();
         }
+    }
+
+    // This gets called from an animation event at first frame and last frame
+    public void Rotate(int firstFrame)
+    {
+        BaseCharacter plyr = GetComponent<BaseCharacter>();
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        if (firstFrame == 0)
+        {
+            locked = true;                  // Prevents spamming ability in short window where ability not on cooldown
+            plyr.attacking = true;          // Prevents flipping during ability animation
+            if (!plyr.facingRight)
+                sr.flipX = !sr.flipX;       // If facing left, flip to right so rotations make sense
+        }
+        else
+        {
+            plyr.attacking = false;
+            locked = false;
+            if (!plyr.facingRight)
+                sr.flipX = !sr.flipX;
+            rotation = rotation * -1;
+        }
+
+        if (rotation > 90f || rotation < -90f)
+            sr.flipY = !sr.flipY;
+        transform.Rotate(new Vector3(0, 0, 1), rotation);
+        if (firstFrame != 0)
+            rotation = 0;
     }
 }
 

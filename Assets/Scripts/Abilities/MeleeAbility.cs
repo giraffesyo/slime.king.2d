@@ -9,9 +9,6 @@ public class MeleeAbility : Ability
     private ContactFilter2D enemyFilter;
 
     public int attackDamage = 1;
-    float rotation;
-    bool flipped;
-    bool locked;    // Band-aid fix? Prevents from melee being spammed in the short window from when animation starts and Use() is called
 
     override protected void Start()
     {
@@ -47,7 +44,7 @@ public class MeleeAbility : Ability
             meleeCollider.isTrigger = true;
         }
 
-        transform.GetChild(0).GetComponent<Animator>().SetTrigger("Swipe");
+        //transform.GetChild(0).GetComponent<Animator>().SetTrigger("Swipe");
 
         List<Collider2D> hitEnemies = new List<Collider2D>();
 
@@ -64,34 +61,5 @@ public class MeleeAbility : Ability
             }
         }
         //transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
-    }
-
-    // This gets called from an animation event at first frame and last frame
-    public void Rotate(int firstFrame)
-    {            
-        Player plyr = GetComponent<Player>();
-        SpriteRenderer sr = GetComponent<SpriteRenderer>();
-        float rt = rotation;
-        if (firstFrame == 0)
-        {
-            locked = true;
-            if (!plyr.facingRight)
-            {
-                sr.flipX = !sr.flipX;
-                flipped = true;
-            }
-        }
-        else
-        {
-            locked = false;
-            if (flipped)
-                sr.flipX = !sr.flipX;
-            flipped = false;
-            rt = rt * -1;
-        }
-
-        if (rt > 90f || rt < -90f)
-            sr.flipY = !sr.flipY;    
-        transform.Rotate(new Vector3(0, 0, 1), rt);
     }
 }
