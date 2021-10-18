@@ -57,12 +57,12 @@ public class MeleeAbility : Ability
     }
 
     // This gets called from an animation event at first frame and last frame
-    public void Rotate(bool firstFrame)
+    public void Rotate(int firstFrame)
     {            
         bool facingRight = GetComponent<Player>().facingRight;
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         float rt = rotation;
-        if (firstFrame)
+        if (firstFrame == 0)
         {
             if (!facingRight)
             {
@@ -80,8 +80,7 @@ public class MeleeAbility : Ability
 
         if (rt > 90f || rt < -90f)
             sr.flipY = !sr.flipY;    
-        transform.Rotate(new Vector3(0, 0, 1), rotation);
-
+        transform.Rotate(new Vector3(0, 0, 1), rt);
     }
 
     // For debugging. Draws circle when in editing mode showing attack range (Must click on ooey to see circle)

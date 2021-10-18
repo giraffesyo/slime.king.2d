@@ -64,7 +64,7 @@ public class Player : BaseCharacter
 
     void Update()
     {
-        moveAttackPoint();
+        //moveAttackPoint();
     }
 
     protected override void Die()
