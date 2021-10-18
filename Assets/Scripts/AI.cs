@@ -22,6 +22,13 @@ public class AI : BaseCharacter
 
     Transform stunObject;
     bool engulfStunned = false;
+    public bool engulfable
+    {
+        get
+        {
+            return engulfStunned;
+        }
+    }
 
     // Start is called before the first frame update
     protected new void Start()
@@ -170,7 +177,7 @@ public class AI : BaseCharacter
         stunObject.GetComponent<SpriteRenderer>().enabled = false;
     }
 
-    protected override void Die()
+    public override void Die()
     {
         base.Die();
         // drop some coins!

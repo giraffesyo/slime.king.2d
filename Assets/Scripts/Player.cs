@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 using UnityEngine.InputSystem;
 public class Player : BaseCharacter
 {
@@ -67,14 +66,14 @@ public class Player : BaseCharacter
         moveAttackPoint();
     }
 
-    protected override void Die()
+    public override void Die()
     {
         base.Die();
         // restart the level?
         // for now teleporting to spawn.
         transform.position = spawnPoint.position;
         // restore HP
-        SetCurrentHealth(maxHealth);
+        SetCurrentHealth(_maxHealth);
     }
 
 }

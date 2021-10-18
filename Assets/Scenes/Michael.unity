@@ -5553,6 +5553,10 @@ PrefabInstance:
       propertyPath: spawnPoint
       value: 
       objectReference: {fileID: 766286396}
+    - target: {fileID: 26286675073671254, guid: af10b48d60b85443aba5780af888a8e8, type: 3}
+      propertyPath: initialMaxHealth
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 26286675073671259, guid: af10b48d60b85443aba5780af888a8e8, type: 3}
       propertyPath: m_RootOrder
       value: 0

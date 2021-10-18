@@ -6,11 +6,13 @@ public class EngulfAbility : Ability
 {
     private PolygonCollider2D engulfCollider;
     private ContactFilter2D enemyFilter;
+    private Player player;
     override protected void Start()
     {
         base.Start();
         enemyFilter = new ContactFilter2D();
         enemyFilter.SetLayerMask(enemyLayers);
+        player = GetComponent<Player>();
     }
     public override void RequestUse(InputAction.CallbackContext ctx, Vector2 aimingDirection)
     {
@@ -54,16 +56,24 @@ public class EngulfAbility : Ability
 
         Physics2D.OverlapCollider(engulfCollider, enemyFilter, hitEnemies);
 
-
         foreach (Collider2D enemy in hitEnemies)
         {
-            Debug.Log($"Trying to engulf {enemy.name}");
-            AI enemyChar = enemy.GetComponent<AI>();
-            if (enemyChar != null)
-            {
-                Debug.Log($"Trying to engulf {enemyChar.name}");
-            }
 
+            AI enemyChar = enemy.GetComponent<AI>();
+            if (enemyChar && enemyChar.engulfable)
+            {
+                enemyChar.Die();
+                if (player.atMaxHealth)
+                {
+                    // increase their max health
+                    player.SetMaxHealth(player.maxHealth + 1);
+                }
+                else
+                {
+                    player.SetCurrentHealth(1);
+                }
+
+            }
         }
     }
 }

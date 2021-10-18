@@ -69,7 +69,7 @@ public class BaseCharacter : Damageable
     }
 
 
-    protected virtual void Die()
+    public virtual void Die()
     {
         // play the dying animation 
         // play dying sound for this unit
