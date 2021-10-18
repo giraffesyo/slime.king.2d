@@ -4,18 +4,24 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class RangedAbility : Ability
 {
-    public Transform attackPoint;
+
     public GameObject missilePrefab;
     public float missileForce;
 
     Vector2 aimingDirection;
 
+
     public override void RequestUse(InputAction.CallbackContext ctx, Vector2 aimingDirection)
     {
-        if (!onCooldown && animator != null)
+        if (!animator)
+        {
+            Debug.Log("No animator in Ranged Ability");
+            return;
+        }
+        if (!onCooldown)
         {
             Vector3 worldPos = Camera.main.ScreenToWorldPoint(aimingDirection);
-            this.aimingDirection = new Vector2(worldPos.x - attackPoint.position.x, worldPos.y - attackPoint.position.y).normalized;
+            this.aimingDirection = new Vector2(worldPos.x - transform.position.x, worldPos.y - transform.position.y).normalized;
             // not sure if we'll run into this but if we're moving quickly at the time we shoot we could detach from the place the bullet is launched from
             // would need to store "target" location here, and move the calculation into Use if we run into that issue
             animator.SetTrigger("Ranged");
@@ -40,7 +46,7 @@ public class RangedAbility : Ability
         if (target != null)
         {
             Vector2 t = (Vector2)target;
-            GameObject missile = Instantiate(missilePrefab, GetComponent<Transform>().position, attackPoint.rotation);
+            GameObject missile = Instantiate(missilePrefab, GetComponent<Transform>().position, transform.rotation);
             Rigidbody2D rb = missile.GetComponent<Rigidbody2D>();
             missile.GetComponent<missileColliderEnemy>().isAi = this.isAi;
             rb.AddForce(t * missileForce, ForceMode2D.Impulse);
