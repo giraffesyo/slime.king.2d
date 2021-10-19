@@ -7,7 +7,7 @@ public class ChargeAI : AI
     protected override void Start()
     {
         base.Start();
-        attackRange = 1f;
+        attackRange = 3f;
         setSpeed(2f);
     }
 
@@ -22,7 +22,7 @@ public class ChargeAI : AI
         {
             base.Move(Vector2.zero);
             stunned = true;
-            Invoke("unStun", 0.5f);       // Did this so it wait a bit until it attacks
+            Invoke("unStun", 0.5f);       // Did this so it waits a bit until it attacks
         }
         else
         {

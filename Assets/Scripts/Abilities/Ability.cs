@@ -99,19 +99,18 @@ public abstract class Ability : MonoBehaviour
             plyr.attacking = true;          // Prevents flipping during ability animation
             if (!plyr.facingRight)
                 sr.flipX = !sr.flipX;       // If facing left, flip to right so rotations make sense
+            if (rotation > 90f || rotation < -90f)
+                sr.flipY = !sr.flipY;
+            transform.Rotate(new Vector3(0, 0, 1), rotation);
         }
         else
         {
             plyr.attacking = false;
             locked = false;
-            if (!plyr.facingRight)
+/*            if (!plyr.facingRight)
                 sr.flipX = !sr.flipX;
-            rotation = rotation * -1;
+            rotation = rotation * -1;*/
         }
-
-        if (rotation > 90f || rotation < -90f)
-            sr.flipY = !sr.flipY;
-        transform.Rotate(new Vector3(0, 0, 1), rotation);
         if (firstFrame != 0)
             rotation = 0;
     }

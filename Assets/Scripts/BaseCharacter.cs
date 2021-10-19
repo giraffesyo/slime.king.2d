@@ -9,7 +9,17 @@ public class BaseCharacter : Damageable
     public float moveSpeed;
     public Vector2 moveDirection;
     public bool invincible;
-    public bool facingRight = true;
+    public bool facingRight
+    {
+        get
+        {
+            return !spriteRenderer.flipX;
+        }
+        set
+        {
+            spriteRenderer.flipX = !value;
+        }
+    }
     public bool stunned;
     public bool beingKnockedBack;
     public bool attacking = false;
@@ -50,17 +60,23 @@ public class BaseCharacter : Damageable
 
     public void Move(Vector2 direction)
     {
+        Debug.Log("Gets called");
         if (stunned)
         {
             moveDirection = Vector2.zero;
             return;
         }
-
-        if (((direction.x < 0 && facingRight) || (direction.x > 0 && !facingRight)) && !attacking)
+        if (!attacking)
         {
-            facingRight = !facingRight;
-            spriteRenderer.flipX = !spriteRenderer.flipX;
+            facingRight = direction.x > 0 ? true : false;
+            spriteRenderer.flipY = false;
+            transform.rotation = Quaternion.identity;
         }
+        // if (((direction.x < 0 && facingRight) || (direction.x > 0 && !facingRight)) && !attacking)
+        // {
+        //     facingRight = !facingRight;
+        //     spriteRenderer.flipX = !spriteRenderer.flipX;
+        // }
         moveDirection = direction.normalized;
     }
 

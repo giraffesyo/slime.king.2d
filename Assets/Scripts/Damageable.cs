@@ -58,7 +58,6 @@ public class Damageable : MonoBehaviour
             if (DamageTaken != null)
             {
                 DamageTaken.Invoke(damage);
-
             }
         }
         // Do hurt animation ?
