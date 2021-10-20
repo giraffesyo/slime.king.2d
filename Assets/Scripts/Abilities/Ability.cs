@@ -66,7 +66,7 @@ public abstract class Ability : MonoBehaviour
     }
 
     // Player input triggers this function to be called
-    public abstract void RequestUse(InputAction.CallbackContext ctx, Vector2 aimingDirection);
+    public abstract bool RequestUse(InputAction.CallbackContext ctx, Vector2 aimingDirection);
 
     private IEnumerator StartCooldown()
     {

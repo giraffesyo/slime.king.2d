@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+
 
 public class ChargeAI : AI
 {
@@ -21,21 +23,17 @@ public class ChargeAI : AI
         if (playerCollider.Length != 0) // Within melee ranged
         {
             base.Move(Vector2.zero);
-            stunned = true;
-            Invoke("unStun", 0.5f);       // Did this so it waits a bit until it attacks
+
+            if(aiAbility.RequestUse(new InputAction.CallbackContext(), playerPos.position - transform.position))
+                stunned = true;
         }
         else
         {
             moveX = getMoveX();
             moveY = getMoveY();
+            base.Move(new Vector2(moveX, moveY));
         }
-        base.Move(new Vector2(moveX, moveY));
+        
         return true;
-    }
-
-    void unStun()
-    {
-        stunned = false;
-        aiAbility.Use(0);
     }
 }

@@ -23,7 +23,9 @@ public class MeleeAI : AI
         {
             base.Move(Vector2.zero);
             stunned = true;
-            Invoke("unStun", 0.5f);       // Did this so it waits a bit until it attacks
+            aiAbility.Use(0);
+            stunned = false;
+            //Invoke("unStun", 0.5f);       //causes lag how to add short delay? cant use coroutine bc have to wait for base Move()
         }
         else
         {
@@ -36,7 +38,7 @@ public class MeleeAI : AI
     
     void unStun()
     {
+        aiAbility.Use(0);        
         stunned = false;
-        aiAbility.Use(0);
     }
 }

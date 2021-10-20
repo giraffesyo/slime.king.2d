@@ -16,15 +16,15 @@ public class MeleeAbility : Ability
         enemyFilter = new ContactFilter2D();
         enemyFilter.SetLayerMask(enemyLayers);
     }
-    public override void RequestUse(InputAction.CallbackContext ctx, Vector2 aimingDirection)
+    public override bool RequestUse(InputAction.CallbackContext ctx, Vector2 aimingDirection)
     {
         if (!onCooldown && animator != null && !locked)
         {
-            Vector3 worldPos = Camera.main.ScreenToWorldPoint(aimingDirection);
-            aimingDirection = new Vector2(worldPos.x - transform.position.x, worldPos.y - transform.position.y).normalized;
             rotation = Mathf.Atan2(aimingDirection.y, aimingDirection.x) * Mathf.Rad2Deg;
             animator.SetTrigger("Melee");
+            return true;
         }
+        return false;
     }
 
     override public void Use(int key)

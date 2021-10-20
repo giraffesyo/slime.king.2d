@@ -14,19 +14,21 @@ public class EngulfAbility : Ability
         enemyFilter.SetLayerMask(enemyLayers);
         player = GetComponent<Player>();
     }
-    public override void RequestUse(InputAction.CallbackContext ctx, Vector2 aimingDirection)
+    public override bool RequestUse(InputAction.CallbackContext ctx, Vector2 aimingDirection)
     {
         Debug.Log("Engulf requested");
         if (animator == null)
         {
             Debug.Log("No animator on Engulf");
-            return;
+            return false;
         }
 
         if (!onCooldown)
         {
             animator.SetTrigger("Engulf");
+            return true;
         }
+        return false;
     }
 
     override public void Use(int key)

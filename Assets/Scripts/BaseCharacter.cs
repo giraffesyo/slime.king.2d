@@ -60,15 +60,18 @@ public class BaseCharacter : Damageable
 
     public void Move(Vector2 direction)
     {
-        Debug.Log("Gets called");
-        if (stunned)
+        /*if (stunned)  // Messes with charge ability
         {
             moveDirection = Vector2.zero;
             return;
-        }
+        }*/
         if (!attacking)
         {
-            facingRight = direction.x > 0 ? true : false;
+            if (direction.x > 0)
+                facingRight = true;
+            else if (direction.x < 0)
+                facingRight = false;
+            //facingRight = direction.x > 0 ? true : false; // Changed it to if else bc if direction.x = 0 it will automatically turn right when standing still (dont know how to do = 0 in this format lol)
             spriteRenderer.flipY = false;
             transform.rotation = Quaternion.identity;
         }
@@ -84,7 +87,6 @@ public class BaseCharacter : Damageable
     {
         moveSpeed = speed;
     }
-
 
     public virtual void Die()
     {

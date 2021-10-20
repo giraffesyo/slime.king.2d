@@ -27,12 +27,12 @@ public class Player : BaseCharacter
         aiming = slimeKingActions.Player.Aim;
         aiming.Enable();
 
-        slimeKingActions.Player.Slap.performed += (InputAction.CallbackContext ctx) => abilities[0].RequestUse(ctx, aimingDirection);
+        slimeKingActions.Player.Slap.performed += (InputAction.CallbackContext ctx) => RequestUse(ctx, 0);
         slimeKingActions.Player.Slap.Enable();
-        slimeKingActions.Player.Shoot.performed += (InputAction.CallbackContext ctx) => abilities[1].RequestUse(ctx, aimingDirection);
+        slimeKingActions.Player.Shoot.performed += (InputAction.CallbackContext ctx) => RequestUse(ctx, 1);
         slimeKingActions.Player.Shoot.Enable();
 
-        slimeKingActions.Player.Engulf.performed += (InputAction.CallbackContext ctx) => abilities[2].RequestUse(ctx, aimingDirection);
+        slimeKingActions.Player.Engulf.performed += (InputAction.CallbackContext ctx) => RequestUse(ctx, 2);
         slimeKingActions.Player.Engulf.Enable();
     }
 
@@ -69,6 +69,13 @@ public class Player : BaseCharacter
         transform.position = spawnPoint.position;
         // restore HP
         SetCurrentHealth(_maxHealth);
+    }
+
+    private void RequestUse(InputAction.CallbackContext ctx, int abilityIndex)
+    {
+        Vector3 worldPos = Camera.main.ScreenToWorldPoint(aimingDirection);
+        aimingDirection = new Vector2(worldPos.x - transform.position.x, worldPos.y - transform.position.y).normalized;
+        abilities[abilityIndex].RequestUse(ctx, aimingDirection);
     }
 
 }

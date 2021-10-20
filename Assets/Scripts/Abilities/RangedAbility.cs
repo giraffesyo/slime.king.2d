@@ -11,22 +11,23 @@ public class RangedAbility : Ability
     Vector2 aimingDirection;
 
 
-    public override void RequestUse(InputAction.CallbackContext ctx, Vector2 aimingDirection)
+    public override bool RequestUse(InputAction.CallbackContext ctx, Vector2 aimingDirection)
     {
         if (!animator)
         {
             Debug.Log("No animator in Ranged Ability");
-            return;
+            return false;
         }
         if (!onCooldown && !locked)
         {
-            Vector3 worldPos = Camera.main.ScreenToWorldPoint(aimingDirection);
-            this.aimingDirection = new Vector2(worldPos.x - transform.position.x, worldPos.y - transform.position.y).normalized;
+            this.aimingDirection = aimingDirection;
             rotation = Mathf.Atan2(this.aimingDirection.y, this.aimingDirection.x) * Mathf.Rad2Deg;
             // not sure if we'll run into this but if we're moving quickly at the time we shoot we could detach from the place the bullet is launched from
             // would need to store "target" location here, and move the calculation into Use if we run into that issue
             animator.SetTrigger("Ranged");
+            return true;
         }
+        return false;
     }
     override public void Use(int key)
     {

@@ -2,18 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum AIType
-{
-    NONE,
-    MELEE,
-    RANGED,
-    CHARGE,
-}
 
 public class AI : BaseCharacter
 {
     public Transform attackPoint;
-    public AIType aiMode;
     protected Ability aiAbility;
 
     protected Transform playerPos;    // Transform object of the controllable player
@@ -37,7 +29,7 @@ public class AI : BaseCharacter
     {
         base.Start();
         aiAbility = GetComponent<Ability>();
-        stunObject = transform.GetChild(1);
+        stunObject = transform.Find("StunnedObject");
         playerPos = GameObject.FindGameObjectWithTag("Player").transform;
         playerLayer = LayerMask.GetMask("Player");
     }
