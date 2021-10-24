@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   absoluteMaxHealth: 5
-  initialMaxHealth: 2
+  initialMaxHealth: 3
   currentHealth: 0
   rb: {fileID: 6710124207699093257}
   moveSpeed: 3
