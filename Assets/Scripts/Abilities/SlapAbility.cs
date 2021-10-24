@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-public class MeleeAbility : Ability
+public class SlapAbility : Ability
 {
 
     private PolygonCollider2D meleeCollider;

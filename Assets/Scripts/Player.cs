@@ -2,21 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+
+#nullable enable
 public class Player : BaseCharacter
 {
+#pragma warning disable CS8618 // Non-nullable field is uninitialized. Consider declaring as nullable.
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private float damageInvincibilitySeconds = 1.0f;
 
-    [SerializeField] public List<Ability> abilities = new List<Ability>();
+    [SerializeField] public List<Ability> abilities;
 
     private SlimeKingActions slimeKingActions;
     private InputAction movement;
     private InputAction aiming;
     public delegate void UpdateAbilitiesHandler();
-    public event UpdateAbilitiesHandler AbilitiesUpdated;
+    public event UpdateAbilitiesHandler? AbilitiesUpdated;
 
     private Vector2 aimingDirection = new Vector2();
 
+#pragma warning restore CS8618 // Non-nullable field is uninitialized. Consider declaring as nullable.
     private void Awake()
     {
         slimeKingActions = new SlimeKingActions();
@@ -28,6 +32,11 @@ public class Player : BaseCharacter
 
         aiming = slimeKingActions.Player.Aim;
         aiming.Enable();
+        abilities = new List<Ability>();
+        ObtainAbility(Ability.AbilityKey.Slap);
+        ObtainAbility(Ability.AbilityKey.Shoot);
+        ObtainAbility(Ability.AbilityKey.Engulf);
+        AbilitiesUpdated?.Invoke();
 
         slimeKingActions.Player.Slap.performed += (InputAction.CallbackContext ctx) => RequestUse(ctx, (int)Ability.AbilityKey.Slap);
         slimeKingActions.Player.Slap.Enable();
@@ -58,13 +67,8 @@ public class Player : BaseCharacter
     override protected void Start()
     {
         base.Start();
-        abilities[(int)Ability.AbilityKey.Slap] = GetComponent<MeleeAbility>();
-        abilities[(int)Ability.AbilityKey.Engulf] = GetComponent<EngulfAbility>();
-        abilities[(int)Ability.AbilityKey.Shoot] = GetComponent<RangedAbility>();
-        if (AbilitiesUpdated != null)
-        {
-            // AbilitiesUpdated.Invoke();
-        }
+
+
     }
 
     public override void Die()
@@ -97,24 +101,21 @@ public class Player : BaseCharacter
     }
     public void ObtainAbility(Ability.AbilityKey key)
     {
-        // // check that we don't have the ability already
-        // bool haveAbility = abilities.Exists(ability => ability.abilityKey == key);
-        // if (haveAbility)
-        // {
-        //     // we already have this ability, do nothing.
-        //     return;
-        // }
-        // // we don't have the ability, so lets get it!
-        // // We could probably make a map of these which matches the enum index, but for now this is fine
-        // if (key == Ability.AbilityKey.Charge)
-        // {
-        //     ChargeAbility ability = gameObject.AddComponent<ChargeAbility>();
-        //     if (AbilitiesUpdated != null)
-        //     {
-        //         AbilitiesUpdated.Invoke();
-
-        //     }
-        // }
+        // check that we don't have the ability already
+        bool haveAbility = abilities.Exists(ability => ability.abilityKey == key);
+        Debug.Log($"We {(haveAbility ? "do" : "do not")} have the ability {key} already");
+        // we already have this ability, do nothing.
+        if (haveAbility) return;
+        // we don't have the ability, so lets get it!
+        System.Type abilityType = System.Type.GetType($"{key.ToString()}Ability");
+        Ability? ability = gameObject.AddComponent(abilityType) as Ability;
+        if (ability == null)
+        {
+            Debug.LogError($"Could not add ability {key}");
+            return;
+        }
+        abilities.Add(ability);
+        AbilitiesUpdated?.Invoke();
     }
 
 }
