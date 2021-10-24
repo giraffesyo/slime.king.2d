@@ -9,8 +9,6 @@ public class ChargeAI : AI
     protected override void Start()
     {
         base.Start();
-        attackRange = 3f;
-        setSpeed(2f);
     }
 
     protected override bool Move()
@@ -36,4 +34,16 @@ public class ChargeAI : AI
         
         return true;
     }
+
+    public override void TakeDamage(int damage)
+    {
+        base.TakeDamage(damage);
+
+        ChargeAbility ca = GetComponent<ChargeAbility>();
+        if (ca != null)
+        {
+            ca.stopCharging();
+        }
+    }
+
 }

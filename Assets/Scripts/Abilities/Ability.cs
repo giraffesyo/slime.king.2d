@@ -70,6 +70,7 @@ public abstract class Ability : MonoBehaviour
 
     private IEnumerator StartCooldown()
     {
+        locked = false;
         currentCooldown = cooldown;
         if (CooldownStarted != null)
         {
@@ -105,8 +106,8 @@ public abstract class Ability : MonoBehaviour
         }
         else
         {
-            plyr.attacking = false;
             locked = false;
+            plyr.attacking = false;
 /*            if (!plyr.facingRight)
                 sr.flipX = !sr.flipX;
             rotation = rotation * -1;*/

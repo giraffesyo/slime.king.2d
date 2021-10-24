@@ -9,8 +9,8 @@ public class AI : BaseCharacter
     protected Ability aiAbility;
 
     protected Transform playerPos;    // Transform object of the controllable player
-    protected float attackRange;
     protected float dist;
+    public float attackRange;
 
     public LayerMask playerLayer;
 
@@ -53,7 +53,7 @@ public class AI : BaseCharacter
         float y2 = playerPos.position.y;
         dist = Distance(x1, y1, x2, y2);
 
-        if (dist >= 10f)    // Out of character sight range
+        if (dist >= 15f)    // Out of character sight range
             return false;
 
 
@@ -62,6 +62,35 @@ public class AI : BaseCharacter
         return true;
     }
 
+    public override void TakeDamage(int damage)
+    {
+        base.TakeDamage(damage);
+        if (currentHealth == 1)
+        {
+            StartCoroutine(Stun());
+        }
+    }
+
+    IEnumerator Stun()
+    {
+        //base.Move(new Vector2(0, 0));
+        stunObject.GetComponent<SpriteRenderer>().enabled = true;
+        engulfStunned = true;
+
+        yield return new WaitForSecondsRealtime(3.0f);
+        SetCurrentHealth(currentHealth + 1);
+        engulfStunned = false;
+        stunObject.GetComponent<SpriteRenderer>().enabled = false;
+    }
+
+    public override void Die()
+    {
+        base.Die();
+        // drop some coins!
+        // Destroy the AI
+        Destroy(this.gameObject);
+    }    
+    
     float Distance(float x1, float y1, float x2, float y2)
     {
         return Mathf.Sqrt(Mathf.Pow(x2 - x1, 2) + Mathf.Pow(y2 - y1, 2)); ;
@@ -94,33 +123,4 @@ public class AI : BaseCharacter
         return 0;
     }
 
-
-    public override void TakeDamage(int damage)
-    {
-        base.TakeDamage(damage);
-        if (currentHealth == 1)
-        {
-            StartCoroutine(Stun());
-        }
-    }
-
-    IEnumerator Stun()
-    {
-        base.Move(new Vector2(0, 0));
-        stunObject.GetComponent<SpriteRenderer>().enabled = true;
-        engulfStunned = true;
-
-        yield return new WaitForSecondsRealtime(3.0f);
-        SetCurrentHealth(currentHealth + 1);
-        engulfStunned = false;
-        stunObject.GetComponent<SpriteRenderer>().enabled = false;
-    }
-
-    public override void Die()
-    {
-        base.Die();
-        // drop some coins!
-        // Destroy the AI
-        Destroy(this.gameObject);
-    }
 }

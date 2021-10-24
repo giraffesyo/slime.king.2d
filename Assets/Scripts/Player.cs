@@ -78,4 +78,15 @@ public class Player : BaseCharacter
         abilities[abilityIndex].RequestUse(ctx, aimingDirection);
     }
 
+    public override void TakeDamage(int damage)
+    {
+        base.TakeDamage(damage);
+
+        ChargeAbility ca = GetComponent<ChargeAbility>();
+        if (ca != null)
+        {
+            ca.stopCharging();
+        }
+    }
+
 }

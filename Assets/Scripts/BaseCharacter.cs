@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 public class BaseCharacter : Damageable
 {
+    protected float baseSpeed;
 
     public Rigidbody2D rb;
     public float moveSpeed;
@@ -25,7 +26,6 @@ public class BaseCharacter : Damageable
     public bool attacking = false;
     private SpriteRenderer spriteRenderer;
 
-
     public float moveX = 0;
     public float moveY = 0;
 
@@ -33,7 +33,7 @@ public class BaseCharacter : Damageable
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         SetMaxHealth(initialMaxHealth);
-        moveSpeed = 5f;
+        baseSpeed = moveSpeed;
     }
     protected IEnumerator ActivateInvincibility(float forSeconds)
     {
@@ -60,12 +60,12 @@ public class BaseCharacter : Damageable
 
     public void Move(Vector2 direction)
     {
-        /*if (stunned)  // Messes with charge ability
+        if (stunned)  
         {
-            moveDirection = Vector2.zero;
-            return;
-        }*/
-        if (!attacking)
+           // moveDirection = Vector2.zero;  // Messes with charge ability
+           //return;
+        }
+        if (!attacking && !stunned)
         {
             if (direction.x > 0)
                 facingRight = true;
@@ -75,17 +75,16 @@ public class BaseCharacter : Damageable
             spriteRenderer.flipY = false;
             transform.rotation = Quaternion.identity;
         }
-        // if (((direction.x < 0 && facingRight) || (direction.x > 0 && !facingRight)) && !attacking)
-        // {
-        //     facingRight = !facingRight;
-        //     spriteRenderer.flipX = !spriteRenderer.flipX;
-        // }
         moveDirection = direction.normalized;
     }
 
     public void setSpeed(float speed)
     {
         moveSpeed = speed;
+    }
+    public void ResetSpeed()
+    {
+        moveSpeed = baseSpeed;
     }
 
     public virtual void Die()
@@ -94,17 +93,29 @@ public class BaseCharacter : Damageable
         // play dying sound for this unit
     }
 
-
-    public IEnumerator Knockback(float knockbackPower, Transform obj)
+    public void Knockback(float knockbackPower, Transform obj)
     {
-        stunned = true;
-        beingKnockedBack = true;
-        Move(Vector2.zero);
-        Vector2 direction = (obj.transform.position - this.transform.position).normalized;
-        transform.DOMove(new Vector3(transform.position.x - (direction.x * knockbackPower), transform.position.y - (direction.y * knockbackPower), 0), 0.5f).OnComplete(() => beingKnockedBack = false);
+        StartCoroutine(doKnockback(knockbackPower, obj));
+    }
 
-        stunned = false;
-        yield return 0;
+    public IEnumerator doKnockback(float knockbackPower, Transform obj)
+    {
+        bool stnd = stunned;
+        if (!stnd)  // Wasnt stunned before knockback
+            stunned = true;
+
+        beingKnockedBack = true;
+
+        Vector2 direction = (obj.transform.position - this.transform.position).normalized;
+        Move(knockbackPower * -direction);
+
+        yield return new WaitForSeconds(0.5f);
+
+        Move(Vector2.zero);
+        //transform.DOMove(new Vector3(transform.position.x - (direction.x * knockbackPower), transform.position.y - (direction.y * knockbackPower), 0), 0.5f).OnComplete(() => beingKnockedBack = false);
+        
+        if (!stnd)  // Wasnt stunned before knockback
+            stunned = false;
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -119,6 +130,5 @@ public class BaseCharacter : Damageable
                 transform.DOKill(false);
             }
         }
-
     }
 }
