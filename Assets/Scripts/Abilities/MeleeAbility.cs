@@ -58,7 +58,9 @@ public class MeleeAbility : Ability
             {
                 enemyChar.TakeDamage(attackDamage);
                 if (!isAi)
-                    enemyChar.Knockback(2f, GetComponent<Transform>().transform);
+                {
+                    enemyChar.Knockback(2f, transform);
+                }
             }
         }
         //transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;

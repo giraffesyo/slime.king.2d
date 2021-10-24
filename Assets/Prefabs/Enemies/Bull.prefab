@@ -148,7 +148,6 @@ MonoBehaviour:
   moveDirection: {x: 0, y: 0}
   invincible: 0
   stunned: 0
-  beingKnockedBack: 0
   attacking: 0
   moveX: 0
   moveY: 0

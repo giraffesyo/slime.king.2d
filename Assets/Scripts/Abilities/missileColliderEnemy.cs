@@ -18,7 +18,7 @@ public class missileColliderEnemy : MonoBehaviour
     {
         // Flag the missle for deletion
         Destroy(gameObject);
-        
+
         BaseCharacter enemyChar = collision.gameObject.GetComponent<BaseCharacter>();
         // TODO: Check the enemy layer
         // If the collision is with an enemy, deal damage

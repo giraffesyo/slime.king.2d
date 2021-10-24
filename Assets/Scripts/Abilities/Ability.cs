@@ -91,13 +91,13 @@ public abstract class Ability : MonoBehaviour
     // This gets called from an animation event at first frame and last frame
     public void Rotate(int firstFrame)
     {
-        BaseCharacter plyr = GetComponent<BaseCharacter>();
+        BaseCharacter character = GetComponent<BaseCharacter>();
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         if (firstFrame == 0)
         {
             locked = true;                  // Prevents spamming ability in short window where ability not on cooldown
-            plyr.attacking = true;          // Prevents flipping during ability animation
-            if (!plyr.facingRight)
+            character.attacking = true;          // Prevents flipping during ability animation
+            if (!character.facingRight)
                 sr.flipX = !sr.flipX;       // If facing left, flip to right so rotations make sense
             if (rotation > 90f || rotation < -90f)
                 sr.flipY = !sr.flipY;
@@ -106,7 +106,7 @@ public abstract class Ability : MonoBehaviour
         else
         {
             locked = false;
-            plyr.attacking = false;
+            character.attacking = false;
             /*            if (!plyr.facingRight)
                             sr.flipX = !sr.flipX;
                         rotation = rotation * -1;*/

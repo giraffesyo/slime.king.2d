@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+
 public class BaseCharacter : Damageable
 {
+    public bool beingKnockedBack = false;
     protected float baseSpeed;
 
     public Rigidbody2D rb;
@@ -22,7 +24,6 @@ public class BaseCharacter : Damageable
         }
     }
     public bool stunned;
-    public bool beingKnockedBack;
     public bool attacking = false;
     private SpriteRenderer spriteRenderer;
 

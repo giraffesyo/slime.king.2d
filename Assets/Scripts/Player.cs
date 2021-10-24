@@ -7,11 +7,13 @@ public class Player : BaseCharacter
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private float damageInvincibilitySeconds = 1.0f;
 
-    [SerializeField] private List<Ability> abilities = new List<Ability>();
+    [SerializeField] public List<Ability> abilities = new List<Ability>();
 
     private SlimeKingActions slimeKingActions;
     private InputAction movement;
     private InputAction aiming;
+    public delegate void UpdateAbilitiesHandler();
+    public event UpdateAbilitiesHandler AbilitiesUpdated;
 
     private Vector2 aimingDirection = new Vector2();
 
@@ -59,6 +61,10 @@ public class Player : BaseCharacter
         abilities[(int)Ability.AbilityKey.Slap] = GetComponent<MeleeAbility>();
         abilities[(int)Ability.AbilityKey.Engulf] = GetComponent<EngulfAbility>();
         abilities[(int)Ability.AbilityKey.Shoot] = GetComponent<RangedAbility>();
+        if (AbilitiesUpdated != null)
+        {
+            // AbilitiesUpdated.Invoke();
+        }
     }
 
     public override void Die()
@@ -78,6 +84,7 @@ public class Player : BaseCharacter
         abilities[abilityIndex].RequestUse(ctx, aimingDirection);
     }
 
+    // TODO:  what is going on here?
     public override void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
@@ -87,6 +94,27 @@ public class Player : BaseCharacter
         {
             ca.stopCharging();
         }
+    }
+    public void ObtainAbility(Ability.AbilityKey key)
+    {
+        // // check that we don't have the ability already
+        // bool haveAbility = abilities.Exists(ability => ability.abilityKey == key);
+        // if (haveAbility)
+        // {
+        //     // we already have this ability, do nothing.
+        //     return;
+        // }
+        // // we don't have the ability, so lets get it!
+        // // We could probably make a map of these which matches the enum index, but for now this is fine
+        // if (key == Ability.AbilityKey.Charge)
+        // {
+        //     ChargeAbility ability = gameObject.AddComponent<ChargeAbility>();
+        //     if (AbilitiesUpdated != null)
+        //     {
+        //         AbilitiesUpdated.Invoke();
+
+        //     }
+        // }
     }
 
 }
