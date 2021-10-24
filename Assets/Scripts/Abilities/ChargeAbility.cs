@@ -6,7 +6,6 @@ public class ChargeAbility : Ability
 {
 
     private PolygonCollider2D chargeCollider;
-    private ContactFilter2D enemyFilter;
     private Vector2 direction;
     private bool isCharging = false;
 
@@ -17,8 +16,6 @@ public class ChargeAbility : Ability
     {
         base.Start();
         abilityKey = Ability.AbilityKey.Charge;
-        enemyFilter = new ContactFilter2D();
-        enemyFilter.SetLayerMask(enemyLayers);
     }
     public override bool RequestUse(InputAction.CallbackContext ctx, Vector2 aimingDirection)
     {
@@ -31,6 +28,17 @@ public class ChargeAbility : Ability
             return true;
         }
         return false;
+    }
+
+    public void stopCharging()
+    {
+        Debug.Log("Stop charging");
+        animator.SetBool("Charging", false);
+        isCharging = false;
+        baseChar.Move(Vector2.zero);
+        baseChar.ResetSpeed();
+
+        baseChar.stunned = false;
     }
 
     override public void Use(int key)
@@ -50,14 +58,14 @@ public class ChargeAbility : Ability
             chargeCollider.isTrigger = true;
         }
 
-        baseChar.Move(direction);
         baseChar.setSpeed(10);
+        baseChar.Move(direction);
+
         isCharging = true;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // Implement if gets hit stop charging
         if (isCharging)
         {
             BaseCharacter enemyChar = collision.transform.GetComponent<BaseCharacter>();
@@ -65,14 +73,32 @@ public class ChargeAbility : Ability
             {
                 enemyChar.TakeDamage(attackDamage);
                 if (!isAi)
-                    StartCoroutine(enemyChar.Knockback(2f, GetComponent<Transform>().transform));
+                    enemyChar.Knockback(2f, GetComponent<Transform>().transform);
             }
 
-            isCharging = false;
-            baseChar.Move(Vector2.zero);
-            baseChar.setSpeed(2);
-            animator.SetBool("Charging", false);
-            baseChar.stunned = false;
+            stopCharging();
+            baseChar.Knockback(3, collision.transform);
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        // Fixes bug where if touching wall will always collide even though not aiming for wall
+        Vector2 dirVector = direction;
+        Vector2 colVector = (Vector2)(collision.transform.position) - (Vector2)(transform.position);
+        float angle = Mathf.Atan2(colVector.y - dirVector.y, colVector.x - dirVector.x) * Mathf.Rad2Deg;
+
+        if (isCharging && Mathf.Abs(angle) < 90) // Walking into wall
+        {
+            BaseCharacter enemyChar = collision.transform.GetComponent<BaseCharacter>();
+            if (enemyChar != null && !enemyChar.invincible)
+            {
+                enemyChar.TakeDamage(attackDamage);
+                if (!isAi)
+                    enemyChar.Knockback(5f, GetComponent<Transform>().transform);
+            }
+
+            stopCharging();
             baseChar.Knockback(3, collision.transform);
         }
     }

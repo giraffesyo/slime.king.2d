@@ -8,8 +8,6 @@ public class MeleeAI : AI
     protected override void Start()
     {
         base.Start();
-        attackRange = 1f;
-        setSpeed(2f);
     }
 
     protected override bool Move()
@@ -25,7 +23,6 @@ public class MeleeAI : AI
             stunned = true;
             aiAbility.Use(0);
             stunned = false;
-            //Invoke("unStun", 0.5f);       //causes lag how to add short delay? cant use coroutine bc have to wait for base Move()
         }
         else
         {
@@ -35,10 +32,5 @@ public class MeleeAI : AI
         base.Move(new Vector2(moveX, moveY));
         return true;
     }
-    
-    void unStun()
-    {
-        aiAbility.Use(0);        
-        stunned = false;
-    }
+  
 }

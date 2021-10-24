@@ -4,14 +4,11 @@ using UnityEngine;
 
 public class RangedAI : AI
 {
-    float playerRange;     // For ranged ai, how close the player will be before walking backwards
+    public float playerRange;     // For ranged ai, how close the player will be before walking backwards
 
     protected override void Start()
     {
         base.Start();
-        attackRange = 4f;
-        playerRange = 3.8f;
-        setSpeed(3f);
     }
 
     protected override bool Move()

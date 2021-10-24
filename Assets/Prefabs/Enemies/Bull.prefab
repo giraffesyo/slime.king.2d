@@ -399,10 +399,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   absoluteMaxHealth: 5
-  initialMaxHealth: 1
+  initialMaxHealth: 5
   currentHealth: 0
   rb: {fileID: 6710124207699093257}
-  moveSpeed: 0
+  moveSpeed: 3
   moveDirection: {x: 0, y: 0}
   invincible: 0
   stunned: 0
@@ -411,6 +411,7 @@ MonoBehaviour:
   moveX: 0
   moveY: 0
   attackPoint: {fileID: 0}
+  attackRange: 3
   playerLayer:
     serializedVersion: 2
     m_Bits: 2048
@@ -426,13 +427,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34c262897c667e44ea7da50df1f7bde2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 0
+  cooldown: 2
   onCooldown: 0
   currentCooldown: 0
   enemyLayers:
     serializedVersion: 2
-    m_Bits: 0
-  isAi: 0
+    m_Bits: 2048
+  isAi: 1
   baseChar: {fileID: 589027481305937910}
   attackDamage: 2
 --- !u!1 &8137950866002792737

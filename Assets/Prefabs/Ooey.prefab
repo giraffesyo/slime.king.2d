@@ -105,7 +105,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 32f20bd6933019945b1d8d38ef8c9a49, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -124,14 +124,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   absoluteMaxHealth: 5
   initialMaxHealth: 5
-  attackPoint: {fileID: 0}
+  currentHealth: 0
   rb: {fileID: 26286675073671257}
   moveSpeed: 5
   moveDirection: {x: 0, y: 0}
   invincible: 0
-  facingRight: 1
   stunned: 0
   beingKnockedBack: 0
+  attacking: 0
   moveX: 0
   moveY: 0
   spawnPoint: {fileID: 0}
@@ -197,12 +197,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 0
   onCooldown: 0
-  currentCooldown: 0
+  currentCooldown: 2
   enemyLayers:
     serializedVersion: 2
     m_Bits: 1024
   isAi: 0
-  attackPoint: {fileID: 0}
   missilePrefab: {fileID: 3762343026231537455, guid: 6702bc3e390206d448a8baef9a466394, type: 3}
   missileForce: 10
 --- !u!60 &744331130
