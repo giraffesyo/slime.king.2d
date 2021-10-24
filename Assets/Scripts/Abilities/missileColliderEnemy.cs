@@ -19,9 +19,11 @@ public class missileColliderEnemy : MonoBehaviour
         BaseCharacter c = collision.gameObject.GetComponent<BaseCharacter>();
 
         if (c != null)
-        {            
-            if(!isAi)
-                StartCoroutine(c.Knockback(2f, this.transform));
+        {
+            if (!isAi)
+            {
+                c.Knockback(2f, this.transform);
+            }
             c.TakeDamage(1);
 
         }

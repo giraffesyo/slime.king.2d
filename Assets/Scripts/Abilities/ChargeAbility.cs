@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+
 public class ChargeAbility : Ability
 {
 
@@ -64,8 +65,8 @@ public class ChargeAbility : Ability
             if (enemyChar != null && !enemyChar.invincible)
             {
                 enemyChar.TakeDamage(attackDamage);
-                if (!isAi)
-                    StartCoroutine(enemyChar.Knockback(2f, GetComponent<Transform>().transform));
+                if (!isAi){
+                    enemyChar.Knockback(2f, GetComponent<Transform>().transform);}
             }
 
             isCharging = false;

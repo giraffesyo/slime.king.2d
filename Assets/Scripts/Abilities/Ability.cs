@@ -106,9 +106,9 @@ public abstract class Ability : MonoBehaviour
         {
             plyr.attacking = false;
             locked = false;
-/*            if (!plyr.facingRight)
-                sr.flipX = !sr.flipX;
-            rotation = rotation * -1;*/
+            /*            if (!plyr.facingRight)
+                            sr.flipX = !sr.flipX;
+                        rotation = rotation * -1;*/
         }
         if (firstFrame != 0)
             rotation = 0;

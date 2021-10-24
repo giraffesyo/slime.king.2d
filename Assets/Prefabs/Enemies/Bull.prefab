@@ -406,7 +406,6 @@ MonoBehaviour:
   moveDirection: {x: 0, y: 0}
   invincible: 0
   stunned: 0
-  beingKnockedBack: 0
   attacking: 0
   moveX: 0
   moveY: 0
@@ -426,15 +425,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34c262897c667e44ea7da50df1f7bde2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  abilityKey: 3
   cooldown: 0
   onCooldown: 0
   currentCooldown: 0
   enemyLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   isAi: 0
   baseChar: {fileID: 589027481305937910}
-  attackDamage: 2
+  attackDamage: 1
 --- !u!1 &8137950866002792737
 GameObject:
   m_ObjectHideFlags: 0

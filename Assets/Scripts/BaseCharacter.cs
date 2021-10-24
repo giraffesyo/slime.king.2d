@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
+
 public class BaseCharacter : Damageable
 {
 
@@ -21,7 +21,6 @@ public class BaseCharacter : Damageable
         }
     }
     public bool stunned;
-    public bool beingKnockedBack;
     public bool attacking = false;
     private SpriteRenderer spriteRenderer;
 
@@ -55,7 +54,7 @@ public class BaseCharacter : Damageable
     protected virtual void FixedUpdate()
     {
         // Movement
-        rb.velocity = moveDirection * moveSpeed;
+        rb.AddForce(moveDirection * moveSpeed * Time.fixedDeltaTime, ForceMode2D.Impulse);
     }
 
     public void Move(Vector2 direction)
@@ -95,30 +94,12 @@ public class BaseCharacter : Damageable
     }
 
 
-    public IEnumerator Knockback(float knockbackPower, Transform obj)
+    public void Knockback(float knockbackPower, Transform obj)
     {
-        stunned = true;
-        beingKnockedBack = true;
         Move(Vector2.zero);
         Vector2 direction = (obj.transform.position - this.transform.position).normalized;
-        transform.DOMove(new Vector3(transform.position.x - (direction.x * knockbackPower), transform.position.y - (direction.y * knockbackPower), 0), 0.5f).OnComplete(() => beingKnockedBack = false);
-
-        stunned = false;
-        yield return 0;
+        rb.AddForce(direction * knockbackPower, ForceMode2D.Impulse);
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (beingKnockedBack)
-        {
-            // check if the collision is a solid object
-            // maybe a better way to do this but lets see if we can get this to work...
-            if (other.gameObject.layer == 9)
-            { // "solid objects" is 9
-              // stop ongoing tweens
-                transform.DOKill(false);
-            }
-        }
 
-    }
 }
