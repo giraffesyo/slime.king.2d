@@ -14,7 +14,7 @@ public class RangedAbility : Ability
     {
 
         base.Start();
-        this.abilityKey = Ability.AbilityKey.Ranged;
+        this.abilityKey = Ability.AbilityKey.Shoot;
     }
 
     public override bool RequestUse(InputAction.CallbackContext ctx, Vector2 aimingDirection)

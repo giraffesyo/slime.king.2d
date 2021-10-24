@@ -13,7 +13,7 @@ public class MeleeAbility : Ability
     override protected void Start()
     {
         base.Start();
-        abilityKey = Ability.AbilityKey.Melee;
+        abilityKey = Ability.AbilityKey.Slap;
         enemyFilter = new ContactFilter2D();
         enemyFilter.SetLayerMask(enemyLayers);
     }

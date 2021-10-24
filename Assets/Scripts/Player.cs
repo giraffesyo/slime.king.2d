@@ -27,12 +27,12 @@ public class Player : BaseCharacter
         aiming = slimeKingActions.Player.Aim;
         aiming.Enable();
 
-        slimeKingActions.Player.Slap.performed += (InputAction.CallbackContext ctx) => RequestUse(ctx, 0);
+        slimeKingActions.Player.Slap.performed += (InputAction.CallbackContext ctx) => RequestUse(ctx, (int)Ability.AbilityKey.Slap);
         slimeKingActions.Player.Slap.Enable();
-        slimeKingActions.Player.Shoot.performed += (InputAction.CallbackContext ctx) => RequestUse(ctx, 1);
+        slimeKingActions.Player.Shoot.performed += (InputAction.CallbackContext ctx) => RequestUse(ctx, (int)Ability.AbilityKey.Shoot);
         slimeKingActions.Player.Shoot.Enable();
 
-        slimeKingActions.Player.Engulf.performed += (InputAction.CallbackContext ctx) => RequestUse(ctx, 2);
+        slimeKingActions.Player.Engulf.performed += (InputAction.CallbackContext ctx) => RequestUse(ctx, (int)Ability.AbilityKey.Engulf);
         slimeKingActions.Player.Engulf.Enable();
     }
 
@@ -56,9 +56,9 @@ public class Player : BaseCharacter
     override protected void Start()
     {
         base.Start();
-        abilities[(int)Ability.AbilityKey.Melee] = GetComponent<MeleeAbility>();
+        abilities[(int)Ability.AbilityKey.Slap] = GetComponent<MeleeAbility>();
         abilities[(int)Ability.AbilityKey.Engulf] = GetComponent<EngulfAbility>();
-        abilities[(int)Ability.AbilityKey.Ranged] = GetComponent<RangedAbility>();
+        abilities[(int)Ability.AbilityKey.Shoot] = GetComponent<RangedAbility>();
     }
 
     public override void Die()

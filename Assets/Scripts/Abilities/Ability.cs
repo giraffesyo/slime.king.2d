@@ -9,8 +9,8 @@ public abstract class Ability : MonoBehaviour
 
     public enum AbilityKey
     {
-        Melee,
-        Ranged,
+        Slap,
+        Shoot,
         Engulf,
         Charge
     }
@@ -107,9 +107,9 @@ public abstract class Ability : MonoBehaviour
         {
             locked = false;
             plyr.attacking = false;
-/*            if (!plyr.facingRight)
-                sr.flipX = !sr.flipX;
-            rotation = rotation * -1;*/
+            /*            if (!plyr.facingRight)
+                            sr.flipX = !sr.flipX;
+                        rotation = rotation * -1;*/
         }
         if (firstFrame != 0)
             rotation = 0;

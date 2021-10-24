@@ -16,14 +16,21 @@ public class missileColliderEnemy : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        BaseCharacter c = collision.gameObject.GetComponent<BaseCharacter>();
-
-        if (c != null)
-        {            
-            if(!isAi)
-                c.Knockback(2f, this.transform);
-            c.TakeDamage(1);
-        }
+        // Flag the missle for deletion
         Destroy(gameObject);
+        
+        BaseCharacter enemyChar = collision.gameObject.GetComponent<BaseCharacter>();
+        // TODO: Check the enemy layer
+        // If the collision is with an enemy, deal damage
+        if (enemyChar != null)
+        {
+            // if the player is the one who shot the missle, knockback the enemy
+            if (!isAi)
+            {
+                enemyChar.Knockback(2f, this.transform);
+            }
+
+            enemyChar.TakeDamage(1);
+        }
     }
 }
