@@ -54,16 +54,19 @@ public class BaseCharacter : Damageable
 
     protected virtual void FixedUpdate()
     {
+        if (!beingKnockedBack)
+        {
+            rb.velocity = moveDirection * moveSpeed;
+        }
         // Movement
-        rb.velocity = moveDirection * moveSpeed;
     }
 
     public void Move(Vector2 direction)
     {
-        if (stunned)  
+        if (stunned)
         {
-           // moveDirection = Vector2.zero;  // Messes with charge ability
-           //return;
+            // moveDirection = Vector2.zero;  // Messes with charge ability
+            //return;
         }
         if (!attacking && !stunned)
         {
@@ -100,9 +103,8 @@ public class BaseCharacter : Damageable
 
     public IEnumerator doKnockback(float knockbackPower, Transform obj)
     {
-        bool stnd = stunned;
-        if (!stnd)  // Wasnt stunned before knockback
-            stunned = true;
+        bool wasStunned = stunned;
+        stunned = true;
 
         beingKnockedBack = true;
 
@@ -113,8 +115,9 @@ public class BaseCharacter : Damageable
 
         Move(Vector2.zero);
         //transform.DOMove(new Vector3(transform.position.x - (direction.x * knockbackPower), transform.position.y - (direction.y * knockbackPower), 0), 0.5f).OnComplete(() => beingKnockedBack = false);
-        
-        if (!stnd)  // Wasnt stunned before knockback
+        beingKnockedBack = false;
+        // if they weren't stunned before the knockback, unstun them
+        if (!wasStunned)
             stunned = false;
     }
 
@@ -122,12 +125,14 @@ public class BaseCharacter : Damageable
     {
         if (beingKnockedBack)
         {
+            beingKnockedBack = false;
             // check if the collision is a solid object
             // maybe a better way to do this but lets see if we can get this to work...
             if (other.gameObject.layer == 9)
             { // "solid objects" is 9
               // stop ongoing tweens
                 transform.DOKill(false);
+
             }
         }
     }

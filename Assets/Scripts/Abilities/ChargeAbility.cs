@@ -4,8 +4,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class ChargeAbility : Ability
 {
-
-    private PolygonCollider2D chargeCollider;
     private Vector2 direction;
     private bool isCharging = false;
 
@@ -52,12 +50,6 @@ public class ChargeAbility : Ability
         }
         base.Use(key);
 
-        if (chargeCollider == null)
-        {
-            chargeCollider = gameObject.AddComponent<PolygonCollider2D>();
-            chargeCollider.isTrigger = true;
-        }
-
         baseChar.setSpeed(10);
         baseChar.Move(direction);
 
@@ -73,7 +65,9 @@ public class ChargeAbility : Ability
             {
                 enemyChar.TakeDamage(attackDamage);
                 if (!isAi)
-                    enemyChar.Knockback(2f, GetComponent<Transform>().transform);
+                {
+                    enemyChar.Knockback(2f, transform);
+                }
             }
 
             stopCharging();
@@ -88,18 +82,23 @@ public class ChargeAbility : Ability
         Vector2 colVector = (Vector2)(collision.transform.position) - (Vector2)(transform.position);
         float angle = Mathf.Atan2(colVector.y - dirVector.y, colVector.x - dirVector.x) * Mathf.Rad2Deg;
 
-        if (isCharging && Mathf.Abs(angle) < 90) // Walking into wall
+
+        if (isCharging)
         {
+            Debug.Log("Charge hit something");
             BaseCharacter enemyChar = collision.transform.GetComponent<BaseCharacter>();
             if (enemyChar != null && !enemyChar.invincible)
             {
+                Debug.Log("Charge hit enemy");
+
                 enemyChar.TakeDamage(attackDamage);
-                if (!isAi)
-                    enemyChar.Knockback(5f, GetComponent<Transform>().transform);
+                enemyChar.Knockback(knockbackPower: 5f, transform);
+
             }
 
             stopCharging();
-            baseChar.Knockback(3, collision.transform);
+
+            baseChar.Knockback(knockbackPower: 3, collision.transform);
         }
     }
 }
