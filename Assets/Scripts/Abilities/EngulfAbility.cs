@@ -10,6 +10,7 @@ public class EngulfAbility : Ability
     override protected void Start()
     {
         base.Start();
+        abilityKey = Ability.AbilityKey.Engulf;
         enemyFilter = new ContactFilter2D();
         enemyFilter.SetLayerMask(enemyLayers);
         player = GetComponent<Player>();
@@ -33,7 +34,7 @@ public class EngulfAbility : Ability
 
     override public void Use(int key)
     {
-        if (key != (int)Ability.BasicAbilityKeys.Engulf)
+        if (key != (int)this.abilityKey)
             return;
         if (onCooldown)
         {

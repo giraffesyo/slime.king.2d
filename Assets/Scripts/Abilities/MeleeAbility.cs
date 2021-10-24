@@ -13,6 +13,7 @@ public class MeleeAbility : Ability
     override protected void Start()
     {
         base.Start();
+        abilityKey = Ability.AbilityKey.Melee;
         enemyFilter = new ContactFilter2D();
         enemyFilter.SetLayerMask(enemyLayers);
     }
@@ -29,7 +30,7 @@ public class MeleeAbility : Ability
 
     override public void Use(int key)
     {
-        if (key != (int)Ability.BasicAbilityKeys.Melee)
+        if (key != (int)this.abilityKey)
             return;
 
         if (onCooldown)

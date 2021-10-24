@@ -7,14 +7,14 @@ using UnityEngine.InputSystem;
 public abstract class Ability : MonoBehaviour
 {
 
-    public enum BasicAbilityKeys
+    public enum AbilityKey
     {
         Melee,
         Ranged,
         Engulf,
         Charge
     }
-    
+    public AbilityKey abilityKey;
     [SerializeField] protected int cooldown;
     [SerializeField] protected bool onCooldown;
     [SerializeField] protected int currentCooldown;
@@ -34,7 +34,6 @@ public abstract class Ability : MonoBehaviour
 
     protected virtual void Start()
     {
-        
         animator = GetComponent<Animator>();
     }
 

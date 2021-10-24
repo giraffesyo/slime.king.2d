@@ -16,6 +16,7 @@ public class ChargeAbility : Ability
     override protected void Start()
     {
         base.Start();
+        abilityKey = Ability.AbilityKey.Charge;
         enemyFilter = new ContactFilter2D();
         enemyFilter.SetLayerMask(enemyLayers);
     }
@@ -34,7 +35,7 @@ public class ChargeAbility : Ability
 
     override public void Use(int key)
     {
-        if (key != (int)Ability.BasicAbilityKeys.Charge)
+        if (key != (int)this.abilityKey)
             return;
 
         if (onCooldown)

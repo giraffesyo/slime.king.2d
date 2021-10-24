@@ -53,12 +53,12 @@ public class Player : BaseCharacter
         base.FixedUpdate();
     }
 
-    protected new void Start()
+    override protected void Start()
     {
         base.Start();
-        abilities[(int)Ability.BasicAbilityKeys.Melee] = GetComponent<MeleeAbility>();
-        abilities[(int)Ability.BasicAbilityKeys.Engulf] = GetComponent<EngulfAbility>();
-        abilities[(int)Ability.BasicAbilityKeys.Ranged] = GetComponent<RangedAbility>();
+        abilities[(int)Ability.AbilityKey.Melee] = GetComponent<MeleeAbility>();
+        abilities[(int)Ability.AbilityKey.Engulf] = GetComponent<EngulfAbility>();
+        abilities[(int)Ability.AbilityKey.Ranged] = GetComponent<RangedAbility>();
     }
 
     public override void Die()

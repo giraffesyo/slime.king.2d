@@ -10,6 +10,12 @@ public class RangedAbility : Ability
 
     Vector2 aimingDirection;
 
+    override protected void Start()
+    {
+
+        base.Start();
+        this.abilityKey = Ability.AbilityKey.Ranged;
+    }
 
     public override bool RequestUse(InputAction.CallbackContext ctx, Vector2 aimingDirection)
     {
@@ -31,7 +37,7 @@ public class RangedAbility : Ability
     }
     override public void Use(int key)
     {
-        if (key != (int)Ability.BasicAbilityKeys.Ranged)
+        if (key != (int)this.abilityKey)
         {
             return;
         }
