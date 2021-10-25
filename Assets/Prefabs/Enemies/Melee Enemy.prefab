@@ -144,9 +144,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6774084189301813483}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f625d47fbd7240cc82a2843de50de3f, type: 3}
+  m_Script: {fileID: 11500000, guid: 0809602ba30134342b7fda112a22f09c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  abilityKey: 0
   cooldown: 2
   onCooldown: 0
   currentCooldown: 0
@@ -170,12 +171,12 @@ MonoBehaviour:
   absoluteMaxHealth: 5
   initialMaxHealth: 3
   currentHealth: 0
+  beingKnockedBack: 0
   rb: {fileID: 6774084189301813495}
   moveSpeed: 3
   moveDirection: {x: 0, y: 0}
   invincible: 0
   stunned: 0
-  beingKnockedBack: 0
   attacking: 0
   moveX: 0
   moveY: 0

@@ -24,6 +24,11 @@ public class Player : BaseCharacter
     private void Awake()
     {
         slimeKingActions = new SlimeKingActions();
+        abilities = new List<Ability>();
+        ObtainAbility(Ability.AbilityKey.Slap);
+        ObtainAbility(Ability.AbilityKey.Shoot);
+        ObtainAbility(Ability.AbilityKey.Engulf);
+        AbilitiesUpdated?.Invoke();
     }
     private void OnEnable()
     {
@@ -32,11 +37,7 @@ public class Player : BaseCharacter
 
         aiming = slimeKingActions.Player.Aim;
         aiming.Enable();
-        abilities = new List<Ability>();
-        ObtainAbility(Ability.AbilityKey.Slap);
-        ObtainAbility(Ability.AbilityKey.Shoot);
-        ObtainAbility(Ability.AbilityKey.Engulf);
-        AbilitiesUpdated?.Invoke();
+
 
         slimeKingActions.Player.Slap.performed += (InputAction.CallbackContext ctx) => RequestUse(ctx, (int)Ability.AbilityKey.Slap);
         slimeKingActions.Player.Slap.Enable();

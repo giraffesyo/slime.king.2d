@@ -2,18 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.AddressableAssets;
+#nullable enable
 public class ShootAbility : Ability
 {
-
-    public GameObject missilePrefab;
-    public float missileForce;
-
+#pragma warning disable CS8618
+    private GameObject missilePrefab;
+    private float missileForce = 10f;
     Vector2 aimingDirection;
+
+#pragma warning restore CS8618
 
     override protected void Start()
     {
-
         base.Start();
+        var addressable = Addressables.LoadAssetAsync<GameObject>("missle");
+        addressable.Completed += (obj) => missilePrefab = obj.Result;
         this.abilityKey = Ability.AbilityKey.Shoot;
     }
 
