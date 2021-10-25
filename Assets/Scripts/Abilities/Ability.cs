@@ -19,7 +19,7 @@ public abstract class Ability : MonoBehaviour
     [SerializeField] protected bool onCooldown;
     [SerializeField] protected int currentCooldown;
 
-    [SerializeField] protected LayerMask enemyLayers;  // All enemies must be in a layer
+    [SerializeField] public LayerMask enemyLayers;  // All enemies must be in a layer
 
     public delegate void StartCooldownHandler(float duration);
     public delegate void CooldownCompleteHandler();

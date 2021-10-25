@@ -17,6 +17,7 @@ public class Player : BaseCharacter
     private InputAction aiming;
     public delegate void UpdateAbilitiesHandler();
     public event UpdateAbilitiesHandler? AbilitiesUpdated;
+    public LayerMask enemyLayer;
 
     private Vector2 aimingDirection = new Vector2();
 
@@ -115,6 +116,7 @@ public class Player : BaseCharacter
             Debug.LogError($"Could not add ability {key}");
             return;
         }
+        ability.enemyLayers = enemyLayer;
         abilities.Add(ability);
         AbilitiesUpdated?.Invoke();
     }
