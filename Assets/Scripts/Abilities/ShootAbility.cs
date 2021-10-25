@@ -10,6 +10,7 @@ public class ShootAbility : Ability
     private GameObject missilePrefab;
     private float missileForce = 10f;
     Vector2 aimingDirection;
+    int missileLayer;
 
 #pragma warning restore CS8618
 
@@ -19,6 +20,13 @@ public class ShootAbility : Ability
         var addressable = Addressables.LoadAssetAsync<GameObject>("missle");
         addressable.Completed += (obj) => missilePrefab = obj.Result;
         this.abilityKey = Ability.AbilityKey.Shoot;
+
+        // Makes sure enemy missiles will not hit enemies
+        if (isAi)
+            missileLayer = LayerMask.NameToLayer("MissileEnemy");
+        else
+            missileLayer = LayerMask.NameToLayer("MissilePlayer");
+
     }
 
     public override bool RequestUse(InputAction.CallbackContext ctx, Vector2 aimingDirection)
@@ -57,13 +65,11 @@ public class ShootAbility : Ability
         base.Use(target);
         if (target != null)
         {
-            Vector2 t = (Vector2)target;
             GameObject missile = Instantiate(missilePrefab, GetComponent<Transform>().position, transform.rotation);
+            missile.layer = missileLayer;
             Rigidbody2D rb = missile.GetComponent<Rigidbody2D>();
-            missile.GetComponent<missileColliderEnemy>().isAi = this.isAi;
-            rb.AddForce(t * missileForce, ForceMode2D.Impulse);
+            missile.GetComponent<missileCollider>().isAi = this.isAi;
+            rb.AddForce(target * missileForce, ForceMode2D.Impulse);
         }
     }
-
-
 }

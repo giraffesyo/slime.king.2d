@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2663280786540103653}
   - component: {fileID: 1909771767687362592}
   - component: {fileID: 7895629035637812542}
-  - component: {fileID: 4173590781040309287}
+  - component: {fileID: 9196064035559058369}
   m_Layer: 13
   m_Name: missile
   m_TagString: Untagged
@@ -119,10 +119,10 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.0026848316, y: -0.010739505}
   serializedVersion: 2
-  m_Radius: 0.16
---- !u!114 &4173590781040309287
+  m_Radius: 0.21638209
+--- !u!114 &9196064035559058369
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
