@@ -22,6 +22,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - missle
+  - m_GUID: 1d6f5a1b61a5e4ed09dcc78938e7d5fe
+    m_Address: Indicators
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Indicators
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: e54d3e1ec43e6494f858a69014e365f1, type: 2}
   m_SchemaSet:
