@@ -2,35 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class missileColliderEnemy : MonoBehaviour
+public class missileCollider : MonoBehaviour
 {
     public bool isAi;
 
-    /*private void Start()
-    {
-        // 10 = enemies, 11 = player, 12 = enemyMissiles, 13 = playerMissiles,
-        Physics2D.IgnoreLayerCollision(12, 13);
-        Physics2D.IgnoreLayerCollision(12, 10);
-        Physics2D.IgnoreLayerCollision(13, 11);
-    }*/
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // Flag the missle for deletion
-        Destroy(gameObject);
-
         BaseCharacter enemyChar = collision.gameObject.GetComponent<BaseCharacter>();
-        // TODO: Check the enemy layer
+        // No need to check enemy layer, missile is spawned on either MissileEnemy or MissilePlayer layer
+        // In project settings MissileEnemy layer cannot collide with enemy layer, same with MissilePlayer but with Player layer
         // If the collision is with an enemy, deal damage
         if (enemyChar != null)
         {
             // if the player is the one who shot the missle, knockback the enemy
             if (!isAi)
             {
-                enemyChar.Knockback(2f, this.transform);
+                enemyChar.Knockback(10f, this.transform);
             }
 
             enemyChar.TakeDamage(1);
         }
+        
+        // Flag the missile for deletion
+        Destroy(gameObject);
     }
 }

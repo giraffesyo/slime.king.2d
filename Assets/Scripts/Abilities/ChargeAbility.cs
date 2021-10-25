@@ -31,13 +31,12 @@ public class ChargeAbility : Ability
 
     public void stopCharging()
     {
-        Debug.Log("Stop charging");
         animator.SetBool("Charging", false);
         isCharging = false;
-        baseChar.Move(Vector2.zero);
+        //baseChar.Move(Vector2.zero);
         baseChar.ResetSpeed();
 
-        baseChar.stunned = false;
+        baseChar.attacking = false;
     }
 
     override public void Use(int key)
@@ -49,6 +48,13 @@ public class ChargeAbility : Ability
         {
             return;
         }
+
+        if (baseChar.stunned)
+        {
+            stopCharging();
+            return;
+        }
+
         base.Use(key);
 
         baseChar.setSpeed(10);
@@ -61,18 +67,7 @@ public class ChargeAbility : Ability
     {
         if (isCharging)
         {
-            BaseCharacter enemyChar = collision.transform.GetComponent<BaseCharacter>();
-            if (enemyChar != null && !enemyChar.invincible)
-            {
-                enemyChar.TakeDamage(attackDamage);
-                if (!isAi)
-                {
-                    enemyChar.Knockback(2f, transform);
-                }
-            }
-
-            stopCharging();
-            baseChar.Knockback(3, collision.transform);
+            checkHit(collision);
         }
     }
 
@@ -83,23 +78,26 @@ public class ChargeAbility : Ability
         Vector2 colVector = (Vector2)(collision.transform.position) - (Vector2)(transform.position);
         float angle = Mathf.Atan2(colVector.y - dirVector.y, colVector.x - dirVector.x) * Mathf.Rad2Deg;
 
-
-        if (isCharging)
+        if (isCharging && Mathf.Abs(angle )>= 90f)
         {
-            Debug.Log("Charge hit something");
-            BaseCharacter enemyChar = collision.transform.GetComponent<BaseCharacter>();
-            if (enemyChar != null && !enemyChar.invincible)
-            {
-                Debug.Log("Charge hit enemy");
-
-                enemyChar.TakeDamage(attackDamage);
-                enemyChar.Knockback(knockbackPower: 5f, transform);
-
-            }
-
-            stopCharging();
-
-            baseChar.Knockback(knockbackPower: 3, collision.transform);
+            checkHit(collision);
         }
+    }
+
+    private void checkHit(Collision2D collision)
+    {
+        Debug.Log("Charge hit something");
+        BaseCharacter enemyChar = collision.transform.GetComponent<BaseCharacter>();
+        if (enemyChar != null && !enemyChar.invincible)
+        {
+            Debug.Log("Charge hit enemy");
+
+            enemyChar.TakeDamage(attackDamage);
+            enemyChar.Knockback(knockbackPower: 5f, transform);
+        }
+
+        stopCharging();
+
+        baseChar.Knockback(knockbackPower: 3, collision.transform);
     }
 }

@@ -43,7 +43,7 @@ public class AI : BaseCharacter
 
     protected virtual bool Move()
     {
-        if (engulfStunned || stunned)
+        if (engulfStunned || stunned || attacking)
             return false;
 
         float x1 = transform.position.x;

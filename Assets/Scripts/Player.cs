@@ -69,8 +69,6 @@ public class Player : BaseCharacter
     override protected void Start()
     {
         base.Start();
-
-
     }
 
     public override void Die()
@@ -90,17 +88,6 @@ public class Player : BaseCharacter
         abilities[abilityIndex].RequestUse(ctx, aimingDirection);
     }
 
-    // TODO:  what is going on here?
-    public override void TakeDamage(int damage)
-    {
-        base.TakeDamage(damage);
-
-        ChargeAbility ca = GetComponent<ChargeAbility>();
-        if (ca != null)
-        {
-            ca.stopCharging();
-        }
-    }
     public void ObtainAbility(Ability.AbilityKey key)
     {
         // check that we don't have the ability already

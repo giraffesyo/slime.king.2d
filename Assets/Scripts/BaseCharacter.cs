@@ -64,18 +64,12 @@ public class BaseCharacter : Damageable
 
     public void Move(Vector2 direction)
     {
-        if (stunned)
-        {
-            // moveDirection = Vector2.zero;  // Messes with charge ability
-            //return;
-        }
         if (!attacking && !stunned)
         {
             if (direction.x > 0)
                 facingRight = true;
             else if (direction.x < 0)
                 facingRight = false;
-            //facingRight = direction.x > 0 ? true : false; // Changed it to if else bc if direction.x = 0 it will automatically turn right when standing still (dont know how to do = 0 in this format lol)
             spriteRenderer.flipY = false;
             transform.rotation = Quaternion.identity;
         }
@@ -111,30 +105,16 @@ public class BaseCharacter : Damageable
 
         Vector2 direction = (obj.transform.position - this.transform.position).normalized;
         Move(knockbackPower * -direction);
-
+        Debug.Log("1" + name);
         yield return new WaitForSeconds(0.5f);
+        Debug.Log("2" + name);
 
-        Move(Vector2.zero);
+        
         //transform.DOMove(new Vector3(transform.position.x - (direction.x * knockbackPower), transform.position.y - (direction.y * knockbackPower), 0), 0.5f).OnComplete(() => beingKnockedBack = false);
         beingKnockedBack = false;
         // if they weren't stunned before the knockback, unstun them
         if (!wasStunned)
             stunned = false;
-    }
-
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (beingKnockedBack)
-        {
-            beingKnockedBack = false;
-            // check if the collision is a solid object
-            // maybe a better way to do this but lets see if we can get this to work...
-            if (other.gameObject.layer == 9)
-            { // "solid objects" is 9
-              // stop ongoing tweens
-                transform.DOKill(false);
-
-            }
-        }
+        Move(Vector2.zero);
     }
 }
