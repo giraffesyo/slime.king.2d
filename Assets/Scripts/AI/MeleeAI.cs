@@ -21,7 +21,7 @@ public class MeleeAI : AI
         {
             base.Move(Vector2.zero);
             stunned = true;
-            aiAbility.Use(0);
+            //aiAbility.Use(0);
             stunned = false;
         }
         else
