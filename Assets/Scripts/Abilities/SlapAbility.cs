@@ -59,7 +59,7 @@ public class SlapAbility : Ability
                 enemyChar.TakeDamage(attackDamage);
                 if (!isAi)
                 {
-                    enemyChar.Knockback(2f, transform);
+                    enemyChar.Knockback(1.3f, transform);
                 }
             }
         }

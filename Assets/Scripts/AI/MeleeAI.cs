@@ -19,7 +19,7 @@ public class MeleeAI : AI
 
         if (playerCollider.Length != 0) // Within melee ranged
         {
-            base.Move(Vector2.zero);
+            //base.Move(Vector2.zero);
             stunned = true;
             //aiAbility.Use(0);
             stunned = false;
@@ -29,7 +29,7 @@ public class MeleeAI : AI
             moveX = getMoveX();
             moveY = getMoveY();
         }
-        base.Move(new Vector2(moveX, moveY));
+        //base.Move(new Vector2(moveX, moveY));
         return true;
     }
   

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+
 public class AI : BaseCharacter
 {
     public Transform attackPoint;
@@ -43,7 +44,7 @@ public class AI : BaseCharacter
 
     protected virtual bool Move()
     {
-        if (engulfStunned || stunned || attacking)
+        if (engulfStunned || stunned || attacking || beingKnockedBack)
             return false;
 
         float x1 = transform.position.x;

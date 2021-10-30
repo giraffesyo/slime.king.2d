@@ -103,14 +103,12 @@ public class BaseCharacter : Damageable
 
         beingKnockedBack = true;
 
-        Vector2 direction = (obj.transform.position - this.transform.position).normalized;
-        Move(knockbackPower * -direction);
-        Debug.Log("1" + name);
-        yield return new WaitForSeconds(0.5f);
-        Debug.Log("2" + name);
 
+        Vector2 direction = (obj.transform.position - this.transform.position).normalized;        
+        rb.velocity = -direction.normalized * moveSpeed;
         
-        //transform.DOMove(new Vector3(transform.position.x - (direction.x * knockbackPower), transform.position.y - (direction.y * knockbackPower), 0), 0.5f).OnComplete(() => beingKnockedBack = false);
+        yield return new WaitForSeconds(knockbackPower);
+
         beingKnockedBack = false;
         // if they weren't stunned before the knockback, unstun them
         if (!wasStunned)

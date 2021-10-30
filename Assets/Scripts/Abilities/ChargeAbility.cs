@@ -4,17 +4,19 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class ChargeAbility : Ability
-{
+{    
+    [SerializeField] int attackDamage = 2;
+
     private Vector2 direction;
     private bool isCharging = false;
 
-    public BaseCharacter baseChar;
-    public int attackDamage = 2;
+    private BaseCharacter baseChar;
 
     override protected void Start()
     {
         base.Start();
         abilityKey = Ability.AbilityKey.Charge;
+        baseChar = GetComponent<BaseCharacter>();
     }
     public override bool RequestUse(InputAction.CallbackContext ctx, Vector2 aimingDirection)
     {
@@ -93,11 +95,11 @@ public class ChargeAbility : Ability
             Debug.Log("Charge hit enemy");
 
             enemyChar.TakeDamage(attackDamage);
-            enemyChar.Knockback(knockbackPower: 5f, transform);
+            enemyChar.Knockback(knockbackPower: 1f, transform);
         }
 
         stopCharging();
 
-        baseChar.Knockback(knockbackPower: 3, collision.transform);
+        baseChar.Knockback(knockbackPower: 0.5f, collision.transform);
     }
 }
