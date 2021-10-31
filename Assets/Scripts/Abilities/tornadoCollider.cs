@@ -9,6 +9,7 @@ public class tornadoCollider : MonoBehaviour
     Vector2 targetWorldLocation;
     GameObject tornadoPrefab;
     float tornadoForce;
+    bool wallCollisionBlock = true; // Waits a second until it can collide with walls (otherwise if used while touching wall it will automatically explode)
 
     public void constructor(bool _isFirstTornado, Vector2 _targetWorldLocation, GameObject _tornadoPrefab, float _tornadoForce)
     {
@@ -17,6 +18,8 @@ public class tornadoCollider : MonoBehaviour
         tornadoPrefab = _tornadoPrefab;
         tornadoForce = _tornadoForce;
         targetLocalLocation = targetLocalLocation - (Vector2)transform.position;
+
+        StartCoroutine(initialWallCollisionTimer());
     }
     
     private void Update()
@@ -47,9 +50,6 @@ public class tornadoCollider : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         BaseCharacter enemyChar = collision.gameObject.GetComponent<BaseCharacter>();
-        // No need to check enemy layer, missile is spawned on either MissileEnemy or MissilePlayer layer
-        // In project settings MissileEnemy layer cannot collide with enemy layer, same with MissilePlayer but with Player layer
-        // If the collision is with an enemy, deal damage
         if (enemyChar != null)
         {
             enemyChar.Knockback(0.8f, this.transform);
@@ -58,6 +58,13 @@ public class tornadoCollider : MonoBehaviour
         }
 
         // Flag the missile for deletion
-        Destroy(gameObject);
+        if (enemyChar != null || !wallCollisionBlock)
+            Destroy(gameObject);
+    }
+
+    private IEnumerator initialWallCollisionTimer()
+    {
+        yield return new WaitForSeconds(1f);
+        wallCollisionBlock = false;
     }
 }

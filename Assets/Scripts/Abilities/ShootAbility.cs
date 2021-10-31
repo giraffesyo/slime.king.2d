@@ -8,7 +8,7 @@ public class ShootAbility : Ability
 {
 #pragma warning disable CS8618
     private GameObject missilePrefab;
-    private float missileForce = 10f;
+    private float missileForce = 8f;
     Vector2 aimingDirection;
     int missileLayer;
 
@@ -20,6 +20,7 @@ public class ShootAbility : Ability
         var addressable = Addressables.LoadAssetAsync<GameObject>("missle");
         addressable.Completed += (obj) => missilePrefab = obj.Result;
         this.abilityKey = Ability.AbilityKey.Shoot;
+        cooldown = 2;
 
         // Makes sure enemy missiles will not hit enemies
         if (isAi)
@@ -36,7 +37,7 @@ public class ShootAbility : Ability
             Debug.Log("No animator in Ranged Ability");
             return false;
         }
-        if (!onCooldown && !locked)
+        if (!onCooldown)
         {
             this.aimingDirection = aimingDirection;
             rotation = Mathf.Atan2(this.aimingDirection.y, this.aimingDirection.x) * Mathf.Rad2Deg;

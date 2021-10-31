@@ -16,10 +16,11 @@ public class SlapAbility : Ability
         abilityKey = Ability.AbilityKey.Slap;
         enemyFilter = new ContactFilter2D();
         enemyFilter.SetLayerMask(enemyLayers);
+        cooldown = 1;
     }
     public override bool RequestUse(InputAction.CallbackContext ctx, Vector2 aimingDirection)
     {
-        if (!onCooldown && animator != null && !locked)
+        if (!onCooldown && animator != null)
         {
             rotation = Mathf.Atan2(aimingDirection.y, aimingDirection.x) * Mathf.Rad2Deg;
             animator.SetTrigger("Melee");

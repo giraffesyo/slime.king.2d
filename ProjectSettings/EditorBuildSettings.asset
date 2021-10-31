@@ -12,7 +12,13 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: b1d44f07d95dd421994c96d4db186e08
   - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/Eric.unity
+    guid: bbb25b12334583a4fa872b631de0304d
+  - enabled: 1
+    path: Assets/Scenes/Santos.unity
+    guid: 74f300065f3f36449a9b6e7cba733af3
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: fa4091b36e66c43dfa2a9fda32180793, type: 2}

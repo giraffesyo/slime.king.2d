@@ -8,7 +8,7 @@ public class TornadoAbility : Ability
 {
 #pragma warning disable CS8618
     private GameObject tornadoPrefab;
-    private float tornadoForce = 3f;
+    private float tornadoForce = 2f;
     Vector2 targetWorldLocation;
     int tornadoLayer;
 
@@ -36,7 +36,7 @@ public class TornadoAbility : Ability
             Debug.Log("No animator in Tornado Ability");
             return false;
         }
-        if (!onCooldown && !locked)
+        if (!onCooldown)
         {
             this.targetWorldLocation = targetWorldLocation;
             rotation = Mathf.Atan2(this.targetWorldLocation.y, this.targetWorldLocation.x) * Mathf.Rad2Deg;
