@@ -52,9 +52,6 @@ public class AI : BaseCharacter
         if (dist >= 15f)    // Out of character sight range
             return false;
 
-
-        moveX = 0;
-        moveY = 0;
         return true;
     }
 
@@ -85,7 +82,7 @@ public class AI : BaseCharacter
         // drop some coins!
         // Destroy the AI
         Destroy(this.gameObject);
-    }    
+    }
 
     protected int getMoveX()
     {

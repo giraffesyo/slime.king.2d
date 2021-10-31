@@ -27,8 +27,7 @@ public class BaseCharacter : Damageable
     public bool attacking = false;
     private SpriteRenderer spriteRenderer;
 
-    public float moveX = 0;
-    public float moveY = 0;
+
 
     protected virtual void Start()
     {

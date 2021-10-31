@@ -13,7 +13,7 @@ public class RangedAI : AI
 
     protected override bool Move()
     {
-        if(!base.Move())
+        if (!base.Move())
             return false;
 
         float x1 = transform.position.x;
@@ -23,21 +23,16 @@ public class RangedAI : AI
         float y2 = playerPos.position.y;
 
         Collider2D[] playerCollider = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playerLayer);
+        float moveX = getMoveX();
+        float moveY = getMoveY();
 
-        if (playerCollider.Length == 0) // Gotta get closer
+        if (dist < playerRange) // Player too close, back away
         {
-            moveX = getMoveX();
-            moveY = getMoveY();
+            moveX *= -1;
+            moveY *= -1;
         }
-        else
-        {
-            if (dist < playerRange) // Player too close, back away
-            {
-                moveX = getMoveX() * -1;
-                moveY = getMoveY() * -1;
-            }
-            aiAbility.Use(new Vector2(x2 - x1, y2 - y1).normalized);
-        }
+        aiAbility.Use(new Vector2(x2 - x1, y2 - y1).normalized);
+
 
         base.Move(new Vector2(moveX, moveY));
         return true;
