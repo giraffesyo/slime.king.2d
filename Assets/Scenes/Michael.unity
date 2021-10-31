@@ -246,6 +246,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TornadoEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 3573477063888733796, guid: 787aad84c62b2fa458ed6aaa2deb223b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3573477063888733803, guid: 787aad84c62b2fa458ed6aaa2deb223b, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -5623,6 +5627,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 744331130, guid: af10b48d60b85443aba5780af888a8e8, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 2.29
+      objectReference: {fileID: 0}
+    - target: {fileID: 744331130, guid: af10b48d60b85443aba5780af888a8e8, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 2.26
+      objectReference: {fileID: 0}
     - target: {fileID: 26286675073671252, guid: af10b48d60b85443aba5780af888a8e8, type: 3}
       propertyPath: m_Name
       value: Ooey

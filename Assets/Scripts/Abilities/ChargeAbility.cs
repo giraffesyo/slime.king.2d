@@ -60,8 +60,10 @@ public class ChargeAbility : Ability
 
         base.Use(key);
 
-        baseChar.setSpeed(10);
-        baseChar.Move(direction, shouldBeAttacking: true);
+        // baseChar.setSpeed(10);
+        // baseChar.Move(direction, shouldBeAttacking: true);
+        baseChar.attacking = true;
+        baseChar.moveDirection = direction.normalized * 10;
 
         isCharging = true;
     }

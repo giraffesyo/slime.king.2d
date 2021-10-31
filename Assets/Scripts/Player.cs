@@ -109,6 +109,7 @@ public class Player : BaseCharacter
     override protected void Start()
     {
         base.Start();
+        ObtainAbility(Ability.AbilityKey.Charge);
     }
 
     public override void Die()
