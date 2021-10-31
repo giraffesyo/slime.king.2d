@@ -31,7 +31,6 @@ public class ChargeAI : AI
             moveY = getMoveY();
             base.Move(new Vector2(moveX, moveY));
         }
-        
         return true;
     }
 

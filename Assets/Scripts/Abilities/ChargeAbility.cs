@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class ChargeAbility : Ability
-{    
+{
     [SerializeField] int attackDamage = 2;
 
     private Vector2 direction;
@@ -33,6 +33,7 @@ public class ChargeAbility : Ability
 
     public void stopCharging()
     {
+
         animator.SetBool("Charging", false);
         isCharging = false;
         //baseChar.Move(Vector2.zero);
@@ -60,7 +61,7 @@ public class ChargeAbility : Ability
         base.Use(key);
 
         baseChar.setSpeed(10);
-        baseChar.Move(direction);
+        baseChar.Move(direction, shouldBeAttacking: true);
 
         isCharging = true;
     }
@@ -80,7 +81,7 @@ public class ChargeAbility : Ability
         Vector2 colVector = (Vector2)(collision.transform.position) - (Vector2)(transform.position);
         float angle = Mathf.Atan2(colVector.y - dirVector.y, colVector.x - dirVector.x) * Mathf.Rad2Deg;
 
-        if (isCharging && Mathf.Abs(angle )>= 90f)
+        if (isCharging && Mathf.Abs(angle) >= 90f)
         {
             checkHit(collision);
         }

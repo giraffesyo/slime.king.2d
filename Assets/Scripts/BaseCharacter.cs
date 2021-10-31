@@ -62,7 +62,7 @@ public class BaseCharacter : Damageable
         // Movement
     }
 
-    public void Move(Vector2 direction)
+    public void Move(Vector2 direction, bool shouldBeAttacking = false)
     {
         if (!attacking && !stunned)
         {
@@ -72,8 +72,13 @@ public class BaseCharacter : Damageable
                 facingRight = false;
             spriteRenderer.flipY = false;
             transform.rotation = Quaternion.identity;
+            moveDirection = direction.normalized;
         }
-        moveDirection = direction.normalized;
+        if (shouldBeAttacking)
+        {
+            attacking = true;
+        }
+
     }
 
     public void setSpeed(float speed)
@@ -104,9 +109,9 @@ public class BaseCharacter : Damageable
         beingKnockedBack = true;
 
 
-        Vector2 direction = (obj.transform.position - this.transform.position).normalized;        
+        Vector2 direction = (obj.transform.position - this.transform.position).normalized;
         rb.velocity = -direction.normalized * moveSpeed;
-        
+
         yield return new WaitForSeconds(knockbackPower);
 
         beingKnockedBack = false;
