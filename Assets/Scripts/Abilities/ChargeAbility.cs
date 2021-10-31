@@ -20,7 +20,7 @@ public class ChargeAbility : Ability
     }
     public override bool RequestUse(InputAction.CallbackContext ctx, Vector2 aimingDirection)
     {
-        if (!onCooldown && animator != null && !locked)
+        if (!onCooldown && animator != null)
         {
             direction = aimingDirection;
             rotation = Mathf.Atan2(aimingDirection.y, aimingDirection.x) * Mathf.Rad2Deg;

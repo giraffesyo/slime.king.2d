@@ -31,7 +31,6 @@ public abstract class Ability : MonoBehaviour
     protected Animator animator;
 
     protected float rotation;
-    protected bool locked;    // Band-aid fix? Prevents from melee being spammed in the short window from when animation starts and Use() is called
 
     protected virtual void Start()
     {
@@ -70,7 +69,6 @@ public abstract class Ability : MonoBehaviour
 
     private IEnumerator StartCooldown()
     {
-        locked = false;
         currentCooldown = cooldown;
         if (CooldownStarted != null)
         {
@@ -96,7 +94,6 @@ public abstract class Ability : MonoBehaviour
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         if (firstFrame == 0)
         {
-            locked = true;                  // Prevents spamming ability in short window where ability not on cooldown
             character.attacking = true;          // Prevents flipping during ability animation
             if (!character.facingRight)
                 sr.flipX = !sr.flipX;       // If facing left, flip to right so rotations make sense
@@ -106,7 +103,6 @@ public abstract class Ability : MonoBehaviour
         }
         else
         {
-            locked = false;
             character.attacking = false;
             /*            if (!plyr.facingRight)
                             sr.flipX = !sr.flipX;
