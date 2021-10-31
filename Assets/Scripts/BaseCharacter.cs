@@ -61,7 +61,7 @@ public class BaseCharacter : Damageable
         // Movement
     }
 
-    public void Move(Vector2 direction, bool shouldBeAttacking = false)
+    public void Move(Vector2 direction)
     {
         if (!attacking && !stunned)
         {
@@ -71,13 +71,9 @@ public class BaseCharacter : Damageable
                 facingRight = false;
             spriteRenderer.flipY = false;
             transform.rotation = Quaternion.identity;
+            //  does this cause  a bug?
             moveDirection = direction.normalized;
         }
-        if (shouldBeAttacking)
-        {
-            attacking = true;
-        }
-
     }
 
     public void setSpeed(float speed)
