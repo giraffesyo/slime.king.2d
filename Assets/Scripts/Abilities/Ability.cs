@@ -29,12 +29,16 @@ public abstract class Ability : MonoBehaviour
 
     public bool isAi;
     protected Animator animator;
+    protected BaseCharacter baseCharacter;
+    protected SpriteRenderer spriteRenderer;
 
     protected float rotation;
 
     protected virtual void Start()
     {
         animator = GetComponent<Animator>();
+        baseCharacter = GetComponent<BaseCharacter>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void MasterUse()
@@ -90,24 +94,21 @@ public abstract class Ability : MonoBehaviour
     // This gets called from an animation event at first frame and last frame
     public void Rotate(int firstFrame)
     {
-        BaseCharacter character = GetComponent<BaseCharacter>();
-        SpriteRenderer sr = GetComponent<SpriteRenderer>();
         if (firstFrame == 0)
         {
-            character.attacking = true;          // Prevents flipping during ability animation
-            if (!character.facingRight)
-                sr.flipX = !sr.flipX;       // If facing left, flip to right so rotations make sense
+            baseCharacter.attacking = true;          // Prevents flipping during ability animation
+            if (!baseCharacter.facingRight)
+                spriteRenderer.flipX = !spriteRenderer.flipX;       // If facing left, flip to right so rotations make sense
             if (rotation > 90f || rotation < -90f)
-                sr.flipY = !sr.flipY;
+                spriteRenderer.flipY = !spriteRenderer.flipY;
             transform.Rotate(new Vector3(0, 0, 1), rotation);
         }
         else
-        {
-            character.attacking = false;
-            /*            if (!plyr.facingRight)
-                            sr.flipX = !sr.flipX;
-                        rotation = rotation * -1;*/
+        {            
+            baseCharacter.attacking = false;
         }
+
+        Debug.Log(baseCharacter.attacking);
         if (firstFrame != 0)
             rotation = 0;
     }

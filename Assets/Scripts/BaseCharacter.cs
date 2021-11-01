@@ -25,6 +25,7 @@ public class BaseCharacter : Damageable
     }
     public bool stunned;
     public bool attacking = false;
+    public bool shouldBeAbleToMove = true;
     private SpriteRenderer spriteRenderer;
 
 
@@ -71,9 +72,10 @@ public class BaseCharacter : Damageable
                 facingRight = false;
             spriteRenderer.flipY = false;
             transform.rotation = Quaternion.identity;
-            //  does this cause  a bug?
+            //  does this cause  a bug? Yes couldnt move while doing melee attack
+        }            
+        if (shouldBeAbleToMove)
             moveDirection = direction.normalized;
-        }
     }
 
     public void setSpeed(float speed)

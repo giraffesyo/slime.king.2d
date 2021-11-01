@@ -39,7 +39,7 @@ public class ChargeAbility : Ability
         //baseChar.Move(Vector2.zero);
         baseChar.ResetSpeed();
 
-        baseChar.attacking = false;
+        baseChar.shouldBeAbleToMove = true;
     }
 
     override public void Use(int key)
@@ -62,7 +62,7 @@ public class ChargeAbility : Ability
 
         // baseChar.setSpeed(10);
         // baseChar.Move(direction, shouldBeAttacking: true);
-        baseChar.attacking = true;
+        baseChar.shouldBeAbleToMove = false;
         baseChar.moveDirection = direction.normalized * 10;
 
         isCharging = true;

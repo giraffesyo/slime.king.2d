@@ -22,6 +22,7 @@ public class SlapAbility : Ability
     {
         if (!onCooldown && animator != null)
         {
+            baseCharacter.attacking = true;
             rotation = Mathf.Atan2(aimingDirection.y, aimingDirection.x) * Mathf.Rad2Deg;
             animator.SetTrigger("Melee");
             return true;
@@ -46,8 +47,6 @@ public class SlapAbility : Ability
             meleeCollider.isTrigger = true;
         }
 
-        //transform.GetChild(0).GetComponent<Animator>().SetTrigger("Swipe");
-
         List<Collider2D> hitEnemies = new List<Collider2D>();
 
         Physics2D.OverlapCollider(meleeCollider, enemyFilter, hitEnemies);
@@ -64,6 +63,5 @@ public class SlapAbility : Ability
                 }
             }
         }
-        //transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
     }
 }
