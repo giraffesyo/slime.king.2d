@@ -62,6 +62,21 @@ public class tornadoCollider : MonoBehaviour
             Destroy(gameObject);
     }
 
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        BaseCharacter enemyChar = collision.gameObject.GetComponent<BaseCharacter>();
+        if (enemyChar != null)
+        {
+            enemyChar.Knockback(0.8f, this.transform);
+
+            enemyChar.TakeDamage(1);
+        }
+
+        // Flag the missile for deletion
+        if (enemyChar != null || !wallCollisionBlock)
+            Destroy(gameObject);
+    }
+
     private IEnumerator initialWallCollisionTimer()
     {
         yield return new WaitForSeconds(1f);

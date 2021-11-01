@@ -91,12 +91,9 @@ public class ChargeAbility : Ability
 
     private void checkHit(Collision2D collision)
     {
-        Debug.Log("Charge hit something");
         BaseCharacter enemyChar = collision.transform.GetComponent<BaseCharacter>();
         if (enemyChar != null && !enemyChar.invincible)
         {
-            Debug.Log("Charge hit enemy");
-
             enemyChar.TakeDamage(attackDamage);
             enemyChar.Knockback(knockbackPower: 1f, transform);
         }
