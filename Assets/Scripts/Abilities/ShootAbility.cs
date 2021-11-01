@@ -17,7 +17,7 @@ public class ShootAbility : Ability
     override protected void Start()
     {
         base.Start();
-        var addressable = Addressables.LoadAssetAsync<GameObject>("missle");
+        var addressable = Addressables.LoadAssetAsync<GameObject>("missile");
         addressable.Completed += (obj) => missilePrefab = obj.Result;
         this.abilityKey = Ability.AbilityKey.Shoot;
         cooldown = 2;
