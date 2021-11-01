@@ -46,6 +46,30 @@ public class AbilityBar : MonoBehaviour
             AbilityIndicator abilityIndicator = GameObject.Instantiate(obj.Result, transform).GetComponent<AbilityIndicator>();
             if (abilityIndicator != null)
             {
+                // Set the indicators keybind text or image
+                if (index > 2)
+                {
+                    abilityIndicator.keybindText.gameObject.active = true;
+                    // 2 offset because the first three slots are for engulf, shoot, and slap
+                    abilityIndicator.keybindText.text = (index - 2).ToString();
+                }
+                else
+                {
+                    // image for the keybind instead of text for left and right mouse
+                    if (index == 0)
+                    {
+                        abilityIndicator.keybindImage.gameObject.active = true;
+                    }
+                    else if (index == 1)
+                    {
+                        abilityIndicator.keybindImage.gameObject.active = true;
+                    } // E for keybind, different from the rest of abilities
+                    else if (index == 2)
+                    {
+                        abilityIndicator.keybindText.gameObject.active = true;
+                        abilityIndicator.keybindText.text = "E";
+                    }
+                }
                 // Add the ability indicator to the list
                 abilityIndicators.Add(abilityIndicator);
                 // offset the ability indicator by the number of abilities already in the bar
