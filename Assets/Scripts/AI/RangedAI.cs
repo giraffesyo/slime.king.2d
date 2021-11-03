@@ -22,9 +22,11 @@ public class RangedAI : AI
         float x2 = playerPos.position.x;
         float y2 = playerPos.position.y;
 
-        Collider2D[] playerCollider = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playerLayer);
+        float moveX = 0;
+        float moveY = 0;
 
-        if (playerCollider.Length == 0) // Gotta get closer
+
+        if (dist > attackRange) // Gotta get closer
         {
             moveX = getMoveX();
             moveY = getMoveY();

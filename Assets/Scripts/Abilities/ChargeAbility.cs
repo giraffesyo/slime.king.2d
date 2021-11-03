@@ -5,20 +5,22 @@ using UnityEngine.InputSystem;
 
 public class ChargeAbility : Ability
 {
+    [SerializeField] int attackDamage = 2;
+
     private Vector2 direction;
     private bool isCharging = false;
 
-    public BaseCharacter baseChar;
-    public int attackDamage = 2;
+    private BaseCharacter baseChar;
 
     override protected void Start()
     {
         base.Start();
         abilityKey = Ability.AbilityKey.Charge;
+        baseChar = GetComponent<BaseCharacter>();
     }
     public override bool RequestUse(InputAction.CallbackContext ctx, Vector2 aimingDirection)
     {
-        if (!onCooldown && animator != null && !locked)
+        if (!onCooldown && animator != null)
         {
             direction = aimingDirection;
             rotation = Mathf.Atan2(aimingDirection.y, aimingDirection.x) * Mathf.Rad2Deg;
@@ -31,12 +33,13 @@ public class ChargeAbility : Ability
 
     public void stopCharging()
     {
+
         animator.SetBool("Charging", false);
         isCharging = false;
         //baseChar.Move(Vector2.zero);
         baseChar.ResetSpeed();
 
-        baseChar.attacking = false;
+        baseChar.shouldBeAbleToMove = true;
     }
 
     override public void Use(int key)
@@ -57,8 +60,10 @@ public class ChargeAbility : Ability
 
         base.Use(key);
 
-        baseChar.setSpeed(10);
-        baseChar.Move(direction);
+        // baseChar.setSpeed(10);
+        // baseChar.Move(direction, shouldBeAttacking: true);
+        baseChar.shouldBeAbleToMove = false;
+        baseChar.moveDirection = direction.normalized * 10;
 
         isCharging = true;
     }
@@ -78,7 +83,7 @@ public class ChargeAbility : Ability
         Vector2 colVector = (Vector2)(collision.transform.position) - (Vector2)(transform.position);
         float angle = Mathf.Atan2(colVector.y - dirVector.y, colVector.x - dirVector.x) * Mathf.Rad2Deg;
 
-        if (isCharging && Mathf.Abs(angle )>= 90f)
+        if (isCharging && Mathf.Abs(angle) >= 90f)
         {
             checkHit(collision);
         }
@@ -86,18 +91,15 @@ public class ChargeAbility : Ability
 
     private void checkHit(Collision2D collision)
     {
-        Debug.Log("Charge hit something");
         BaseCharacter enemyChar = collision.transform.GetComponent<BaseCharacter>();
         if (enemyChar != null && !enemyChar.invincible)
         {
-            Debug.Log("Charge hit enemy");
-
             enemyChar.TakeDamage(attackDamage);
-            enemyChar.Knockback(knockbackPower: 5f, transform);
+            enemyChar.Knockback(knockbackPower: 1f, transform);
         }
 
         stopCharging();
 
-        baseChar.Knockback(knockbackPower: 3, collision.transform);
+        baseChar.Knockback(knockbackPower: 0.5f, collision.transform);
     }
 }

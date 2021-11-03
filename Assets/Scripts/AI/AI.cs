@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+
 public class AI : BaseCharacter
 {
     public Transform attackPoint;
@@ -43,22 +44,14 @@ public class AI : BaseCharacter
 
     protected virtual bool Move()
     {
-        if (engulfStunned || stunned || attacking)
+        if (engulfStunned || stunned || attacking || beingKnockedBack)
             return false;
 
-        float x1 = transform.position.x;
-        float y1 = transform.position.y;
-
-        float x2 = playerPos.position.x;
-        float y2 = playerPos.position.y;
-        dist = Distance(x1, y1, x2, y2);
+        dist = Vector3.Distance(playerPos.position, transform.position);
 
         if (dist >= 15f)    // Out of character sight range
             return false;
 
-
-        moveX = 0;
-        moveY = 0;
         return true;
     }
 
@@ -89,11 +82,6 @@ public class AI : BaseCharacter
         // drop some coins!
         // Destroy the AI
         Destroy(this.gameObject);
-    }    
-    
-    float Distance(float x1, float y1, float x2, float y2)
-    {
-        return Mathf.Sqrt(Mathf.Pow(x2 - x1, 2) + Mathf.Pow(y2 - y1, 2)); ;
     }
 
     protected int getMoveX()

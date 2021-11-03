@@ -16,11 +16,13 @@ public class SlapAbility : Ability
         abilityKey = Ability.AbilityKey.Slap;
         enemyFilter = new ContactFilter2D();
         enemyFilter.SetLayerMask(enemyLayers);
+        cooldown = 1;
     }
     public override bool RequestUse(InputAction.CallbackContext ctx, Vector2 aimingDirection)
     {
-        if (!onCooldown && animator != null && !locked)
+        if (!onCooldown && animator != null)
         {
+            baseCharacter.attacking = true;
             rotation = Mathf.Atan2(aimingDirection.y, aimingDirection.x) * Mathf.Rad2Deg;
             animator.SetTrigger("Melee");
             return true;
@@ -45,8 +47,6 @@ public class SlapAbility : Ability
             meleeCollider.isTrigger = true;
         }
 
-        //transform.GetChild(0).GetComponent<Animator>().SetTrigger("Swipe");
-
         List<Collider2D> hitEnemies = new List<Collider2D>();
 
         Physics2D.OverlapCollider(meleeCollider, enemyFilter, hitEnemies);
@@ -59,10 +59,9 @@ public class SlapAbility : Ability
                 enemyChar.TakeDamage(attackDamage);
                 if (!isAi)
                 {
-                    enemyChar.Knockback(2f, transform);
+                    enemyChar.Knockback(1.3f, transform);
                 }
             }
         }
-        //transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
     }
 }

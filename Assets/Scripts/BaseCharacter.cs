@@ -25,10 +25,10 @@ public class BaseCharacter : Damageable
     }
     public bool stunned;
     public bool attacking = false;
+    public bool shouldBeAbleToMove = true;
     private SpriteRenderer spriteRenderer;
 
-    public float moveX = 0;
-    public float moveY = 0;
+
 
     protected virtual void Start()
     {
@@ -72,8 +72,10 @@ public class BaseCharacter : Damageable
                 facingRight = false;
             spriteRenderer.flipY = false;
             transform.rotation = Quaternion.identity;
-        }
-        moveDirection = direction.normalized;
+            //  does this cause  a bug? Yes couldnt move while doing melee attack
+        }            
+        if (shouldBeAbleToMove)
+            moveDirection = direction.normalized;
     }
 
     public void setSpeed(float speed)
@@ -103,14 +105,12 @@ public class BaseCharacter : Damageable
 
         beingKnockedBack = true;
 
-        Vector2 direction = (obj.transform.position - this.transform.position).normalized;
-        Move(knockbackPower * -direction);
-        Debug.Log("1" + name);
-        yield return new WaitForSeconds(0.5f);
-        Debug.Log("2" + name);
 
-        
-        //transform.DOMove(new Vector3(transform.position.x - (direction.x * knockbackPower), transform.position.y - (direction.y * knockbackPower), 0), 0.5f).OnComplete(() => beingKnockedBack = false);
+        Vector2 direction = (obj.transform.position - this.transform.position).normalized;
+        rb.velocity = -direction.normalized * moveSpeed;
+
+        yield return new WaitForSeconds(knockbackPower);
+
         beingKnockedBack = false;
         // if they weren't stunned before the knockback, unstun them
         if (!wasStunned)

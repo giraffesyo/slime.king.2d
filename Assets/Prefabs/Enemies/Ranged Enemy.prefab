@@ -210,7 +210,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 2371562569143345698, guid: 3ae8c65fa553d9f40a4b40aed8126587, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -287,8 +287,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   isAi: 1
-  missilePrefab: {fileID: 3762343026231537455, guid: 6702bc3e390206d448a8baef9a466394, type: 3}
-  missileForce: 5
 --- !u!114 &1088513719829384329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -311,8 +309,7 @@ MonoBehaviour:
   invincible: 0
   stunned: 0
   attacking: 0
-  moveX: 0
-  moveY: 0
+  shouldBeAbleToMove: 1
   attackPoint: {fileID: 6921055277837176684}
   attackRange: 4
   playerLayer:

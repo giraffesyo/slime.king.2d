@@ -12,14 +12,15 @@ public abstract class Ability : MonoBehaviour
         Slap,
         Shoot,
         Engulf,
-        Charge
+        Charge,
+        Tornado
     }
     public AbilityKey abilityKey;
     [SerializeField] protected int cooldown;
     [SerializeField] protected bool onCooldown;
     [SerializeField] protected int currentCooldown;
 
-    [SerializeField] public LayerMask enemyLayers;  // All enemies must be in a layer
+    [SerializeField] public LayerMask enemyLayers;  // All objects must be in a layer
 
     public delegate void StartCooldownHandler(float duration);
     public delegate void CooldownCompleteHandler();
@@ -28,13 +29,16 @@ public abstract class Ability : MonoBehaviour
 
     public bool isAi;
     protected Animator animator;
+    protected BaseCharacter baseCharacter;
+    protected SpriteRenderer spriteRenderer;
 
     protected float rotation;
-    protected bool locked;    // Band-aid fix? Prevents from melee being spammed in the short window from when animation starts and Use() is called
 
     protected virtual void Start()
     {
         animator = GetComponent<Animator>();
+        baseCharacter = GetComponent<BaseCharacter>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void MasterUse()
@@ -69,7 +73,6 @@ public abstract class Ability : MonoBehaviour
 
     private IEnumerator StartCooldown()
     {
-        locked = false;
         currentCooldown = cooldown;
         if (CooldownStarted != null)
         {
@@ -91,26 +94,21 @@ public abstract class Ability : MonoBehaviour
     // This gets called from an animation event at first frame and last frame
     public void Rotate(int firstFrame)
     {
-        BaseCharacter character = GetComponent<BaseCharacter>();
-        SpriteRenderer sr = GetComponent<SpriteRenderer>();
         if (firstFrame == 0)
         {
-            locked = true;                  // Prevents spamming ability in short window where ability not on cooldown
-            character.attacking = true;          // Prevents flipping during ability animation
-            if (!character.facingRight)
-                sr.flipX = !sr.flipX;       // If facing left, flip to right so rotations make sense
+            baseCharacter.attacking = true;          // Prevents flipping during ability animation
+            if (!baseCharacter.facingRight)
+                spriteRenderer.flipX = !spriteRenderer.flipX;       // If facing left, flip to right so rotations make sense
             if (rotation > 90f || rotation < -90f)
-                sr.flipY = !sr.flipY;
+                spriteRenderer.flipY = !spriteRenderer.flipY;
             transform.Rotate(new Vector3(0, 0, 1), rotation);
         }
         else
-        {
-            locked = false;
-            character.attacking = false;
-            /*            if (!plyr.facingRight)
-                            sr.flipX = !sr.flipX;
-                        rotation = rotation * -1;*/
+        {            
+            baseCharacter.attacking = false;
         }
+
+        Debug.Log(baseCharacter.attacking);
         if (firstFrame != 0)
             rotation = 0;
     }

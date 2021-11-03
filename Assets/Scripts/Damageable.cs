@@ -70,12 +70,14 @@ public class Damageable : MonoBehaviour
         currentHealth = health;
         _maxHealth = health;
         // Don't allow to exceed the absolute max
-        if (health > absoluteMaxHealth) return;
-        if (MaxHealthSet != null)
+        if (health >= absoluteMaxHealth)
         {
-            MaxHealthSet.Invoke(health);
+            currentHealth = absoluteMaxHealth;
+            _maxHealth = absoluteMaxHealth;
         }
-
+        
+        if (MaxHealthSet != null)
+             MaxHealthSet.Invoke(currentHealth);
     }
     public virtual void SetCurrentHealth(int health)
     {

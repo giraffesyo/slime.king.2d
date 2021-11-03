@@ -22,21 +22,18 @@ public class ChargeAI : AI
         {
             base.Move(Vector2.zero);
 
-            if(aiAbility.RequestUse(new InputAction.CallbackContext(), playerPos.position - transform.position))
+            if (aiAbility.RequestUse(new InputAction.CallbackContext(), playerPos.position - transform.position))
                 attacking = true;
         }
         else
         {
-            moveX = getMoveX();
-            moveY = getMoveY();
-            base.Move(new Vector2(moveX, moveY));
+            base.Move(new Vector2(getMoveX(), getMoveY()));
         }
-        
         return true;
     }
 
     public override void TakeDamage(int damage)
-    {        
+    {
         // In ChargeAbility, stopCharging only gets called when bull collides with something
         // When hit by slapAbility, there is no collision, it works with overlapcollider which means stopCharging will not be called
         // Temporary fix until i think of something better

@@ -17,7 +17,7 @@ public class missileCollider : MonoBehaviour
             // if the player is the one who shot the missle, knockback the enemy
             if (!isAi)
             {
-                enemyChar.Knockback(10f, this.transform);
+                enemyChar.Knockback(0.8f, this.transform);
             }
 
             enemyChar.TakeDamage(1);
