@@ -14,6 +14,8 @@ public class AI : BaseCharacter
     public float attackRange;
 
     public LayerMask playerLayer;
+    protected Animator animator;
+
 
     Transform stunObject;
     bool engulfStunned = false;
@@ -30,6 +32,7 @@ public class AI : BaseCharacter
     {
         base.Start();
         aiAbility = GetComponent<Ability>();
+        animator = GetComponent<Animator>();
         stunObject = transform.Find("StunnedObject");
         playerPos = GameObject.FindGameObjectWithTag("Player").transform;
         playerLayer = LayerMask.GetMask("Player");

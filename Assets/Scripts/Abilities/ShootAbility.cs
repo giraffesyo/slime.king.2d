@@ -30,7 +30,7 @@ public class ShootAbility : Ability
 
     }
 
-    public override bool RequestUse(InputAction.CallbackContext ctx, Vector2 aimingDirection)
+    public override bool RequestUse(InputAction.CallbackContext ctx, Vector2 mousePosition)
     {
         if (!animator)
         {
@@ -39,6 +39,8 @@ public class ShootAbility : Ability
         }
         if (!onCooldown)
         {
+            Vector2 aimingDirection = new Vector2(mousePosition.x - transform.position.x, mousePosition.y - transform.position.y);
+            aimingDirection = aimingDirection.normalized;
             this.aimingDirection = aimingDirection;
             rotation = Mathf.Atan2(this.aimingDirection.y, this.aimingDirection.x) * Mathf.Rad2Deg;
             // not sure if we'll run into this but if we're moving quickly at the time we shoot we could detach from the place the bullet is launched from

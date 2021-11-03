@@ -32,7 +32,7 @@ public abstract class Ability : MonoBehaviour
     protected BaseCharacter baseCharacter;
     protected SpriteRenderer spriteRenderer;
 
-    protected float rotation;
+    public float rotation;
 
     protected virtual void Start()
     {
@@ -99,8 +99,8 @@ public abstract class Ability : MonoBehaviour
             baseCharacter.attacking = true;          // Prevents flipping during ability animation
             if (!baseCharacter.facingRight)
                 spriteRenderer.flipX = !spriteRenderer.flipX;       // If facing left, flip to right so rotations make sense
-            if (rotation > 90f || rotation < -90f)
-                spriteRenderer.flipY = !spriteRenderer.flipY;
+            if ((rotation > 90f || rotation < -90f) && AbilityKey.Engulf != abilityKey)
+               spriteRenderer.flipY = !spriteRenderer.flipY;
             transform.Rotate(new Vector3(0, 0, 1), rotation);
         }
         else
@@ -108,7 +108,6 @@ public abstract class Ability : MonoBehaviour
             baseCharacter.attacking = false;
         }
 
-        Debug.Log(baseCharacter.attacking);
         if (firstFrame != 0)
             rotation = 0;
     }

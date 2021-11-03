@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Engulf
+  m_Name: Tornado
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,21 +20,19 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: e0e8525c424ee4f8dba5cf83a49f50ed, type: 3}
+      value: {fileID: 21300000, guid: 81f0692c12e28904ea6ee0d9941810ac, type: 3}
     - time: 0.083333336
-      value: {fileID: 21300000, guid: 70e21d250a05941b6bcdb003a1c6c8fe, type: 3}
+      value: {fileID: 21300000, guid: 509656c73027dcd4d96df3e3afbde4a5, type: 3}
     - time: 0.16666667
-      value: {fileID: 21300000, guid: 9bb028c46d3144906aa4cf0c4b6d966b, type: 3}
+      value: {fileID: 21300000, guid: 42648e8563f273d43abc3fa323edaafb, type: 3}
     - time: 0.25
-      value: {fileID: 21300000, guid: ecf5f261d492747f787f7cf2f060ce30, type: 3}
+      value: {fileID: 21300000, guid: 7f10db4b43583c5479087655c30da1bd, type: 3}
     - time: 0.33333334
-      value: {fileID: 21300000, guid: a64b1b02893af45d781113ad5030d5e8, type: 3}
+      value: {fileID: 21300000, guid: a85718a96d9d35e4b945592d25897256, type: 3}
     - time: 0.41666666
-      value: {fileID: 21300000, guid: e2007c9634cc446e49a2414f0ded0099, type: 3}
+      value: {fileID: 21300000, guid: 3b139a39bc9438b4a849ee81ffd18193, type: 3}
     - time: 0.5
-      value: {fileID: 21300000, guid: 2558af82ae971495d9fac3bbbcda72ac, type: 3}
-    - time: 0.5833333
-      value: {fileID: 21300000, guid: 708741368d97b455c9f16d36511ef8ce, type: 3}
+      value: {fileID: 21300000, guid: 136cee7df89657649b9e7b95d5a4cd02, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -54,20 +52,19 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: e0e8525c424ee4f8dba5cf83a49f50ed, type: 3}
-    - {fileID: 21300000, guid: 70e21d250a05941b6bcdb003a1c6c8fe, type: 3}
-    - {fileID: 21300000, guid: 9bb028c46d3144906aa4cf0c4b6d966b, type: 3}
-    - {fileID: 21300000, guid: ecf5f261d492747f787f7cf2f060ce30, type: 3}
-    - {fileID: 21300000, guid: a64b1b02893af45d781113ad5030d5e8, type: 3}
-    - {fileID: 21300000, guid: e2007c9634cc446e49a2414f0ded0099, type: 3}
-    - {fileID: 21300000, guid: 2558af82ae971495d9fac3bbbcda72ac, type: 3}
-    - {fileID: 21300000, guid: 708741368d97b455c9f16d36511ef8ce, type: 3}
+    - {fileID: 21300000, guid: 81f0692c12e28904ea6ee0d9941810ac, type: 3}
+    - {fileID: 21300000, guid: 509656c73027dcd4d96df3e3afbde4a5, type: 3}
+    - {fileID: 21300000, guid: 42648e8563f273d43abc3fa323edaafb, type: 3}
+    - {fileID: 21300000, guid: 7f10db4b43583c5479087655c30da1bd, type: 3}
+    - {fileID: 21300000, guid: a85718a96d9d35e4b945592d25897256, type: 3}
+    - {fileID: 21300000, guid: 3b139a39bc9438b4a849ee81ffd18193, type: 3}
+    - {fileID: 21300000, guid: 136cee7df89657649b9e7b95d5a4cd02, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.6666666
+    m_StopTime: 0.5833333
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -87,24 +84,10 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0
-    functionName: Rotate
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.41666666
+  - time: 0.33333334
     functionName: Use
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 2
-    messageOptions: 0
-  - time: 0.5833333
-    functionName: Rotate
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 1
+    intParameter: 4
     messageOptions: 0

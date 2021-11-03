@@ -26,6 +26,7 @@ public class EngulfAbility : Ability
 
         if (!onCooldown)
         {
+            rotation = Mathf.Atan2(aimingDirection.y, aimingDirection.x) * Mathf.Rad2Deg - 90;
             animator.SetTrigger("Engulf");
             return true;
         }

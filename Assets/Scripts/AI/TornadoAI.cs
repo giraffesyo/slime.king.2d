@@ -15,6 +15,7 @@ public class TornadoAI : AI
     protected override void Start()
     {
         base.Start();
+
     }
 
     protected override bool Move()
@@ -37,7 +38,7 @@ public class TornadoAI : AI
         }
         else if(Vector3.Distance(transform.position, playerPos.position) < attackRange)
         {
-            aiAbility.RequestUse(new InputAction.CallbackContext(), playerPos.position);
+            StartCoroutine(DoAbility());
         }
         return true;
     }
@@ -86,6 +87,14 @@ public class TornadoAI : AI
         loc.y = radius * Mathf.Sin(random);
 
         return loc;
+    }
+
+    private IEnumerator DoAbility()
+    {
+        aiAbility.rotation = Mathf.Atan2(playerPos.position.y, playerPos.position.x) * Mathf.Rad2Deg;
+        animator.SetTrigger("Tornado");
+        yield return new WaitForSeconds(0.5f);
+        aiAbility.Use((Vector2)playerPos.position - (Vector2)transform.position, (Vector2)playerPos.position);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

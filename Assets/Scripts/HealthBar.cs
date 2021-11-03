@@ -42,7 +42,6 @@ public class HealthBar : MonoBehaviour
     {
         Debug.Log($"Setting health to {hp}");
         var count = 0;
-        int count2 = 0;
         hearts.ForEach(heart =>
         {
             if (count < hp)
@@ -72,6 +71,4 @@ public class HealthBar : MonoBehaviour
             hearts.Add(health.GetComponent<HeartUI>());
         }
     }
-
-
 }

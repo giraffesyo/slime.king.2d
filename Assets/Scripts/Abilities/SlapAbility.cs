@@ -18,10 +18,12 @@ public class SlapAbility : Ability
         enemyFilter.SetLayerMask(enemyLayers);
         cooldown = 1;
     }
-    public override bool RequestUse(InputAction.CallbackContext ctx, Vector2 aimingDirection)
+    public override bool RequestUse(InputAction.CallbackContext ctx, Vector2 mousePosition)
     {
         if (!onCooldown && animator != null)
         {
+            Vector2 aimingDirection = new Vector2(mousePosition.x - transform.position.x, mousePosition.y - transform.position.y);
+
             baseCharacter.attacking = true;
             rotation = Mathf.Atan2(aimingDirection.y, aimingDirection.x) * Mathf.Rad2Deg;
             animator.SetTrigger("Melee");

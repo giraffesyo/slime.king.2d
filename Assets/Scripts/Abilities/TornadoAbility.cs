@@ -29,8 +29,10 @@ public class TornadoAbility : Ability
 
     }
 
-    public override bool RequestUse(InputAction.CallbackContext ctx, Vector2 targetWorldLocation)
+    public override bool RequestUse(InputAction.CallbackContext ctx, Vector2 mousePosition)
     {
+        Debug.Log(mousePosition);
+
         if (!animator)
         {
             Debug.Log("No animator in Tornado Ability");
@@ -38,7 +40,7 @@ public class TornadoAbility : Ability
         }
         if (!onCooldown)
         {
-            this.targetWorldLocation = targetWorldLocation;
+            this.targetWorldLocation = mousePosition;
             rotation = Mathf.Atan2(this.targetWorldLocation.y, this.targetWorldLocation.x) * Mathf.Rad2Deg;
             animator.SetTrigger("Tornado");
             return true;
@@ -51,23 +53,24 @@ public class TornadoAbility : Ability
         {
             return;
         }
-        Use(targetWorldLocation - (Vector2)transform.position);
+        Use(targetWorldLocation - (Vector2)transform.position, targetWorldLocation);
     }
 
-    override public void Use(Vector2 target)
+    override public void Use(Vector2 forceDirection, Vector2 targetWorldPosition)
     {
         if (onCooldown)
         {
             return;
         }
-        base.Use(target);
-        if (target != null)
+        base.Use(forceDirection);
+        if (forceDirection != null)
         {
+            Debug.Log(targetWorldPosition + "Mouse");
             GameObject tornado = Instantiate(tornadoPrefab, GetComponent<Transform>().position, transform.rotation);
             tornado.layer = tornadoLayer;
             Rigidbody2D rb = tornado.GetComponent<Rigidbody2D>();
-            tornado.GetComponent<tornadoCollider>().constructor(true, targetWorldLocation, tornadoPrefab, tornadoForce);
-            rb.AddForce(target.normalized * tornadoForce, ForceMode2D.Impulse);
+            tornado.GetComponent<tornadoCollider>().constructor(true, targetWorldPosition, tornadoPrefab, tornadoForce);
+            rb.AddForce(forceDirection.normalized * tornadoForce, ForceMode2D.Impulse);
         }
     }
 }

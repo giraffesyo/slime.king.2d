@@ -109,7 +109,7 @@ public class Player : BaseCharacter
     override protected void Start()
     {
         base.Start();
-        // ObtainAbility(Ability.AbilityKey.Charge);
+        ObtainAbility(Ability.AbilityKey.Charge);
     }
 
     public override void Die()
@@ -125,8 +125,7 @@ public class Player : BaseCharacter
     private void RequestUse(InputAction.CallbackContext ctx, int abilityIndex)
     {
         Vector3 worldPos = Camera.main.ScreenToWorldPoint(aimingDirection);
-        aimingDirection = new Vector2(worldPos.x - transform.position.x, worldPos.y - transform.position.y).normalized;
-        _abilities[abilityIndex].RequestUse(ctx, aimingDirection);
+        _abilities[abilityIndex].RequestUse(ctx, worldPos);
     }
 
     public void ObtainAbility(Ability.AbilityKey key)

@@ -18,10 +18,11 @@ public class ChargeAbility : Ability
         abilityKey = Ability.AbilityKey.Charge;
         baseChar = GetComponent<BaseCharacter>();
     }
-    public override bool RequestUse(InputAction.CallbackContext ctx, Vector2 aimingDirection)
+    public override bool RequestUse(InputAction.CallbackContext ctx, Vector2 mousePosition)
     {
         if (!onCooldown && animator != null)
         {
+            Vector2 aimingDirection = new Vector2(mousePosition.x - transform.position.x, mousePosition.y - transform.position.y);
             direction = aimingDirection;
             rotation = Mathf.Atan2(aimingDirection.y, aimingDirection.x) * Mathf.Rad2Deg;
             animator.SetBool("Charging", true);
