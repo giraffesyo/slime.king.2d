@@ -2,28 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+
 public class BaseCharacter : Damageable
 {
-    public Transform attackPoint;
+    public bool beingKnockedBack = false;
+    protected float baseSpeed;
 
     public Rigidbody2D rb;
     public float moveSpeed;
     public Vector2 moveDirection;
     public bool invincible;
-    public bool facingRight = true;
+    public bool facingRight
+    {
+        get
+        {
+            return !spriteRenderer.flipX;
+        }
+        set
+        {
+            spriteRenderer.flipX = !value;
+        }
+    }
     public bool stunned;
-    public bool beingKnockedBack;
+    public bool attacking = false;
+    public bool shouldBeAbleToMove = true;
     private SpriteRenderer spriteRenderer;
 
 
-    public float moveX = 0;
-    public float moveY = 0;
 
-    protected void Start()
+    protected virtual void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         SetMaxHealth(initialMaxHealth);
-        moveSpeed = 5f;
+        baseSpeed = moveSpeed;
     }
     protected IEnumerator ActivateInvincibility(float forSeconds)
     {
@@ -44,89 +55,66 @@ public class BaseCharacter : Damageable
 
     protected virtual void FixedUpdate()
     {
+        if (!beingKnockedBack)
+        {
+            rb.velocity = moveDirection * moveSpeed;
+        }
         // Movement
-        rb.velocity = moveDirection * moveSpeed;
     }
 
     public void Move(Vector2 direction)
     {
-        if (stunned)
+        if (!attacking && !stunned)
         {
-            moveDirection = Vector2.zero;
-            return;
-        }
-
-        if ((direction.x < 0 && facingRight) || (direction.x > 0 && !facingRight))
-        {
-            facingRight = !facingRight;
-            spriteRenderer.flipX = !spriteRenderer.flipX;
-        }
-        moveDirection = direction.normalized;
+            if (direction.x > 0)
+                facingRight = true;
+            else if (direction.x < 0)
+                facingRight = false;
+            spriteRenderer.flipY = false;
+            transform.rotation = Quaternion.identity;
+            //  does this cause  a bug? Yes couldnt move while doing melee attack
+        }            
+        if (shouldBeAbleToMove)
+            moveDirection = direction.normalized;
     }
 
     public void setSpeed(float speed)
     {
         moveSpeed = speed;
     }
+    public void ResetSpeed()
+    {
+        moveSpeed = baseSpeed;
+    }
 
-
-    protected virtual void Die()
+    public virtual void Die()
     {
         // play the dying animation 
         // play dying sound for this unit
     }
 
-    public void moveAttackPoint()
+    public void Knockback(float knockbackPower, Transform obj)
     {
-        float rotation = 0f;
-        // Is there a formula for this?
-        if (moveX == -1 && moveY == 0)
-            rotation = 180;
-        else if (moveX == 0)
-            rotation = moveY * 90f;
-        else if (moveX == 1)
-            rotation = moveY * 45f;
-        else // moveX == -1
-            rotation = moveY * 135f;
-
-
-        if (moveX == 0 && moveY == 0)
-        {
-            float temp = 1f;
-            if (!facingRight)
-                temp *= -1;
-            attackPoint.localPosition = new Vector3(temp, 0, 0);
-            return;
-        }
-        attackPoint.localPosition = new Vector3(moveX * 1f, moveY * 1f, 0);
-        attackPoint.transform.rotation = new Quaternion(0, 0, rotation, 1);
+        StartCoroutine(doKnockback(knockbackPower, obj));
     }
 
-    public IEnumerator Knockback(float knockbackPower, Transform obj)
+    public IEnumerator doKnockback(float knockbackPower, Transform obj)
     {
+        bool wasStunned = stunned;
         stunned = true;
+
         beingKnockedBack = true;
-        Move(Vector2.zero);
+
+
         Vector2 direction = (obj.transform.position - this.transform.position).normalized;
-        transform.DOMove(new Vector3(transform.position.x - (direction.x * knockbackPower), transform.position.y - (direction.y * knockbackPower), 0), 0.5f).OnComplete(() => beingKnockedBack = false);
+        rb.velocity = -direction.normalized * moveSpeed;
 
-        stunned = false;
-        yield return 0;
+        yield return new WaitForSeconds(knockbackPower);
+
+        beingKnockedBack = false;
+        // if they weren't stunned before the knockback, unstun them
+        if (!wasStunned)
+            stunned = false;
+        Move(Vector2.zero);
     }
-
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (beingKnockedBack)
-        {
-            // check if the collision is a solid object
-            // maybe a better way to do this but lets see if we can get this to work...
-            if (other.gameObject.layer == 9)
-            { // "solid objects" is 9
-              // stop ongoing tweens
-                transform.DOKill(false);
-            }
-        }
-
-    }
-
 }

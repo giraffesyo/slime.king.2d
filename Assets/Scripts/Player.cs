@@ -1,34 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 using UnityEngine.InputSystem;
+
+#nullable enable
 public class Player : BaseCharacter
 {
+#pragma warning disable CS8618 // Non-nullable field is uninitialized. Consider declaring as nullable.
     [SerializeField] private Transform spawnPoint;
-    public delegate void ScreenExitHandler(Vector2Int nextScreen);
-    public event ScreenExitHandler ScreenExited;
-    [SerializeField] private GridLayout gridLayout;
-    [SerializeField] private int xScreenSize = 20;
-    [SerializeField] private int yScreenSize = 20;
     [SerializeField] private float damageInvincibilitySeconds = 1.0f;
 
-
-    [SerializeField] private Vector3Int currentCell;
-
-    [SerializeField] private Vector2Int currentScreen;
-    [SerializeField] private List<Ability> abilities = new List<Ability>();
+    private List<Ability> _abilities;
+    // Hide the ability list from the inspector
+    public ReadOnlyCollection<Ability> abilities => _abilities.AsReadOnly();
 
     private SlimeKingActions slimeKingActions;
     private InputAction movement;
     private InputAction aiming;
+    public delegate void UpdateAbilitiesHandler(Ability.AbilityKey abilityAdded, int atIndex);
+    public event UpdateAbilitiesHandler? AbilitiesUpdated;
+    public LayerMask enemyLayer;
+
+    int? activeAbility;
 
     private Vector2 aimingDirection = new Vector2();
 
-
+#pragma warning restore CS8618 // Non-nullable field is uninitialized. Consider declaring as nullable.
     private void Awake()
     {
         slimeKingActions = new SlimeKingActions();
+        _abilities = new List<Ability>();
+        ObtainAbility(Ability.AbilityKey.Slap);
+        ObtainAbility(Ability.AbilityKey.Shoot);
+        ObtainAbility(Ability.AbilityKey.Engulf);
     }
     private void OnEnable()
     {
@@ -38,14 +43,47 @@ public class Player : BaseCharacter
         aiming = slimeKingActions.Player.Aim;
         aiming.Enable();
 
-        slimeKingActions.Player.Slap.performed += (InputAction.CallbackContext ctx) => abilities[0].RequestUse(ctx, aimingDirection);
+
+        slimeKingActions.Player.Slap.performed += (InputAction.CallbackContext ctx) => RequestUse(ctx, (int)Ability.AbilityKey.Slap);
         slimeKingActions.Player.Slap.Enable();
-        slimeKingActions.Player.Shoot.performed += (InputAction.CallbackContext ctx) => abilities[1].RequestUse(ctx, aimingDirection);
+        slimeKingActions.Player.Shoot.performed += (InputAction.CallbackContext ctx) => RequestUse(ctx, (int)Ability.AbilityKey.Shoot);
         slimeKingActions.Player.Shoot.Enable();
 
-        slimeKingActions.Player.Engulf.performed += (InputAction.CallbackContext ctx) => abilities[2].RequestUse(ctx, aimingDirection);
+        slimeKingActions.Player.Engulf.performed += (InputAction.CallbackContext ctx) => RequestUse(ctx, (int)Ability.AbilityKey.Engulf);
         slimeKingActions.Player.Engulf.Enable();
+        // Add 2 to index to account for the fact that the basic abilities are at indices 0, 1, 2
+        slimeKingActions.Player.SelectAbility1.performed += (InputAction.CallbackContext ctx) => SelectAbility(ctx, 3);
+        slimeKingActions.Player.SelectAbility1.Enable();
+        slimeKingActions.Player.SelectAbility2.performed += (InputAction.CallbackContext ctx) => SelectAbility(ctx, 4);
+        slimeKingActions.Player.SelectAbility2.Enable();
+        slimeKingActions.Player.SelectAbility3.performed += (InputAction.CallbackContext ctx) => SelectAbility(ctx, 5);
+        slimeKingActions.Player.SelectAbility3.Enable();
+        slimeKingActions.Player.SelectAbility4.performed += (InputAction.CallbackContext ctx) => SelectAbility(ctx, 6);
+        slimeKingActions.Player.SelectAbility4.Enable();
+        slimeKingActions.Player.UseAbility.performed += (InputAction.CallbackContext ctx) =>
+        {
+            if (activeAbility != null)
+            {
+                RequestUse(ctx, (int)activeAbility);
+            }
+        };
+        slimeKingActions.Player.UseAbility.Enable();
     }
+
+
+    private void SelectAbility(InputAction.CallbackContext ctx, int index)
+    {
+
+        if (index < _abilities.Count)
+        {
+            activeAbility = index;
+        }
+        else
+        {
+            activeAbility = null;
+        }
+    }
+
 
     private void OnDisable()
     {
@@ -54,7 +92,11 @@ public class Player : BaseCharacter
         slimeKingActions.Player.Slap.Disable();
         slimeKingActions.Player.Shoot.Disable();
         slimeKingActions.Player.Engulf.Disable();
-
+        slimeKingActions.Player.SelectAbility1.Disable();
+        slimeKingActions.Player.SelectAbility2.Disable();
+        slimeKingActions.Player.SelectAbility3.Disable();
+        slimeKingActions.Player.SelectAbility4.Disable();
+        slimeKingActions.Player.UseAbility.Disable();
     }
 
     override protected void FixedUpdate()
@@ -64,57 +106,46 @@ public class Player : BaseCharacter
         base.FixedUpdate();
     }
 
-    protected new void Start()
+    override protected void Start()
     {
         base.Start();
-        currentCell = getCurrentCell();
-        currentScreen = getCurrentScreen();
-        abilities[(int)Ability.BasicAbilityKeys.Melee] = GetComponent<MeleeAbility>();
-        abilities[(int)Ability.BasicAbilityKeys.Engulf] = GetComponent<EngulfAbility>();
-        abilities[(int)Ability.BasicAbilityKeys.Ranged] = GetComponent<RangedAbility>();
-
-
+        ObtainAbility(Ability.AbilityKey.Charge);
     }
 
-    private Vector2Int getCurrentScreen()
-    {
-        int x = (int)Mathf.Round((float)currentCell.x / xScreenSize);
-        int y = (int)Mathf.Round((float)currentCell.y / yScreenSize);
-        return new Vector2Int(x, y);
-    }
-
-    private Vector3Int getCurrentCell()
-    {
-
-        return gridLayout.WorldToCell(transform.position);
-    }
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        moveAttackPoint();
-        Move(new Vector2(moveX, moveY));
-        currentCell = getCurrentCell();
-        Vector2Int nextScreen = getCurrentScreen();
-        if (currentScreen.x != nextScreen.x || currentScreen.y != nextScreen.y)
-        {
-            currentScreen = nextScreen;
-            if (ScreenExited != null)
-            {
-                ScreenExited.Invoke(nextScreen);
-            }
-        }
-    }
-
-    protected override void Die()
+    public override void Die()
     {
         base.Die();
         // restart the level?
         // for now teleporting to spawn.
         transform.position = spawnPoint.position;
         // restore HP
-        SetCurrentHealth(maxHealth);
+        SetCurrentHealth(_maxHealth);
+    }
+
+    private void RequestUse(InputAction.CallbackContext ctx, int abilityIndex)
+    {
+        Vector3 worldPos = Camera.main.ScreenToWorldPoint(aimingDirection);
+        _abilities[abilityIndex].RequestUse(ctx, worldPos);
+    }
+
+    public void ObtainAbility(Ability.AbilityKey key)
+    {
+        // check that we don't have the ability already
+        bool haveAbility = _abilities.Exists(ability => ability.abilityKey == key);
+        Debug.Log($"We {(haveAbility ? "do" : "do not")} have the ability {key} already");
+        // we already have this ability, do nothing.
+        if (haveAbility) return;
+        // we don't have the ability, so lets get it!
+        System.Type abilityType = System.Type.GetType($"{key.ToString()}Ability");
+        Ability? ability = gameObject.AddComponent(abilityType) as Ability;
+        if (ability == null)
+        {
+            Debug.LogError($"Could not add ability {key}");
+            return;
+        }
+        ability.enemyLayers = enemyLayer;
+        _abilities.Add(ability);
+        AbilitiesUpdated?.Invoke(key, _abilities.Count - 1);
     }
 
 }

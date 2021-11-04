@@ -4,9 +4,29 @@ using UnityEngine;
 
 public class Damageable : MonoBehaviour
 {
-    [SerializeField] protected int initialMaxHealth = 3;
-    protected int maxHealth;
-    [SerializeField] protected int currentHealth;
+    // Max Health can never exceed absolute max
+    [SerializeField] protected int absoluteMaxHealth = 5;
+    // Max health beings at this number
+    [SerializeField] protected int initialMaxHealth = 1;
+    // The current value of max health, can be increased up to absolute max
+    protected int _maxHealth;
+    public int maxHealth
+    {
+        get
+        {
+            return _maxHealth;
+        }
+    }
+    // Current amount of HP available
+    public int currentHealth;
+    public bool atMaxHealth
+    {
+        get
+        {
+            return currentHealth == _maxHealth;
+        }
+    }
+
     public delegate void TakeDamageHandler(int amount);
     public delegate void RestoreHealthHanlder(int amount);
     public delegate void SetMaxHealthHandler(int amount);
@@ -38,7 +58,6 @@ public class Damageable : MonoBehaviour
             if (DamageTaken != null)
             {
                 DamageTaken.Invoke(damage);
-
             }
         }
         // Do hurt animation ?
@@ -49,23 +68,26 @@ public class Damageable : MonoBehaviour
     public virtual void SetMaxHealth(int health)
     {
         currentHealth = health;
-        maxHealth = health;
-        if (MaxHealthSet != null)
+        _maxHealth = health;
+        // Don't allow to exceed the absolute max
+        if (health >= absoluteMaxHealth)
         {
-            MaxHealthSet.Invoke(health);
+            currentHealth = absoluteMaxHealth;
+            _maxHealth = absoluteMaxHealth;
         }
-
+        
+        if (MaxHealthSet != null)
+             MaxHealthSet.Invoke(currentHealth);
     }
     public virtual void SetCurrentHealth(int health)
     {
-        if (currentHealth <= maxHealth)
+        if (currentHealth <= _maxHealth)
         {
-
             currentHealth = health;
         }
         else
         {
-            currentHealth = maxHealth;
+            currentHealth = _maxHealth;
         }
         if (CurrentHealthSet != null)
         {

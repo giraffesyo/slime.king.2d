@@ -7,31 +7,38 @@ using UnityEngine.InputSystem;
 public abstract class Ability : MonoBehaviour
 {
 
-    public enum BasicAbilityKeys
+    public enum AbilityKey
     {
-        Melee,
-        Ranged,
-        Engulf
+        Slap,
+        Shoot,
+        Engulf,
+        Charge,
+        Tornado
     }
-    public Sprite icon;
+    public AbilityKey abilityKey;
     [SerializeField] protected int cooldown;
     [SerializeField] protected bool onCooldown;
     [SerializeField] protected int currentCooldown;
 
-    [SerializeField] protected LayerMask enemyLayers;  // All enemies must be in a layer
+    [SerializeField] public LayerMask enemyLayers;  // All objects must be in a layer
 
     public delegate void StartCooldownHandler(float duration);
     public delegate void CooldownCompleteHandler();
-    public event StartCooldownHandler? CooldownStarted;
-    public event CooldownCompleteHandler? CooldownCompleted;
+    public event StartCooldownHandler CooldownStarted;
+    public event CooldownCompleteHandler CooldownCompleted;
 
     public bool isAi;
     protected Animator animator;
+    protected BaseCharacter baseCharacter;
+    protected SpriteRenderer spriteRenderer;
+
+    public float rotation;
 
     protected virtual void Start()
     {
-        //
         animator = GetComponent<Animator>();
+        baseCharacter = GetComponent<BaseCharacter>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void MasterUse()
@@ -62,7 +69,7 @@ public abstract class Ability : MonoBehaviour
     }
 
     // Player input triggers this function to be called
-    public abstract void RequestUse(InputAction.CallbackContext ctx, Vector2 aimingDirection);
+    public abstract bool RequestUse(InputAction.CallbackContext ctx, Vector2 aimingDirection);
 
     private IEnumerator StartCooldown()
     {
@@ -82,6 +89,27 @@ public abstract class Ability : MonoBehaviour
         {
             CooldownCompleted.Invoke();
         }
+    }
+
+    // This gets called from an animation event at first frame and last frame
+    public void Rotate(int firstFrame)
+    {
+        if (firstFrame == 0)
+        {
+            baseCharacter.attacking = true;          // Prevents flipping during ability animation
+            if (!baseCharacter.facingRight)
+                spriteRenderer.flipX = !spriteRenderer.flipX;       // If facing left, flip to right so rotations make sense
+            if ((rotation > 90f || rotation < -90f) && AbilityKey.Engulf != abilityKey)
+               spriteRenderer.flipY = !spriteRenderer.flipY;
+            transform.Rotate(new Vector3(0, 0, 1), rotation);
+        }
+        else
+        {            
+            baseCharacter.attacking = false;
+        }
+
+        if (firstFrame != 0)
+            rotation = 0;
     }
 }
 

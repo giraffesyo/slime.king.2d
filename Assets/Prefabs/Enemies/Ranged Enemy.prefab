@@ -144,8 +144,8 @@ GameObject:
   - component: {fileID: 6921055279037541353}
   - component: {fileID: 6921055279037541352}
   - component: {fileID: 6921055279037541359}
-  - component: {fileID: 6921055279037541358}
   - component: {fileID: 5019077917135178932}
+  - component: {fileID: 1088513719829384329}
   m_Layer: 10
   m_Name: Ranged Enemy
   m_TagString: Untagged
@@ -210,7 +210,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 2371562569143345698, guid: 3ae8c65fa553d9f40a4b40aed8126587, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -267,34 +267,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.77020884, y: 0.7103926}
   m_EdgeRadius: 0
---- !u!114 &6921055279037541358
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6921055279037541356}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d91db78689301a40999180d9c726b09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  initialMaxHealth: 3
-  currentHealth: 0
-  attackPoint: {fileID: 6921055277837176684}
-  rb: {fileID: 6921055279037541352}
-  moveSpeed: 5
-  moveDirection: {x: 0, y: 0}
-  invincible: 0
-  facingRight: 1
-  stunned: 0
-  beingKnockedBack: 0
-  moveX: 0
-  moveY: 0
-  aiMode: 2
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 2048
 --- !u!114 &5019077917135178932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -304,10 +276,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6921055279037541356}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 332aa21dfd5d0481eae18aca86b80744, type: 3}
+  m_Script: {fileID: 11500000, guid: 05a84392961164649849e20d722f61e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
+  abilityKey: 1
   cooldown: 2
   onCooldown: 0
   currentCooldown: 0
@@ -315,6 +287,32 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   isAi: 1
+--- !u!114 &1088513719829384329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6921055279037541356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19a67186933880a48b2dfdc060bed8fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  absoluteMaxHealth: 5
+  initialMaxHealth: 3
+  currentHealth: 0
+  beingKnockedBack: 0
+  rb: {fileID: 6921055279037541352}
+  moveSpeed: 4
+  moveDirection: {x: 0, y: 0}
+  invincible: 0
+  stunned: 0
+  attacking: 0
+  shouldBeAbleToMove: 1
   attackPoint: {fileID: 6921055277837176684}
-  missilePrefab: {fileID: 3762343026231537455, guid: f3f4a28ff39b82f40a3802095f42485d, type: 3}
-  missileForce: 5
+  attackRange: 4
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 2048
+  playerRange: 3.8
