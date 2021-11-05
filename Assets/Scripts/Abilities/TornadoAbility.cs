@@ -18,15 +18,12 @@ public class TornadoAbility : Ability
     {
         base.Start();
         var addressable = Addressables.LoadAssetAsync<GameObject>("tornado");
-        addressable.Completed += (obj) => tornadoPrefab = obj.Result;
-        this.abilityKey = Ability.AbilityKey.Tornado;
 
         // Makes sure enemy missiles will not hit enemies
-        if (isAi)
-            tornadoLayer = LayerMask.NameToLayer("MissileEnemy");
-        else
-            tornadoLayer = LayerMask.NameToLayer("MissilePlayer");
-
+        if (!isAi)
+            addressable = Addressables.LoadAssetAsync<GameObject>("OoeyTornado");
+        addressable.Completed += (obj) => tornadoPrefab = obj.Result;
+        this.abilityKey = Ability.AbilityKey.Tornado;
     }
 
     public override bool RequestUse(InputAction.CallbackContext ctx, Vector2 mousePosition)
@@ -67,7 +64,7 @@ public class TornadoAbility : Ability
         {
             Debug.Log(targetWorldPosition + "Mouse");
             GameObject tornado = Instantiate(tornadoPrefab, GetComponent<Transform>().position, transform.rotation);
-            tornado.layer = tornadoLayer;
+            //tornado.layer = tornadoLayer;
             Rigidbody2D rb = tornado.GetComponent<Rigidbody2D>();
             tornado.GetComponent<tornadoCollider>().constructor(true, targetWorldPosition, tornadoPrefab, tornadoForce);
             rb.AddForce(forceDirection.normalized * tornadoForce, ForceMode2D.Impulse);

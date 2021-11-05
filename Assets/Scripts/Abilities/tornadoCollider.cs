@@ -11,8 +11,6 @@ public class tornadoCollider : MonoBehaviour
     float tornadoForce;
     bool wallCollisionBlock = true; // Waits a second until it can collide with walls (otherwise if used while touching wall it will automatically explode)
 
-    int c = 0;
-
     public void constructor(bool _isFirstTornado, Vector2 _targetWorldLocation, GameObject _tornadoPrefab, float _tornadoForce)
     {
         isFirstTornado = _isFirstTornado;
@@ -22,14 +20,10 @@ public class tornadoCollider : MonoBehaviour
         targetLocalLocation = targetLocalLocation - (Vector2)transform.position;
 
         StartCoroutine(initialWallCollisionTimer());
-
-        Debug.Log(targetWorldLocation);
-        Debug.Log(transform.position);
     }
     
     private void Update()
     {
-        //Debug.Log(Vector2.Distance(transform.position, targetWorldLocation) + " " + c++);
         //Reached target location
         if(Vector2.Distance(transform.position, targetWorldLocation) < 0.2f)
         {
@@ -69,7 +63,6 @@ public class tornadoCollider : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        Debug.Log("yea");
         BaseCharacter enemyChar = collision.gameObject.GetComponent<BaseCharacter>();
         if (enemyChar != null)
         {
