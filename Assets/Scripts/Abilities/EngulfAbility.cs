@@ -15,7 +15,7 @@ public class EngulfAbility : Ability
         enemyFilter.SetLayerMask(enemyLayers);
         player = GetComponent<Player>();
     }
-    public override bool RequestUse(InputAction.CallbackContext ctx, Vector2 aimingDirection)
+    public override bool RequestUse(InputAction.CallbackContext ctx, Vector2 mousePositoin)
     {
         Debug.Log("Engulf requested");
         if (animator == null)
@@ -26,7 +26,8 @@ public class EngulfAbility : Ability
 
         if (!onCooldown)
         {
-            rotation = Mathf.Atan2(aimingDirection.y, aimingDirection.x) * Mathf.Rad2Deg - 90;
+            rotation = Mathf.Atan2(mousePositoin.y - transform.position.y, mousePositoin.x - transform.position.x) * Mathf.Rad2Deg - 90;
+            Debug.Log(rotation);
             animator.SetTrigger("Engulf");
             return true;
         }

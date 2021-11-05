@@ -76,6 +76,7 @@ public class AI : BaseCharacter
         yield return new WaitForSecondsRealtime(3.0f);
         SetCurrentHealth(currentHealth + 1);
         engulfStunned = false;
+        attacking = false;
         stunObject.GetComponent<SpriteRenderer>().enabled = false;
     }
 
