@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-
 public class KnightAI : AI
 {
     Vector2 targetLocation;
+    BaseCharacter baseChar;
 
     public bool teleport;  // Used for debugging, delete later
 
@@ -16,7 +16,7 @@ public class KnightAI : AI
     protected override void Start()
     {
         base.Start();
-
+        baseChar = GetComponent<BaseCharacter>();
     }
 
     protected override bool Move()
@@ -24,23 +24,12 @@ public class KnightAI : AI
         if (!base.Move())
             return false;
 
-/*        if (teleport)
-        {
-            targetLocation = getTargetLocation();
-            base.Move(targetLocation);
-
-
-            Vector2 t = getTargetLocation() + (Vector2)transform.position;
-            transform.position = new Vector3(t.x, t.y);
-            teleport = false;
-        }*/
 
         if (moveDirection == Vector2.zero)
         {
             targetLocation = getTargetLocation();
             base.Move(targetLocation);
             targetLocation = targetLocation + (Vector2)transform.position;
-            //Debug.DrawLine(transform.position, targetLocation + (Vector2)transform.position, Color.white, 5f, false);
 
         }
         else if (Vector2.Distance((Vector2)transform.position, targetLocation) < .1f || hitWall)
@@ -48,10 +37,8 @@ public class KnightAI : AI
             hitWall = false;
             moveDirection = Vector2.zero;
         }
-        else if (Vector3.Distance(transform.position, playerPos.position) < attackRange)
-        {
-            //StartCoroutine(DoAbility());
-        }
+        if (!aiAbility.onCooldown)
+            StartCoroutine(DoAbility());
         return true;
     }
 
@@ -94,18 +81,30 @@ public class KnightAI : AI
 
     private IEnumerator DoAbility()
     {
-        aiAbility.rotation = Mathf.Atan2(playerPos.position.y, playerPos.position.x) * Mathf.Rad2Deg;
-        animator.SetTrigger("Tornado");
-        yield return new WaitForSeconds(0.5f);
-        aiAbility.Use((Vector2)playerPos.position - (Vector2)transform.position, (Vector2)playerPos.position);
+        animator.SetTrigger("Block");
+        yield return new WaitForSecondsRealtime(0.1f);
+        aiAbility.Use((int)Ability.AbilityKey.Block);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        hitWall = true;
+        hitEnemy(collision);
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
+        hitEnemy(collision);
+    }
+
+    private void hitEnemy(Collision2D collision)
+    {
         hitWall = true;
+
+        BaseCharacter enemyChar = collision.gameObject.GetComponent<BaseCharacter>();
+        if (enemyChar != null)
+        {
+            enemyChar.Knockback(0.8f, this.transform);
+
+            enemyChar.TakeDamage(1);
+        }
     }
 }

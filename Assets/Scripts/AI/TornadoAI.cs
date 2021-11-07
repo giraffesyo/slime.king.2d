@@ -93,7 +93,7 @@ public class TornadoAI : AI
     {
         aiAbility.rotation = Mathf.Atan2(playerPos.position.y, playerPos.position.x) * Mathf.Rad2Deg;
         animator.SetTrigger("Tornado");
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSecondsRealtime(0.5f);
         aiAbility.Use((Vector2)playerPos.position - (Vector2)transform.position, (Vector2)playerPos.position);
     }
 

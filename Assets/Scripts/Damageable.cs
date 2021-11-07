@@ -27,6 +27,8 @@ public class Damageable : MonoBehaviour
         }
     }
 
+    public bool isInvincible = false;
+
     public delegate void TakeDamageHandler(int amount);
     public delegate void RestoreHealthHanlder(int amount);
     public delegate void SetMaxHealthHandler(int amount);
@@ -46,6 +48,9 @@ public class Damageable : MonoBehaviour
     // Pass in negative damage to restore health
     public virtual void TakeDamage(int damage)
     {
+        if (isInvincible)
+            return;
+
         if (damage < 0)
         {
             if (HealthRestored != null)
@@ -94,5 +99,12 @@ public class Damageable : MonoBehaviour
             CurrentHealthSet.Invoke(currentHealth);
         }
 
+    }
+
+    public IEnumerator ActivateInvincibility(float forSeconds)
+    {
+        isInvincible = true;
+        yield return new WaitForSecondsRealtime(forSeconds);
+        isInvincible = false;
     }
 }

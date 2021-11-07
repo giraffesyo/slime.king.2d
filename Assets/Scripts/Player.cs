@@ -9,7 +9,7 @@ public class Player : BaseCharacter
 {
 #pragma warning disable CS8618 // Non-nullable field is uninitialized. Consider declaring as nullable.
     [SerializeField] private Transform spawnPoint;
-    [SerializeField] private float damageInvincibilitySeconds = 1.0f;
+    [SerializeField] private float damageInvincibilitySeconds = 3.0f;
 
     private List<Ability> _abilities;
     // Hide the ability list from the inspector
@@ -109,7 +109,7 @@ public class Player : BaseCharacter
     override protected void Start()
     {
         base.Start();
-        ObtainAbility(Ability.AbilityKey.Tornado);
+        //ObtainAbility(Ability.AbilityKey.Tornado);
     }
 
     public override void Die()
@@ -148,4 +148,29 @@ public class Player : BaseCharacter
         AbilitiesUpdated?.Invoke(key, _abilities.Count - 1);
     }
 
+    public override void TakeDamage(int damage)
+    {
+        base.TakeDamage(damage);
+        if (!isInvincible) { 
+            StartCoroutine(ActivateInvincibility(damageInvincibilitySeconds));
+            StartCoroutine(PlayerInvincibility(damageInvincibilitySeconds));
+        }
+    }
+
+    private IEnumerator PlayerInvincibility(float invincibilityTime)
+    {
+
+        for(int i = 0; i < 360 * invincibilityTime; i += 1)
+        {   
+            // Opacity oscillates between 1 and 0, 3 times throughout invincibility time
+            float opacity = ((Mathf.Cos(3*i * Mathf.Deg2Rad) / 2f) + 0.5f);
+
+            Color newColor = new Color(255, 255, 255, opacity);
+            spriteRenderer.color = newColor;
+            yield return new WaitForSecondsRealtime(1f / 360f);
+        }
+
+        // In case damageInvincibilitySeconds gets changed to a decimal and for loop doesnt end on opacity = 1
+        spriteRenderer.color = new Color(255, 255, 255, 255);
+    }
 }

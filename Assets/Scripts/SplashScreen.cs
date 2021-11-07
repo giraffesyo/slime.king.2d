@@ -19,7 +19,7 @@ public class SplashScreen : MonoBehaviour
     }
 
     private IEnumerator ExitFromSplash(){
-        yield return new WaitForSeconds(secondsToWait);
+        yield return new WaitForSecondsRealtime(secondsToWait);
         SceneManager.LoadSceneAsync("Menu");
     }
 }

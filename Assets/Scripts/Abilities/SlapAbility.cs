@@ -56,13 +56,10 @@ public class SlapAbility : Ability
         foreach (Collider2D enemy in hitEnemies)
         {
             BaseCharacter enemyChar = enemy.GetComponent<BaseCharacter>();
-            if (!enemyChar.invincible)
+            enemyChar.TakeDamage(attackDamage);
+            if (!isAi)
             {
-                enemyChar.TakeDamage(attackDamage);
-                if (!isAi)
-                {
-                    enemyChar.Knockback(1.3f, transform);
-                }
+                enemyChar.Knockback(1.3f, transform);
             }
         }
     }

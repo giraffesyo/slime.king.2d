@@ -13,11 +13,12 @@ public abstract class Ability : MonoBehaviour
         Shoot,
         Engulf,
         Charge,
-        Tornado
+        Tornado,
+        Block
     }
     public AbilityKey abilityKey;
     [SerializeField] protected int cooldown;
-    [SerializeField] protected bool onCooldown;
+    [SerializeField] public bool onCooldown;
     [SerializeField] protected int currentCooldown;
 
     [SerializeField] public LayerMask enemyLayers;  // All objects must be in a layer

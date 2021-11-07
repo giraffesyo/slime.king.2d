@@ -17,6 +17,7 @@ public class ChargeAbility : Ability
         base.Start();
         abilityKey = Ability.AbilityKey.Charge;
         baseChar = GetComponent<BaseCharacter>();
+        cooldown = 3;
     }
     public override bool RequestUse(InputAction.CallbackContext ctx, Vector2 mousePosition)
     {
@@ -93,7 +94,7 @@ public class ChargeAbility : Ability
     private void checkHit(Collision2D collision)
     {
         BaseCharacter enemyChar = collision.transform.GetComponent<BaseCharacter>();
-        if (enemyChar != null && !enemyChar.invincible)
+        if (enemyChar != null && !enemyChar.isInvincible)
         {
             enemyChar.TakeDamage(attackDamage);
             enemyChar.Knockback(knockbackPower: 1f, transform);

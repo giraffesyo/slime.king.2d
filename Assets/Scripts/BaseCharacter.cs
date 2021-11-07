@@ -11,7 +11,6 @@ public class BaseCharacter : Damageable
     public Rigidbody2D rb;
     public float moveSpeed;
     public Vector2 moveDirection;
-    public bool invincible;
     public bool facingRight
     {
         get
@@ -26,7 +25,7 @@ public class BaseCharacter : Damageable
     public bool stunned;
     public bool attacking = false;
     public bool shouldBeAbleToMove = true;
-    private SpriteRenderer spriteRenderer;
+    protected SpriteRenderer spriteRenderer;
 
 
 
@@ -35,13 +34,6 @@ public class BaseCharacter : Damageable
         spriteRenderer = GetComponent<SpriteRenderer>();
         SetMaxHealth(initialMaxHealth);
         baseSpeed = moveSpeed;
-    }
-    protected IEnumerator ActivateInvincibility(float forSeconds)
-    {
-        invincible = true;
-
-        // TODO: animate invincibility
-        yield return new WaitForSeconds(forSeconds);
     }
     // Update is called once per frame
     void LateUpdate()
@@ -100,6 +92,10 @@ public class BaseCharacter : Damageable
 
     public IEnumerator doKnockback(float knockbackPower, Transform obj)
     {
+        if (isInvincible)
+            yield break;
+
+
         bool wasStunned = stunned;
         stunned = true;
 
@@ -109,7 +105,7 @@ public class BaseCharacter : Damageable
         Vector2 direction = (obj.transform.position - this.transform.position).normalized;
         rb.velocity = -direction.normalized * moveSpeed;
 
-        yield return new WaitForSeconds(knockbackPower);
+        yield return new WaitForSecondsRealtime(knockbackPower);
 
         beingKnockedBack = false;
         // if they weren't stunned before the knockback, unstun them

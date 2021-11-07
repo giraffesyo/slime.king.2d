@@ -24,6 +24,7 @@ public class TornadoAbility : Ability
             addressable = Addressables.LoadAssetAsync<GameObject>("OoeyTornado");
         addressable.Completed += (obj) => tornadoPrefab = obj.Result;
         this.abilityKey = Ability.AbilityKey.Tornado;
+        cooldown = 4;
     }
 
     public override bool RequestUse(InputAction.CallbackContext ctx, Vector2 mousePosition)
@@ -62,7 +63,6 @@ public class TornadoAbility : Ability
         base.Use(forceDirection);
         if (forceDirection != null)
         {
-            Debug.Log(targetWorldPosition + "Mouse");
             GameObject tornado = Instantiate(tornadoPrefab, GetComponent<Transform>().position, transform.rotation);
             //tornado.layer = tornadoLayer;
             Rigidbody2D rb = tornado.GetComponent<Rigidbody2D>();
