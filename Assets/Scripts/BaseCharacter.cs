@@ -11,6 +11,8 @@ public class BaseCharacter : Damageable
     public Rigidbody2D rb;
     public float moveSpeed;
     public Vector2 moveDirection;
+
+    private Animator anim;
     public bool facingRight
     {
         get
@@ -27,11 +29,10 @@ public class BaseCharacter : Damageable
     public bool shouldBeAbleToMove = true;
     protected SpriteRenderer spriteRenderer;
 
-
-
     protected virtual void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
         SetMaxHealth(initialMaxHealth);
         baseSpeed = moveSpeed;
     }
@@ -51,6 +52,11 @@ public class BaseCharacter : Damageable
         {
             rb.velocity = moveDirection * moveSpeed;
         }
+        if (attacking && anim != null && anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+        {
+            attacking = false;
+        }
+
         // Movement
     }
 
@@ -64,7 +70,6 @@ public class BaseCharacter : Damageable
                 facingRight = false;
             spriteRenderer.flipY = false;
             transform.rotation = Quaternion.identity;
-            //  does this cause  a bug? Yes couldnt move while doing melee attack
         }            
         if (shouldBeAbleToMove)
             moveDirection = direction.normalized;
