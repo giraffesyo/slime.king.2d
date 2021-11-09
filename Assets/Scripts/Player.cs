@@ -110,6 +110,7 @@ public class Player : BaseCharacter
     {
         base.Start();
         ObtainAbility(Ability.AbilityKey.Tornado);
+        ObtainAbility(Ability.AbilityKey.Block);
     }
 
     public override void Die()
