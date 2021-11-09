@@ -21,11 +21,9 @@ public class BlockAbility : Ability
 
     public override bool RequestUse(InputAction.CallbackContext ctx, Vector2 mousePosition)
     {
-        Debug.Log(mousePosition);
-
         if (!animator)
         {
-            Debug.Log("No animator in Tornado Ability");
+            Debug.Log("No animator in Block Ability");
             return false;
         }
         if (!onCooldown)

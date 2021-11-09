@@ -287,6 +287,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   isAi: 1
+  rotation: 0
 --- !u!114 &1088513719829384329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -302,11 +303,11 @@ MonoBehaviour:
   absoluteMaxHealth: 5
   initialMaxHealth: 3
   currentHealth: 0
+  isInvincible: 0
   beingKnockedBack: 0
   rb: {fileID: 6921055279037541352}
-  moveSpeed: 4
+  moveSpeed: 3
   moveDirection: {x: 0, y: 0}
-  invincible: 0
   stunned: 0
   attacking: 0
   shouldBeAbleToMove: 1

@@ -9,6 +9,8 @@ public class SlapAbility : Ability
     private ContactFilter2D enemyFilter;
 
     public int attackDamage = 1;
+    // Use is called in middle of animation so cooldown starts in middle of animation. If user clicks twice before Use() is called, Ooey will do an extra hit with no rotation.
+    bool locked = false;         
 
     override protected void Start()
     {
@@ -20,8 +22,9 @@ public class SlapAbility : Ability
     }
     public override bool RequestUse(InputAction.CallbackContext ctx, Vector2 mousePosition)
     {
-        if (!onCooldown && animator != null)
+        if (!onCooldown && animator != null && !locked)
         {
+            locked = true;
             Vector2 aimingDirection = new Vector2(mousePosition.x - transform.position.x, mousePosition.y - transform.position.y);
 
             baseCharacter.attacking = true;
@@ -43,6 +46,7 @@ public class SlapAbility : Ability
         }
         base.Use(key);
 
+        locked = false;
         if (meleeCollider == null)
         {
             meleeCollider = gameObject.AddComponent<PolygonCollider2D>();
