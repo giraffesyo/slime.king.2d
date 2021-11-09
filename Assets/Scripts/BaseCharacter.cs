@@ -101,7 +101,6 @@ public class BaseCharacter : Damageable
 
         beingKnockedBack = true;
 
-
         Vector2 direction = (obj.transform.position - this.transform.position).normalized;
         rb.velocity = -direction.normalized * moveSpeed;
 

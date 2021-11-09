@@ -22,7 +22,7 @@ public class ChargeAI : AI
         {
             base.Move(Vector2.zero);
 
-            if (aiAbility.RequestUse(new InputAction.CallbackContext(), playerPos.position - transform.position))
+            if (aiAbility.RequestUse(new InputAction.CallbackContext(), playerPos.position))
                 attacking = true;
         }
         else

@@ -95,6 +95,7 @@ public abstract class Ability : MonoBehaviour
     // This gets called from an animation event at first frame and last frame
     public void Rotate(int firstFrame)
     {
+        Debug.Log("Rotated" + firstFrame);
         if (firstFrame == 0)
         {
             baseCharacter.attacking = true;          // Prevents flipping during ability animation
