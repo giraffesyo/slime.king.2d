@@ -1602,7 +1602,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6921055279037541356, guid: f357d4afd5ffb4104a6902a390520dd7, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f357d4afd5ffb4104a6902a390520dd7, type: 3}
@@ -1621,17 +1621,37 @@ PrefabInstance:
       propertyPath: initialMaxHealth
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 26286675073671254, guid: af10b48d60b85443aba5780af888a8e8, type: 3}
+      propertyPath: damageInvincibilitySeconds
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 26286675073671256, guid: af10b48d60b85443aba5780af888a8e8, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 26286675073671256, guid: af10b48d60b85443aba5780af888a8e8, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 26286675073671256, guid: af10b48d60b85443aba5780af888a8e8, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 26286675073671256, guid: af10b48d60b85443aba5780af888a8e8, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 26286675073671259, guid: af10b48d60b85443aba5780af888a8e8, type: 3}
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 26286675073671259, guid: af10b48d60b85443aba5780af888a8e8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.91
+      value: -6.82
       objectReference: {fileID: 0}
     - target: {fileID: 26286675073671259, guid: af10b48d60b85443aba5780af888a8e8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -7.62
+      value: -5.96
       objectReference: {fileID: 0}
     - target: {fileID: 26286675073671259, guid: af10b48d60b85443aba5780af888a8e8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9478,6 +9498,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3035606728837258045, guid: 47666eaff1fe885408d86860f95ddde8, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 9899816818e77ca4688deb830f7e09da, type: 2}
     - target: {fileID: 8316520472559825521, guid: 47666eaff1fe885408d86860f95ddde8, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -9525,6 +9549,14 @@ PrefabInstance:
     - target: {fileID: 8316520472559825524, guid: 47666eaff1fe885408d86860f95ddde8, type: 3}
       propertyPath: m_Name
       value: Knight
+      objectReference: {fileID: 0}
+    - target: {fileID: 8316520472559825524, guid: 47666eaff1fe885408d86860f95ddde8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8639582285694381437, guid: 47666eaff1fe885408d86860f95ddde8, type: 3}
+      propertyPath: abilityKey
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47666eaff1fe885408d86860f95ddde8, type: 3}
