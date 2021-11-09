@@ -65,12 +65,10 @@ public class tornadoCollider : MonoBehaviour
 
             enemyChar.TakeDamage(1);
         }
-        else if(!wallCollisionBlock)
-            Explode();
 
         // Flag the missile for deletion
         if (enemyChar != null || !wallCollisionBlock)
-            Destroy(gameObject);
+            Explode();
     }
 
     private IEnumerator initialWallCollisionTimer()

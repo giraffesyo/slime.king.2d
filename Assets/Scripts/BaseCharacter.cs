@@ -52,6 +52,7 @@ public class BaseCharacter : Damageable
         {
             rb.velocity = moveDirection * moveSpeed;
         }
+        // Fixes rotation getting stuck
         if (attacking && anim != null && anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
         {
             attacking = false;
