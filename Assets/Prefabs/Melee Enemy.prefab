@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 2371562569143345698, guid: 3ae8c65fa553d9f40a4b40aed8126587, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.12210748, g: 0.3962264, b: 0.18227902, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -169,11 +169,11 @@ MonoBehaviour:
   absoluteMaxHealth: 5
   initialMaxHealth: 3
   currentHealth: 0
+  isInvincible: 0
   beingKnockedBack: 0
   rb: {fileID: 524629168777218297}
   moveSpeed: 2
   moveDirection: {x: 0, y: 0}
-  invincible: 0
   stunned: 0
   attacking: 0
   shouldBeAbleToMove: 1

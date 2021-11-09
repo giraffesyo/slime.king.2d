@@ -15,9 +15,10 @@ public class missileCollider : MonoBehaviour
         if (enemyChar != null)
         {
             // if the player is the one who shot the missle, knockback the enemy
+            // Apparently Ranged shouldnt knockback, uncomment if changed in future
             if (!isAi)
             {
-                enemyChar.Knockback(0.8f, this.transform);
+                enemyChar.Knockback(0.01f, this.transform);
             }
 
             enemyChar.TakeDamage(1);
