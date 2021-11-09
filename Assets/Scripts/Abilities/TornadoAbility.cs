@@ -8,7 +8,7 @@ public class TornadoAbility : Ability
 {
 #pragma warning disable CS8618
     private GameObject tornadoPrefab;
-    private float tornadoForce = 2f;
+    private float tornadoForce = 3f;
     Vector2 targetWorldLocation;
     int tornadoLayer;
 
@@ -18,10 +18,14 @@ public class TornadoAbility : Ability
     {
         base.Start();
         var addressable = Addressables.LoadAssetAsync<GameObject>("tornado");
+        tornadoLayer = LayerMask.NameToLayer("MissileEnemy");
 
         // Makes sure enemy missiles will not hit enemies
-        if (!isAi)
+        if (!isAi) { 
             addressable = Addressables.LoadAssetAsync<GameObject>("OoeyTornado");
+            tornadoForce = 4f;
+            tornadoLayer = LayerMask.NameToLayer("MissilePlayer");
+        }
         addressable.Completed += (obj) => tornadoPrefab = obj.Result;
         this.abilityKey = Ability.AbilityKey.Tornado;
         cooldown = 4;
@@ -64,7 +68,7 @@ public class TornadoAbility : Ability
         if (forceDirection != null)
         {
             GameObject tornado = Instantiate(tornadoPrefab, GetComponent<Transform>().position, transform.rotation);
-            //tornado.layer = tornadoLayer;
+            tornado.layer = tornadoLayer;
             Rigidbody2D rb = tornado.GetComponent<Rigidbody2D>();
             tornado.GetComponent<tornadoCollider>().constructor(true, targetWorldPosition, tornadoPrefab, tornadoForce);
             rb.AddForce(forceDirection.normalized * tornadoForce, ForceMode2D.Impulse);
