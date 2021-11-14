@@ -45,6 +45,7 @@ public abstract class Ability : MonoBehaviour
     private void MasterUse()
     {
         onCooldown = true;
+        // Play the sound effect for the ability here
         StartCoroutine(StartCooldown());
     }
 
@@ -102,11 +103,11 @@ public abstract class Ability : MonoBehaviour
             if (!baseCharacter.facingRight)
                 spriteRenderer.flipX = !spriteRenderer.flipX;       // If facing left, flip to right so rotations make sense
             if ((rotation > 90f || rotation < -90f) && AbilityKey.Engulf != abilityKey)
-               spriteRenderer.flipY = !spriteRenderer.flipY;
+                spriteRenderer.flipY = !spriteRenderer.flipY;
             transform.Rotate(new Vector3(0, 0, 1), rotation);
         }
         else
-        {            
+        {
             baseCharacter.attacking = false;
         }
 
