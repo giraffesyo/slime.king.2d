@@ -73,7 +73,10 @@ public class AbilityBar : MonoBehaviour
                 // Add the ability indicator to the list
                 abilityIndicators.Add(abilityIndicator);
                 // offset the ability indicator by the number of abilities already in the bar
-                abilityIndicator.transform.localPosition = new Vector3(indicatorOffset * index, 0, 0);
+                abilityIndicator.transform.localPosition = new Vector3(indicatorOffset * index, abilityIndicator.transform.localPosition.y, abilityIndicator.transform.localPosition.z);
+
+                // Give the ability indicator a reference to the ability
+                abilityIndicator.SetAbility(player.abilities[index]);
             }
         };
 
