@@ -66,6 +66,7 @@ public class Damageable : MonoBehaviour
             }
         }
         // Do hurt animation ?
+        StartCoroutine(dmgAnimation());
         currentHealth -= damage;
         Debug.Log($"{transform.name} took {damage} points of damage, new health is {currentHealth}");
     }
@@ -98,6 +99,17 @@ public class Damageable : MonoBehaviour
         {
             CurrentHealthSet.Invoke(currentHealth);
         }
+
+    }
+
+    public IEnumerator dmgAnimation()
+    {
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        Color prevColor = sr.color;
+        sr.color = new Color(255, 0, 0, 255);
+
+        yield return new WaitForSecondsRealtime(.1f);
+        sr.color = prevColor;
 
     }
 
