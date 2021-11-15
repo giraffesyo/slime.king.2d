@@ -14,6 +14,7 @@ public class AI : BaseCharacter
     public float attackRange;
 
     public LayerMask playerLayer;
+    public LayerMask solidObjectsLayer;
     protected Animator animator;
 
 
@@ -36,6 +37,8 @@ public class AI : BaseCharacter
         stunObject = transform.Find("StunnedObject");
         playerPos = GameObject.FindGameObjectWithTag("Player").transform;
         playerLayer = LayerMask.GetMask("Player");
+        solidObjectsLayer = LayerMask.GetMask("SolidObjects");
+
     }
 
     // Update is called once per frame
@@ -52,7 +55,7 @@ public class AI : BaseCharacter
 
         dist = Vector3.Distance(playerPos.position, transform.position);
 
-        if (dist >= 15f)    // Out of character sight range
+        if (dist >= 15f || !inLineofSight())    // Out of character sight range
             return false;
 
         return true;
@@ -83,9 +86,22 @@ public class AI : BaseCharacter
     public override void Die()
     {
         base.Die();
-        // drop some coins!
         // Destroy the AI
         Destroy(this.gameObject);
+    }
+
+    private bool inLineofSight()
+    {
+        float dist = Vector3.Distance(transform.position, playerPos.position);
+        Vector3 direction = (playerPos.position - transform.position).normalized;
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, dist, solidObjectsLayer);
+
+        if (hit.collider == null)
+            return true;
+
+        return false;
+
     }
 
     protected int getMoveX()
