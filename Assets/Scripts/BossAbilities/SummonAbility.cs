@@ -39,7 +39,6 @@ public class SummonAbility: MonoBehaviour
             GameObject slime = Instantiate(MeleeSlime, GetComponent<Transform>().position + (Vector3)spawnLocations[i], transform.rotation);
             slime.layer = gameObject.layer;
         }
-        
     }
 
 
