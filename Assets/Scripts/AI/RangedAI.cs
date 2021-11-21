@@ -22,26 +22,24 @@ public class RangedAI : AI
         float x2 = playerPos.position.x;
         float y2 = playerPos.position.y;
 
-        float moveX = 0;
-        float moveY = 0;
+        Rotate(playerPos.position - transform.position);
 
-
-        if (dist > attackRange) // Gotta get closer
-        {
-            moveX = getMoveX();
-            moveY = getMoveY();
-        }
-        else
-        {
-            if (dist < playerRange) // Player too close, back away
-            {
-                moveX = getMoveX() * -1;
-                moveY = getMoveY() * -1;
-            }
+        
+        if (dist < attackRange) // Gotta get closer
             aiAbility.Use(new Vector2(x2 - x1, y2 - y1).normalized);
-        }
 
-        base.Move(new Vector2(moveX, moveY));
         return true;
+    }
+
+    public void Rotate(Vector2 direction)
+    {
+        float rotation = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        if ((rotation > 90f || rotation < -90f))
+            spriteRenderer.flipY = true;
+        else
+            spriteRenderer.flipY = false;
+        transform.localEulerAngles = new Vector3(0, 0, rotation);
+
+
     }
 }

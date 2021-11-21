@@ -75,6 +75,8 @@ public class AI : BaseCharacter
         //base.Move(new Vector2(0, 0));
         stunObject.GetComponent<SpriteRenderer>().enabled = true;
         engulfStunned = true;
+        transform.rotation = Quaternion.identity;
+        spriteRenderer.flipY = false;
 
         yield return new WaitForSecondsRealtime(3.0f);
         SetCurrentHealth(currentHealth + 1);

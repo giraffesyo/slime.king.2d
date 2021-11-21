@@ -24,7 +24,10 @@ public class ShootAbility : Ability
 
         // Makes sure enemy missiles will not hit enemies
         if (isAi)
+        {
             missileLayer = LayerMask.NameToLayer("MissileEnemy");
+            missileForce = 4f;
+        }
         else
             missileLayer = LayerMask.NameToLayer("MissilePlayer");
 
