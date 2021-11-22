@@ -6,9 +6,13 @@ public class SlimeKingAi : AI
 {
     public bool testing = false;       // Used for testing, delete later
     public bool testing2 = false;       // Used for testing, delete later
+    public bool testing3 = false;       // Used for testing, delete later
+
 
     SummonAbility summon;
     DebreeAttack debree;
+    RangedAttack ranged;
+
     int stage = 1;
 
     protected override void Start()
@@ -16,6 +20,7 @@ public class SlimeKingAi : AI
         base.Start();
         summon = GetComponent<SummonAbility>();
         debree = GetComponent<DebreeAttack>();
+        ranged = GetComponent<RangedAttack>();
     }
 
     protected override bool Move()
@@ -34,7 +39,18 @@ public class SlimeKingAi : AI
             stage++;
             summon.setStage(stage);
         }
+        if (testing3)
+        {
+            StartCoroutine(Testing());
+            testing3 = false;
+        }
 
         return true;
+    }
+
+    IEnumerator Testing()
+    {
+        yield return new WaitForSecondsRealtime(1.5f);
+        ranged.Use("Ranged");
     }
 }

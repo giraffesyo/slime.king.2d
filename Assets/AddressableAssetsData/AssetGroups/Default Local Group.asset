@@ -35,6 +35,18 @@ MonoBehaviour:
     m_Address: OoeyTornado
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 724cc358a7620ba4e975fa6679fb047b
+    m_Address: MeleeEnemy
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0aad7fedbce44c24d9b9a1e78b1d3898
+    m_Address: Debree
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1b8b070bfa2459a438ea38f50380441c
+    m_Address: kingMissile
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: e54d3e1ec43e6494f858a69014e365f1, type: 2}
   m_SchemaSet:
