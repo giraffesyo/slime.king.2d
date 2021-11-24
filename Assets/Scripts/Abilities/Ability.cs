@@ -6,6 +6,9 @@ using UnityEngine.InputSystem;
 
 public abstract class Ability : MonoBehaviour
 {
+    public static AudioClip clockSound, levelCompleteSound, levelFailedSound, newLevelSound, praisingUserSound, sadSound, slimeSound, sorrowSound;
+    public SoundManager soundManager;
+    static AudioSource audioSrc;
 
     public enum AbilityKey
     {
@@ -37,13 +40,23 @@ public abstract class Ability : MonoBehaviour
 
     protected virtual void Start()
     {
+        audioSrc = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         baseCharacter = GetComponent<BaseCharacter>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        clockSound = Resources.Load<AudioClip>("clock");
+        levelCompleteSound = Resources.Load<AudioClip>("levelComplete");
+        levelFailedSound = Resources.Load<AudioClip>("levelFailed");
+        newLevelSound = Resources.Load<AudioClip>("newLevel");
+        praisingUserSound = Resources.Load<AudioClip>("praisingUser");
+        sadSound = Resources.Load<AudioClip>("sad");
+        slimeSound = Resources.Load<AudioClip>("slime");
+        sorrowSound = Resources.Load<AudioClip>("sorrow");
     }
 
     private void MasterUse()
     {
+        soundManager.PlaySound("clock");
         onCooldown = true;
         // Play the sound effect for the ability here
         StartCoroutine(StartCooldown());
