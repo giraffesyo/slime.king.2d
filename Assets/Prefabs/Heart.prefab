@@ -36,7 +36,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 5, y: -3.0899963}
-  m_SizeDelta: {x: 25, y: 25}
+  m_SizeDelta: {x: 50, y: 25}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &6477004240585454141
 CanvasRenderer:
@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 4432793351920879750, guid: 065d487650cb149e183dcca210763a07, type: 3}
+  m_Sprite: {fileID: 2960899077835083990, guid: c1bda2ae38b2205459e260af2a30da35, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -90,3 +90,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fullHeartSprite: {fileID: 4432793351920879750, guid: 065d487650cb149e183dcca210763a07, type: 3}
   emptyHeartSprite: {fileID: 8124259339964715380, guid: 065d487650cb149e183dcca210763a07, type: 3}
+  filled: 0
