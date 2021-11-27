@@ -88,6 +88,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4306845729784a45821e8268fc5da00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fullHeartSprite: {fileID: 4432793351920879750, guid: 065d487650cb149e183dcca210763a07, type: 3}
-  emptyHeartSprite: {fileID: 8124259339964715380, guid: 065d487650cb149e183dcca210763a07, type: 3}
+  fullHeartSprite: {fileID: 2960899077835083990, guid: c1bda2ae38b2205459e260af2a30da35, type: 3}
+  emptyHeartSprite: {fileID: 0}
   filled: 0
