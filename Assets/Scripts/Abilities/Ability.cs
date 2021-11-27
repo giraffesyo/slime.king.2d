@@ -56,7 +56,7 @@ public abstract class Ability : MonoBehaviour
 
     private void MasterUse()
     {
-        soundManager.PlaySound("clock");
+        // soundManager.PlaySound("clock");
         onCooldown = true;
         // Play the sound effect for the ability here
         StartCoroutine(StartCooldown());
