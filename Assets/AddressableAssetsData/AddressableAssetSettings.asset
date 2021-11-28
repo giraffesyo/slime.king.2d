@@ -81,6 +81,7 @@ MonoBehaviour:
     - default
     - missle
     - Indicators
+    - sounds
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: dc216e6c25f0542c8b42e12d283a9f07, type: 2}
