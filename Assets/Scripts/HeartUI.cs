@@ -19,13 +19,14 @@ public class HeartUI : MonoBehaviour
     public void FillHeart()
     {
         // could potentially animate here, but right now we're just swapping between images
+        image.enabled = true;
         image.sprite = fullHeartSprite;
         filled = true;
     }
 
     public void EmptyHeart()
     {
-        image.sprite = emptyHeartSprite;
+        image.enabled = false;
         filled = false;
     }
 
