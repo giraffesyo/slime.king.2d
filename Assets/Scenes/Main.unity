@@ -39214,11 +39214,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4060448963625137660, guid: 23e85bf2463dc42ceb5e6d1adee58272, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.66
+      value: 3.65
       objectReference: {fileID: 0}
     - target: {fileID: 4060448963625137660, guid: 23e85bf2463dc42ceb5e6d1adee58272, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.45
+      value: 3.47
       objectReference: {fileID: 0}
     - target: {fileID: 4060448963625137660, guid: 23e85bf2463dc42ceb5e6d1adee58272, type: 3}
       propertyPath: m_LocalPosition.z
@@ -39255,6 +39255,22 @@ PrefabInstance:
     - target: {fileID: 4060448963625137663, guid: 23e85bf2463dc42ceb5e6d1adee58272, type: 3}
       propertyPath: m_Name
       value: Door with button
+      objectReference: {fileID: 0}
+    - target: {fileID: 6626157389529820833, guid: 23e85bf2463dc42ceb5e6d1adee58272, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.74025977
+      objectReference: {fileID: 0}
+    - target: {fileID: 6626157389529820833, guid: 23e85bf2463dc42ceb5e6d1adee58272, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.49267045
+      objectReference: {fileID: 0}
+    - target: {fileID: 6626157389529820833, guid: 23e85bf2463dc42ceb5e6d1adee58272, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.0199
+      objectReference: {fileID: 0}
+    - target: {fileID: 6626157389529820833, guid: 23e85bf2463dc42ceb5e6d1adee58272, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.0149
       objectReference: {fileID: 0}
     - target: {fileID: 6626157389529820838, guid: 23e85bf2463dc42ceb5e6d1adee58272, type: 3}
       propertyPath: m_SortingLayer
