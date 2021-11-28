@@ -15,10 +15,12 @@ public class OpenDoor : MonoBehaviour
 
 
     [SerializeField] private bool flagOpen;
+
     [SerializeField] private double timer = 0.0;
     [SerializeField] private double timeLimit = 2.0;
     [SerializeField] private Animator doorAnimator;
     [SerializeField] private BoxCollider2D doorCollider;
+    [SerializeField] private GameObject pressedButton;
     void FixedUpdate()
     {
         if (flagOpen)
@@ -28,6 +30,8 @@ public class OpenDoor : MonoBehaviour
             {
                 // allow walking through the door now
                 doorCollider.enabled = false;
+                this.GetComponent<SpriteRenderer>().enabled = false;
+                pressedButton.SetActive(true);
                 flagOpen = false;
                 doorAnimator.SetTrigger("open");
                 // disable this script, because we no longer need to check if they are touching the button

@@ -49,7 +49,7 @@ public class AbilityBar : MonoBehaviour
                 // Set the indicators keybind text or image
                 if (index > 2)
                 {
-                    abilityIndicator.keybindText.gameObject.active = true;
+                    abilityIndicator.keybindText.gameObject.SetActive(true);
                     // 2 offset because the first three slots are for engulf, shoot, and slap
                     abilityIndicator.keybindText.text = (index - 2).ToString();
                 }
@@ -58,15 +58,15 @@ public class AbilityBar : MonoBehaviour
                     // image for the keybind instead of text for left and right mouse
                     if (index == 0)
                     {
-                        abilityIndicator.keybindImage.gameObject.active = true;
+                        abilityIndicator.keybindImage.gameObject.SetActive(true);
                     }
                     else if (index == 1)
                     {
-                        abilityIndicator.keybindImage.gameObject.active = true;
+                        abilityIndicator.keybindImage.gameObject.SetActive(true);
                     } // E for keybind, different from the rest of abilities
                     else if (index == 2)
                     {
-                        abilityIndicator.keybindText.gameObject.active = true;
+                        abilityIndicator.keybindText.gameObject.SetActive(true);
                         abilityIndicator.keybindText.text = "E";
                     }
                 }

@@ -1,60 +1,70 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.AddressableAssets;
 public class SoundManager : MonoBehaviour
 {
-    public static AudioClip clockSound, levelCompleteSound, levelFailedSound, newLevelSound, praisingUserSound, sadSound, slimeSound, sorrowSound;
-    static AudioSource audioSrc;
+    private AudioClip shoot;
+    private AudioClip slap;
+    private AudioClip charge;
+    private AudioClip engulf;
+    private AudioSource audioSource;
 
     void Start()
     {
-        clockSound = Resources.Load<AudioClip>("clock");
-        levelCompleteSound = Resources.Load<AudioClip>("levelComplete");
-        levelFailedSound = Resources.Load<AudioClip>("levelFailed");
-        newLevelSound = Resources.Load<AudioClip>("newLevel");
-        praisingUserSound = Resources.Load<AudioClip>("praisingUser");
-        sadSound = Resources.Load<AudioClip>("sad");
-        slimeSound = Resources.Load<AudioClip>("slime");
-        sorrowSound = Resources.Load<AudioClip>("sorrow");
-
-        audioSrc = GetComponent<AudioSource>();
+        LoadSounds();
+        audioSource = GetComponent<AudioSource>();
     }
 
-    void Update()
+    public void LoadSounds()
     {
-
-    }
-
-    public void PlaySound(string clip)
-    {
-        switch (clip)
+        var shootSound = Addressables.LoadAssetAsync<AudioClip>("sounds/shoot.wav");
+        shootSound.Completed += (obj) =>
         {
-            case "clock":
-                audioSrc.PlayOneShot(clockSound);
+            shoot = obj.Result;
+        };
+        var slapSound = Addressables.LoadAssetAsync<AudioClip>("sounds/slap.wav");
+        slapSound.Completed += (obj) =>
+        {
+            slap = obj.Result;
+        };
+        var chargeSound = Addressables.LoadAssetAsync<AudioClip>("sounds/charge.wav");
+        chargeSound.Completed += (obj) =>
+        {
+            charge = obj.Result;
+        };
+        var engulfSound = Addressables.LoadAssetAsync<AudioClip>("sounds/engulf.wav");
+        engulfSound.Completed += (obj) =>
+        {
+            engulf = obj.Result;
+        };
+
+    }
+
+    public void PlayAbilitySound(Ability.AbilityKey ability)
+    {
+        switch (ability)
+        {
+            case Ability.AbilityKey.Shoot:
+                audioSource.PlayOneShot(shoot);
                 break;
-            case "levelComplete":
-                audioSrc.PlayOneShot(levelCompleteSound);
+            case Ability.AbilityKey.Slap:
+                audioSource.PlayOneShot(slap);
                 break;
-            case "levelFailed":
-                audioSrc.PlayOneShot(levelFailedSound);
+            case Ability.AbilityKey.Engulf:
+                audioSource.PlayOneShot(engulf);
                 break;
-            case "newLevel":
-                audioSrc.PlayOneShot(newLevelSound);
+            case Ability.AbilityKey.Block:
+
                 break;
-            case "praisingUser":
-                audioSrc.PlayOneShot(praisingUserSound);
+            case Ability.AbilityKey.Charge:
+                audioSource.PlayOneShot(charge);
                 break;
-            case "sad":
-                audioSrc.PlayOneShot(sadSound);
-                break;
-            case "slime":
-                audioSrc.PlayOneShot(slimeSound);
-                break;
-            case "sorrow":
-                audioSrc.PlayOneShot(sorrowSound);
+            case Ability.AbilityKey.Tornado:
                 break;
         }
+
     }
+
 }
 

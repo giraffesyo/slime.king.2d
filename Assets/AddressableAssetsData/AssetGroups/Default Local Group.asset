@@ -47,6 +47,11 @@ MonoBehaviour:
     m_Address: kingMissile
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 0c40f9de6117b42fc808122ddee7062c
+    m_Address: sounds
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - sounds
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: e54d3e1ec43e6494f858a69014e365f1, type: 2}
   m_SchemaSet:
