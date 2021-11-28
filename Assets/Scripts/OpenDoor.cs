@@ -13,38 +13,50 @@ public class OpenDoor : MonoBehaviour
     5. You're done!
     */
 
-    [SerializeField] private GameObject door;
+
     [SerializeField] private bool flagOpen;
     [SerializeField] private double timer = 0.0;
     [SerializeField] private double timeLimit = 2.0;
-
+    [SerializeField] private Animator doorAnimator;
+    [SerializeField] private BoxCollider2D doorCollider;
     void FixedUpdate()
     {
-      if (flagOpen)
-      {
-        timer += Time.deltaTime;
-        if (timer >= timeLimit)
+        if (flagOpen)
         {
-          door.SetActive(false);
-          flagOpen = false;
+            timer += Time.deltaTime;
+            if (timer >= timeLimit)
+            {
+                // allow walking through the door now
+                doorCollider.enabled = false;
+                flagOpen = false;
+                doorAnimator.SetTrigger("open");
+                // disable this script, because we no longer need to check if they are touching the button
+                // this.enabled = false;
+            }
         }
-      }
-      else
-      {
-        timer = 0.0;
-      }
+        else
+        {
+            timer = 0.0;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-      flagOpen = true;
+        if (other.gameObject.tag == "Player")
+        {
+            flagOpen = true;
+
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-      if (timer < timeLimit)
-      {
-        flagOpen = false;
-      }
+        if (other.gameObject.tag == "Player")
+        {
+            if (timer < timeLimit)
+            {
+                flagOpen = false;
+            }
+        }
     }
 }
