@@ -116,6 +116,7 @@ GameObject:
   - component: {fileID: 3727692184470856903}
   - component: {fileID: 3727692184470856902}
   - component: {fileID: 3727692184470856907}
+  - component: {fileID: 5747773357035370540}
   m_Layer: 10
   m_Name: King Slime
   m_TagString: Untagged
@@ -602,3 +603,19 @@ MonoBehaviour:
   solidObjectsLayer:
     serializedVersion: 2
     m_Bits: 512
+  topLeftX: 0
+  topLeftY: 0
+  botRightX: 0
+  botRightY: 0
+--- !u!114 &5747773357035370540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3727692184470856898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c15daa5ad290e9044a4749db3ab82f1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -26,6 +26,7 @@ public class SummonAbility: MonoBehaviour
         {
             GameObject slime = Instantiate(MeleeSlime, GetComponent<Transform>().position + (Vector3)spawnLocations[i], transform.rotation);
             slime.layer = gameObject.layer;
+            slime.GetComponent<Damageable>().initialMaxHealth = 2;
             slime.GetComponent<Damageable>().currentHealth = 2;
         }
     }

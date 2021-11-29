@@ -7,7 +7,7 @@ public class Damageable : MonoBehaviour
     // Max Health can never exceed absolute max
     [SerializeField] protected int absoluteMaxHealth = 5;
     // Max health beings at this number
-    [SerializeField] protected int initialMaxHealth = 1;
+    [SerializeField] public int initialMaxHealth = 1;
     // The current value of max health, can be increased up to absolute max
     protected int _maxHealth;
     public int maxHealth

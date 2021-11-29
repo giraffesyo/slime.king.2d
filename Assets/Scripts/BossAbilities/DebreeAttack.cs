@@ -26,9 +26,8 @@ struct square{
 public class DebreeAttack : MonoBehaviour
 {
     GameObject debree;
-    // 4 corners of boss room, currently set to 4 corners of Eric Scene
 
-    square roomCoords = new square(-8.35f, 25f, -9.5f, 1.5f);
+    square roomCoords;
 
     square[] sections = new square[9];
 
@@ -36,7 +35,7 @@ public class DebreeAttack : MonoBehaviour
     {
         var addressable = Addressables.LoadAssetAsync<GameObject>("Debree");
         addressable.Completed += (obj) => debree = obj.Result;
-
+        
     }
     public void Use()
     {
@@ -64,5 +63,10 @@ public class DebreeAttack : MonoBehaviour
             }
         }
 
+    }
+
+    public void setCoords(float minX, float maxX, float minY, float maxY)
+    {
+        roomCoords = new square(minX, maxX, minY, maxY);
     }
 }

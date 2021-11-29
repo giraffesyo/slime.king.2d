@@ -4,22 +4,27 @@ using UnityEngine;
 
 public class SlimeKingAi : AI
 {
+    // Room Coordinates
+    [SerializeField] float topLeftX;
+    [SerializeField] float topLeftY;
+    [SerializeField] float botRightX;
+    [SerializeField] float botRightY;
+    
+    
 
     int cooldownTimer = 5;
     bool isOnCooldown = false;
-
+    
     SummonAbility summon;
     DebreeAttack debree;
     RangedAttack ranged;
+    MeleeAttack melee;
     PolygonCollider2D polyCollider;
     SpriteRenderer sr;
     
     int attackCounter = 0; // Next attack that will be done
     int stage = 1;
 
-    SpriteRenderer meleeAOE_sr;
-    CapsuleCollider2D meleeAOE_Collider;
-    ContactFilter2D enemyFilter;
 
     protected override void Start()
     {
@@ -27,18 +32,21 @@ public class SlimeKingAi : AI
         summon = GetComponent<SummonAbility>();
         debree = GetComponent<DebreeAttack>();
         ranged = GetComponent<RangedAttack>();
+        melee = GetComponent<MeleeAttack>();
         polyCollider = GetComponent<PolygonCollider2D>();
         sr = GetComponent<SpriteRenderer>();
         moveSpeed = 1f;
 
-        meleeAOE_sr = transform.Find("meleeAOE").GetComponent<SpriteRenderer>();
-        meleeAOE_Collider = transform.Find("meleeAOE").GetComponent<CapsuleCollider2D>();
-        enemyFilter = new ContactFilter2D();
-        enemyFilter.SetLayerMask(LayerMask.GetMask("Player"));
+        debree.setCoords(topLeftX, botRightX, botRightY, topLeftY);
     }
 
     protected override bool Move()
     {
+        if (!inPosition())
+        {
+            base.Move(new Vector2(0, 0));
+            return false;
+        }
        
         DoAttack();
        
@@ -99,9 +107,6 @@ public class SlimeKingAi : AI
 
         attacking = false;
     }
-
-    
-
     void doRangedAttack()   // Animation Event
     {
         ranged.Use();
@@ -110,27 +115,8 @@ public class SlimeKingAi : AI
 
     void doMeleeAttack()    // Animation Event
     {
-        meleeAOE_sr.enabled = true;
-        List<Collider2D> hitEnemies = new List<Collider2D>();
-        Physics2D.OverlapCollider(meleeAOE_Collider, enemyFilter, hitEnemies);
-
-        foreach (Collider2D enemy in hitEnemies)
-        {
-            BaseCharacter enemyChar = enemy.gameObject.GetComponent<BaseCharacter>();
-
-            if (enemyChar != null)
-            {
-                enemyChar.Knockback(0.3f, this.transform);
-
-                enemyChar.TakeDamage(1);
-            }
-        }
-        StartCoroutine(disableMeleeAOE()); // To show player aoe radius
-    }
-    IEnumerator disableMeleeAOE()
-    {
-        yield return new WaitForSecondsRealtime(0.25f);
-        meleeAOE_sr.enabled = false;
+        melee.Use();
+        attacking = false;
     }
 
     public override void TakeDamage(int damage)
@@ -152,6 +138,18 @@ public class SlimeKingAi : AI
         yield return new WaitForSecondsRealtime(5f);
         animator.SetTrigger("Not Tired");
         attacking = false;
+    }
+
+    bool inPosition()
+    {
+        if(playerPos.position.x >= topLeftX && playerPos.position.x <= botRightX)
+        {
+            if (playerPos.position.y >= botRightY && playerPos.position.y <= topLeftY)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
