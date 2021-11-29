@@ -8,6 +8,7 @@ public class SoundManager : MonoBehaviour
     private AudioClip slap;
     private AudioClip charge;
     private AudioClip engulf;
+    private AudioClip block;
     private AudioSource audioSource;
 
     void Start()
@@ -38,6 +39,11 @@ public class SoundManager : MonoBehaviour
         {
             engulf = obj.Result;
         };
+        var blockSound = Addressables.LoadAssetAsync<AudioClip>("sounds/block.wav");
+        blockSound.Completed += (obj) =>
+        {
+            block = obj.Result;
+        };
 
     }
 
@@ -55,12 +61,10 @@ public class SoundManager : MonoBehaviour
                 audioSource.PlayOneShot(engulf);
                 break;
             case Ability.AbilityKey.Block:
-
+                audioSource.PlayOneShot(block);
                 break;
             case Ability.AbilityKey.Charge:
                 audioSource.PlayOneShot(charge);
-                break;
-            case Ability.AbilityKey.Tornado:
                 break;
         }
 
