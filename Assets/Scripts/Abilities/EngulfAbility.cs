@@ -14,6 +14,7 @@ public class EngulfAbility : Ability
         enemyFilter = new ContactFilter2D();
         enemyFilter.SetLayerMask(enemyLayers);
         player = GetComponent<Player>();
+        cooldown = 1;
     }
     public override bool RequestUse(InputAction.CallbackContext ctx, Vector2 mousePositoin)
     {
@@ -30,6 +31,8 @@ public class EngulfAbility : Ability
             Debug.Log(rotation);
             soundManager.PlayAbilitySound(abilityKey);
             animator.SetTrigger("Engulf");
+            onCooldown = true;
+            StartCoroutine(StartCooldown());
             return true;
         }
         return false;
@@ -39,11 +42,6 @@ public class EngulfAbility : Ability
     {
         if (key != (int)this.abilityKey)
             return;
-        if (onCooldown)
-        {
-            return;
-        }
-        base.Use(key);
 
         if (engulfCollider == null)
         {

@@ -53,10 +53,10 @@ public abstract class Ability : MonoBehaviour
         if (abilityKey != Ability.AbilityKey.Tornado && abilityKey != Ability.AbilityKey.Engulf)
         {
             soundManager.PlayAbilitySound(this.abilityKey);
+            onCooldown = true;
+            // Play the sound effect for the ability here
+            StartCoroutine(StartCooldown());
         }
-        onCooldown = true;
-        // Play the sound effect for the ability here
-        StartCoroutine(StartCooldown());
     }
 
     // Animation events set in Animation Clip Editor call Use with their key, then we return if its not supposed to be handled by us.
@@ -83,7 +83,7 @@ public abstract class Ability : MonoBehaviour
     // Player input triggers this function to be called
     public abstract bool RequestUse(InputAction.CallbackContext ctx, Vector2 aimingDirection);
 
-    private IEnumerator StartCooldown()
+    protected IEnumerator StartCooldown()
     {
         currentCooldown = cooldown;
         if (CooldownStarted != null)
