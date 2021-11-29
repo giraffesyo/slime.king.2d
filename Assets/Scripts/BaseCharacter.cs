@@ -35,6 +35,7 @@ public class BaseCharacter : Damageable
         anim = GetComponent<Animator>();
         SetMaxHealth(initialMaxHealth);
         baseSpeed = moveSpeed;
+        originalColor = GetComponent<SpriteRenderer>().color;
     }
     // Update is called once per frame
     void LateUpdate()

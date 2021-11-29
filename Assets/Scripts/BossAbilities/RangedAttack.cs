@@ -9,7 +9,7 @@ public class RangedAttack : MonoBehaviour
     GameObject missile;
     Transform playerTransform;
     Rigidbody2D playerRb;
-    float force = 3f;
+    float force = 4f;
 
     void Start()
     {
@@ -20,12 +20,8 @@ public class RangedAttack : MonoBehaviour
         playerRb = playerObj.GetComponent<Rigidbody2D>();
 
     }
-    public void Use(string key)
+    public void Use()
     {
-        if (key != "Ranged")
-        {
-            return;
-        }
 
         // Will shoot missile a bit ahead of the player
         Vector3 playerPositionPrediction = new Vector3(playerTransform.position.x + playerRb.velocity.x/2, playerTransform.position.y + playerRb.velocity.y/2, 1);

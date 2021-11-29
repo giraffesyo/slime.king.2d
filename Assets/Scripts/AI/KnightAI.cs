@@ -88,11 +88,13 @@ public class KnightAI : AI
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        hitEnemy(collision);
+        if(!engulfable)
+            hitEnemy(collision);
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
-        hitEnemy(collision);
+        if (!engulfable)
+            hitEnemy(collision);
     }
 
     private void hitEnemy(Collision2D collision)
@@ -100,7 +102,7 @@ public class KnightAI : AI
         hitWall = true;
 
         BaseCharacter enemyChar = collision.gameObject.GetComponent<BaseCharacter>();
-        if (enemyChar != null)
+        if (enemyChar != null && !enemyChar.attacking)
         {
             enemyChar.Knockback(0.8f, this.transform);
 

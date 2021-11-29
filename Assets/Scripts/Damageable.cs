@@ -38,12 +38,7 @@ public class Damageable : MonoBehaviour
     public event SetMaxHealthHandler MaxHealthSet;
     public event SetCurrentHealthHandler CurrentHealthSet;
 
-
-    void Start()
-    {
-        SetMaxHealth(initialMaxHealth);
-    }
-
+    protected Color originalColor;
 
     // Pass in negative damage to restore health
     public virtual void TakeDamage(int damage)
@@ -105,11 +100,10 @@ public class Damageable : MonoBehaviour
     public IEnumerator dmgAnimation()
     {
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
-        Color prevColor = sr.color;
         sr.color = new Color(255, 0, 0, 255);
 
         yield return new WaitForSecondsRealtime(.1f);
-        sr.color = prevColor;
+        sr.color = originalColor;
 
     }
 

@@ -6,26 +6,33 @@ public class DebreeScript : MonoBehaviour
 {
 
     SpriteRenderer sr;      // Temporary unitl we have actual sprite/animations
-    CircleCollider2D collider;
+    CircleCollider2D circleCollider;
+    Animator animator;
 
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
-        collider = GetComponent<CircleCollider2D>();
-        collider.enabled = false;
+        circleCollider = GetComponent<CircleCollider2D>();
+        circleCollider.enabled = false;
+        animator = GetComponent<Animator>();
         StartCoroutine(Countdown());
     }
 
     IEnumerator Countdown()
     {
-        // Countdown until it hits floor, sprite is black circle
-        sr.color = new Color(0, 0, 0);
+        // Countdown until it hits floor
         yield return new WaitForSecondsRealtime(1.5f);
-        collider.enabled = true;
-        sr.color = new Color(255, 255, 255);
-        // Change sprite to actual debree
-        // Worry about animations later?
-        // Countdown until it dissapears
+        animator.SetTrigger("Fall");
+    }
+
+    void Fell() // Gets called by last frame of animation
+    {
+        StartCoroutine(OnGround());
+    }
+
+    IEnumerator OnGround()
+    {
+        circleCollider.enabled = true;
         yield return new WaitForSecondsRealtime(1f);
         Destroy(gameObject);
     }
