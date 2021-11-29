@@ -49,8 +49,8 @@ public abstract class Ability : MonoBehaviour
 
     private void MasterUse()
     {
-        // tornado and engulf are handled differently
-        if (abilityKey != Ability.AbilityKey.Tornado && abilityKey != Ability.AbilityKey.Engulf)
+        // engulf is handled differently
+        if (abilityKey != Ability.AbilityKey.Engulf)
         {
             soundManager.PlayAbilitySound(this.abilityKey);
             onCooldown = true;
