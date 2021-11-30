@@ -10,7 +10,7 @@ public class SlapAbility : Ability
 
     public int attackDamage = 1;
     // Use is called in middle of animation so cooldown starts in middle of animation. If user clicks twice before Use() is called, Ooey will do an extra hit with no rotation.
-    bool locked = false;         
+    bool locked = false;
 
     override protected void Start()
     {

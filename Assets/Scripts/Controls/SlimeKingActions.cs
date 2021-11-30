@@ -97,6 +97,14 @@ public class @SlimeKingActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""dc73a732-0dcf-4d6e-adbf-c3d0c5b533e4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -275,6 +283,17 @@ public class @SlimeKingActions : IInputActionCollection, IDisposable
                     ""action"": ""Aim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e07088e1-7964-4533-8fe3-f629ab1f67e0"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -293,6 +312,7 @@ public class @SlimeKingActions : IInputActionCollection, IDisposable
         m_Player_SelectAbility4 = m_Player.FindAction("Select Ability 4", throwIfNotFound: true);
         m_Player_UseAbility = m_Player.FindAction("Use Ability", throwIfNotFound: true);
         m_Player_Aim = m_Player.FindAction("Aim", throwIfNotFound: true);
+        m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -352,6 +372,7 @@ public class @SlimeKingActions : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_SelectAbility4;
     private readonly InputAction m_Player_UseAbility;
     private readonly InputAction m_Player_Aim;
+    private readonly InputAction m_Player_Pause;
     public struct PlayerActions
     {
         private @SlimeKingActions m_Wrapper;
@@ -366,6 +387,7 @@ public class @SlimeKingActions : IInputActionCollection, IDisposable
         public InputAction @SelectAbility4 => m_Wrapper.m_Player_SelectAbility4;
         public InputAction @UseAbility => m_Wrapper.m_Player_UseAbility;
         public InputAction @Aim => m_Wrapper.m_Player_Aim;
+        public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -405,6 +427,9 @@ public class @SlimeKingActions : IInputActionCollection, IDisposable
                 @Aim.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAim;
                 @Aim.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAim;
                 @Aim.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAim;
+                @Pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -439,6 +464,9 @@ public class @SlimeKingActions : IInputActionCollection, IDisposable
                 @Aim.started += instance.OnAim;
                 @Aim.performed += instance.OnAim;
                 @Aim.canceled += instance.OnAim;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
         }
     }
@@ -455,5 +483,6 @@ public class @SlimeKingActions : IInputActionCollection, IDisposable
         void OnSelectAbility4(InputAction.CallbackContext context);
         void OnUseAbility(InputAction.CallbackContext context);
         void OnAim(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
 }
