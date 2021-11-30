@@ -29,13 +29,13 @@ public class HealthBar : MonoBehaviour
 
         // Find all the filled hearts
         List<HeartUI> filledHearts = hearts.FindAll(heart => heart.filled);
-        // put them in reverse order
+        // put them in reverse order, so we start from the end
         filledHearts.Reverse();
         // determine how much damage to do
         int damageToDo = damage > hearts.Count ? hearts.Count : damage;
         Debug.Log($"{damage} {hearts.Count}");
         // do the damage
-        filledHearts.GetRange(0, damageToDo).ForEach(heart => heart.EmptyHeart());
+        filledHearts.GetRange(0, damageToDo).ForEach(heart => heart.Disable());
     }
 
     public void SetHealth(int hp)
@@ -47,19 +47,24 @@ public class HealthBar : MonoBehaviour
             if (count < hp)
             {
                 count++;
-                heart.FillHeart();
+                heart.Enable();
             }
             else
             {
-                heart.EmptyHeart();
+                heart.Disable();
             }
         });
     }
 
     public void SetMaximumHealth(int amount)
     {
+        // don't do anything if max health is the same
+        if (amount == hearts.Count)
+        {
+            return;
+        }
         Debug.Log($"Setting max health to {amount}");
-
+        hearts.ForEach(heart => Destroy(heart.gameObject));
         hearts = new List<HeartUI>();
         for (int i = 0; i < amount; i++)
         {

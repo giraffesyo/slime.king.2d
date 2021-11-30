@@ -14,17 +14,17 @@ public class HeartUI : MonoBehaviour
     private void Start()
     {
         image = GetComponent<Image>();
+        image.sprite = fullHeartSprite;
+        image.enabled = true;
         filled = true;
     }
-    public void FillHeart()
+    public void Enable()
     {
-        // could potentially animate here, but right now we're just swapping between images
         image.enabled = true;
-        image.sprite = fullHeartSprite;
         filled = true;
     }
 
-    public void EmptyHeart()
+    public void Disable()
     {
         image.enabled = false;
         filled = false;
