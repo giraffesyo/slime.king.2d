@@ -178,10 +178,13 @@ MonoBehaviour:
   attacking: 0
   shouldBeAbleToMove: 1
   attackPoint: {fileID: 0}
-  attackRange: 1
+  attackRange: 1.4
   playerLayer:
     serializedVersion: 2
     m_Bits: 2048
+  solidObjectsLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &511924797492270516
 MonoBehaviour:
   m_ObjectHideFlags: 0
