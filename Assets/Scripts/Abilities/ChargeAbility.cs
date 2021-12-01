@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class ChargeAbility : Ability
 {
-    [SerializeField] int attackDamage = 2;
+    [SerializeField] int attackDamage = 1;
 
     private Vector2 direction;
     private bool isCharging = false;

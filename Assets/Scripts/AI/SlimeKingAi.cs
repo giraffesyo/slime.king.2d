@@ -23,7 +23,11 @@ public class SlimeKingAi : AI
     MeleeAttack melee;
     PolygonCollider2D polyCollider;
     SpriteRenderer sr;
-    
+
+    Transform greenHP;
+    float scale;
+    float decreaseBy;
+
     int attackCounter = 0; // Next attack that will be done
     int stage = 1;
 
@@ -37,6 +41,9 @@ public class SlimeKingAi : AI
         melee = GetComponent<MeleeAttack>();
         polyCollider = GetComponent<PolygonCollider2D>();
         sr = GetComponent<SpriteRenderer>();
+        greenHP = transform.Find("GreenHP");
+        scale = greenHP.localScale.x;
+        decreaseBy = scale / initialMaxHealth;
         moveSpeed = 1f;
 
         debree.setCoords(topLeftX, botRightX, botRightY, topLeftY);
@@ -124,13 +131,24 @@ public class SlimeKingAi : AI
     }
 
     public override void TakeDamage(int damage)
-    {
+    {        
+        // Transform green hp
+        float prevScale = scale;
+        scale -= decreaseBy;
+
+        greenHP.localPosition = greenHP.localPosition - new Vector3((prevScale - scale) / 2, 0, 0);
+        greenHP.localScale = new Vector3(scale, 0.2f, 1);
+        
+
         if(currentHealth == 1)  // Dont want object to be destroyed before doing animation
         {
+            polyCollider.enabled = false;
             StartCoroutine(DeathAnimation());
             return;
         }
         base.TakeDamage(damage);
+
+
 
         if(currentHealth % 5 == 0) // 5, 10, 15
         {
