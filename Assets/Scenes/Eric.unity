@@ -1847,7 +1847,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6774084189301813483, guid: e102c20cdce024e09ba069accd3a704c, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6774084189301813488, guid: e102c20cdce024e09ba069accd3a704c, type: 3}
       propertyPath: m_Color.b
@@ -7042,7 +7042,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3727692184470856898, guid: 23849c4e424bc4a4e9d0cee9f70b16ac, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3727692184470856901, guid: 23849c4e424bc4a4e9d0cee9f70b16ac, type: 3}
       propertyPath: m_RootOrder
@@ -7135,6 +7135,10 @@ PrefabInstance:
     - target: {fileID: 3727692184470856907, guid: 23849c4e424bc4a4e9d0cee9f70b16ac, type: 3}
       propertyPath: botRightY
       value: -9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3727692184470856907, guid: 23849c4e424bc4a4e9d0cee9f70b16ac, type: 3}
+      propertyPath: initialMaxHealth
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23849c4e424bc4a4e9d0cee9f70b16ac, type: 3}

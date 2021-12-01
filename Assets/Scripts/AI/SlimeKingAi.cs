@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class SlimeKingAi : AI
 {
@@ -49,7 +51,9 @@ public class SlimeKingAi : AI
         }
        
         DoAttack();
-       
+
+        Debug.Log(sr.color);
+
         if(!attacking)
             base.Move(new Vector2(getMoveX(), getMoveY()));
 
@@ -58,7 +62,7 @@ public class SlimeKingAi : AI
 
     void DoAttack()
     {
-        if (!isOnCooldown)
+        if (!isOnCooldown && !attacking)
         {
             base.Move(new Vector2(0,0));
             switch (attackCounter)
@@ -121,9 +125,14 @@ public class SlimeKingAi : AI
 
     public override void TakeDamage(int damage)
     {
+        if(currentHealth == 1)  // Dont want object to be destroyed before doing animation
+        {
+            StartCoroutine(DeathAnimation());
+            return;
+        }
         base.TakeDamage(damage);
 
-        if(currentHealth % 5 == 0 && currentHealth != 0) // 5, 10, 15
+        if(currentHealth % 5 == 0) // 5, 10, 15
         {
             base.Move(new Vector2(0, 0));
             attacking = true;
@@ -133,6 +142,33 @@ public class SlimeKingAi : AI
             StartCoroutine(NotTired());
         }
     }
+
+    IEnumerator DeathAnimation()
+    {
+        attacking = true;
+        base.Move(new Vector2(0, 0));
+        
+
+        //SpriteRenderer sr = GetComponent<SpriteRenderer>();
+       
+        float amount = 255;
+        float decreaseBy = 255 / 30;
+
+        for(int i = 0; i < 30; i++)
+        {
+            amount -= decreaseBy;
+            sr.color = new Color(1, 1, 1, amount/255);
+            yield return new WaitForSecondsRealtime(0.1f);
+        }
+        sr.color = new Color(1, 1, 1, 0);
+
+
+        yield return new WaitForSecondsRealtime(2f);
+        Destroy(gameObject);
+        SceneManager.LoadScene("OoeysReign", LoadSceneMode.Single);
+        // Do endgame scene
+    }
+
     IEnumerator NotTired()
     {
         yield return new WaitForSecondsRealtime(5f);
