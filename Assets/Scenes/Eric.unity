@@ -1847,6 +1847,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6774084189301813483, guid: e102c20cdce024e09ba069accd3a704c, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6774084189301813488, guid: e102c20cdce024e09ba069accd3a704c, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6774084189301813488, guid: e102c20cdce024e09ba069accd3a704c, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6774084189301813488, guid: e102c20cdce024e09ba069accd3a704c, type: 3}
+      propertyPath: m_Color.r
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6774084189301813489, guid: e102c20cdce024e09ba069accd3a704c, type: 3}
@@ -1855,11 +1867,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6774084189301813489, guid: e102c20cdce024e09ba069accd3a704c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.6651886
+      value: -1.84
       objectReference: {fileID: 0}
     - target: {fileID: 6774084189301813489, guid: e102c20cdce024e09ba069accd3a704c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.1118093
+      value: -7.03
       objectReference: {fileID: 0}
     - target: {fileID: 6774084189301813489, guid: e102c20cdce024e09ba069accd3a704c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6976,6 +6988,42 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f357d4afd5ffb4104a6902a390520dd7, type: 3}
+--- !u!1 &864188346 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6774084189301813483, guid: e102c20cdce024e09ba069accd3a704c, type: 3}
+  m_PrefabInstance: {fileID: 611794286}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &864188351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 864188346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8acd1f5ab2b17db46a4520066f770e2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  absoluteMaxHealth: 5
+  initialMaxHealth: 5
+  currentHealth: 0
+  isInvincible: 0
+  beingKnockedBack: 0
+  rb: {fileID: 0}
+  moveSpeed: 0
+  moveDirection: {x: 0, y: 0}
+  stunned: 0
+  attacking: 0
+  shouldBeAbleToMove: 1
+  attackPoint: {fileID: 0}
+  attackRange: 0
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  solidObjectsLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!224 &931556627 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5776294488392091141, guid: 108aacc5a5ed34c5c8b3b08b7c850dd1, type: 3}
@@ -6991,6 +7039,10 @@ PrefabInstance:
     - target: {fileID: 3727692184470856898, guid: 23849c4e424bc4a4e9d0cee9f70b16ac, type: 3}
       propertyPath: m_Name
       value: King Slime
+      objectReference: {fileID: 0}
+    - target: {fileID: 3727692184470856898, guid: 23849c4e424bc4a4e9d0cee9f70b16ac, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3727692184470856901, guid: 23849c4e424bc4a4e9d0cee9f70b16ac, type: 3}
       propertyPath: m_RootOrder
@@ -7201,7 +7253,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4344539859987082749, guid: 673ed205dafdc284ba579e8a43c8b960, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4344539859987082749, guid: 673ed205dafdc284ba579e8a43c8b960, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9343,7 +9395,7 @@ RectTransform:
   m_Children:
   - {fileID: 931556627}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -9658,7 +9710,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &8316520473126130871
 PrefabInstance:
