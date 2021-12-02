@@ -70,10 +70,12 @@ public class SlimeKingAi : AI
     {
         if (!isOnCooldown && !attacking)
         {
+            attacking = true;
             base.Move(new Vector2(0,0));
             switch (attackCounter)
             {
                 case 0:
+                    attacking = false;  // So that king moves when doing melee attack
                     moveSpeed = 5f;
                     animator.SetTrigger("Melee");
                     break;
