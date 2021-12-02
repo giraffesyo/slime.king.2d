@@ -318,7 +318,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Eric Garcia
 
-    Micheal McQuade'
+    Michael McQuade'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e935d0dccec0847448a73fcdbfab62d8, type: 2}
   m_sharedMaterial: {fileID: -844697660237126193, guid: e935d0dccec0847448a73fcdbfab62d8, type: 2}
