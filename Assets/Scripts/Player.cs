@@ -31,9 +31,9 @@ public class Player : BaseCharacter
     {
         slimeKingActions = new SlimeKingActions();
         _abilities = new List<Ability>();
-        // ObtainAbility(Ability.AbilityKey.Slap);
-        // ObtainAbility(Ability.AbilityKey.Shoot);
-        // ObtainAbility(Ability.AbilityKey.Engulf);
+        ObtainAbility(Ability.AbilityKey.Slap);
+        ObtainAbility(Ability.AbilityKey.Shoot);
+        ObtainAbility(Ability.AbilityKey.Engulf);
     }
     private void OnEnable()
     {
@@ -113,9 +113,9 @@ public class Player : BaseCharacter
     override protected void Start()
     {
         base.Start();
-        //ObtainAbility(Ability.AbilityKey.Tornado);
-        //ObtainAbility(Ability.AbilityKey.Block);
-        //ObtainAbility(Ability.AbilityKey.Charge);
+        // ObtainAbility(Ability.AbilityKey.Tornado);
+        // ObtainAbility(Ability.AbilityKey.Block);
+        // ObtainAbility(Ability.AbilityKey.Charge);
     }
 
     public override void Die()

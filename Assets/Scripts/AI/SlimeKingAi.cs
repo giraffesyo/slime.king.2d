@@ -59,8 +59,6 @@ public class SlimeKingAi : AI
        
         DoAttack();
 
-        Debug.Log(sr.color);
-
         if(!attacking)
             base.Move(new Vector2(getMoveX(), getMoveY()));
 
@@ -198,6 +196,7 @@ public class SlimeKingAi : AI
 
     bool inPosition()
     {
+        Debug.Log($"Position: {playerPos.position} X: {topLeftX} {botRightX} Y: {topLeftY} {botRightY} ");
         if(playerPos.position.x >= topLeftX && playerPos.position.x <= botRightX)
         {
             if (playerPos.position.y >= botRightY && playerPos.position.y <= topLeftY)
