@@ -39959,6 +39959,10 @@ PrefabInstance:
       propertyPath: botRightY
       value: 32
       objectReference: {fileID: 0}
+    - target: {fileID: 3727692184470856907, guid: 23849c4e424bc4a4e9d0cee9f70b16ac, type: 3}
+      propertyPath: initialMaxHealth
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23849c4e424bc4a4e9d0cee9f70b16ac, type: 3}
 --- !u!1 &541045673
@@ -59719,11 +59723,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6186095729871883245, guid: 673ed205dafdc284ba579e8a43c8b960, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4
+      value: -4.8
       objectReference: {fileID: 0}
     - target: {fileID: 6186095729871883245, guid: 673ed205dafdc284ba579e8a43c8b960, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.4
+      value: -3.9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 673ed205dafdc284ba579e8a43c8b960, type: 3}

@@ -30,6 +30,7 @@ public class SlimeKingAi : AI
 
     int attackCounter = 0; // Next attack that will be done
     int stage = 1;
+    bool canBeDamaged = true;
 
 
     protected override void Start()
@@ -94,11 +95,18 @@ public class SlimeKingAi : AI
         }
     }
     IEnumerator StartCooldown()
-        {
+    {
             yield return new WaitForSecondsRealtime(cooldownTimer);
             isOnCooldown = false;
-        }
+    }
 
+    IEnumerator DamageCooldown()
+    {
+        canBeDamaged = false;
+        yield return new WaitForSecondsRealtime(0.5f);
+        canBeDamaged = true;
+    }
+    
     void doDebreeAttack()   // Is called by animation event
     {
         attacking = true;
@@ -131,24 +139,27 @@ public class SlimeKingAi : AI
     }
 
     public override void TakeDamage(int damage)
-    {        
+    {
+        if (!canBeDamaged)
+            return;
+
         // Transform green hp
         float prevScale = scale;
         scale -= decreaseBy;
 
         greenHP.localPosition = greenHP.localPosition - new Vector3((prevScale - scale) / 2, 0, 0);
         greenHP.localScale = new Vector3(scale, 0.2f, 1);
-        
+
 
         if(currentHealth == 1)  // Dont want object to be destroyed before doing animation
         {
-            polyCollider.enabled = false;
+           polyCollider.enabled = false;
             StartCoroutine(DeathAnimation());
             return;
         }
         base.TakeDamage(damage);
-
-
+        
+        StartCoroutine(DamageCooldown());
 
         if(currentHealth % 5 == 0) // 5, 10, 15
         {
@@ -196,7 +207,6 @@ public class SlimeKingAi : AI
 
     bool inPosition()
     {
-        Debug.Log($"Position: {playerPos.position} X: {topLeftX} {botRightX} Y: {topLeftY} {botRightY} ");
         if(playerPos.position.x >= topLeftX && playerPos.position.x <= botRightX)
         {
             if (playerPos.position.y >= botRightY && playerPos.position.y <= topLeftY)

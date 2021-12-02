@@ -72,17 +72,21 @@ public class AI : BaseCharacter
 
     IEnumerator Stun()
     {
-        //base.Move(new Vector2(0, 0));
-        stunObject.GetComponent<SpriteRenderer>().enabled = true;
-        engulfStunned = true;
-        transform.rotation = Quaternion.identity;
-        spriteRenderer.flipY = false;
+        if (stunObject != null)
+        {
 
-        yield return new WaitForSecondsRealtime(3.0f);
-        SetCurrentHealth(currentHealth + 1);
-        engulfStunned = false;
-        attacking = false;
-        stunObject.GetComponent<SpriteRenderer>().enabled = false;
+            //base.Move(new Vector2(0, 0));
+            stunObject.GetComponent<SpriteRenderer>().enabled = true;
+            engulfStunned = true;
+            transform.rotation = Quaternion.identity;
+            spriteRenderer.flipY = false;
+
+            yield return new WaitForSecondsRealtime(3.0f);
+            SetCurrentHealth(currentHealth + 1);
+            engulfStunned = false;
+            attacking = false;
+            stunObject.GetComponent<SpriteRenderer>().enabled = false;
+        }
     }
 
     public override void Die()
