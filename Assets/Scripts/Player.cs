@@ -31,9 +31,9 @@ public class Player : BaseCharacter
     {
         slimeKingActions = new SlimeKingActions();
         _abilities = new List<Ability>();
-        ObtainAbility(Ability.AbilityKey.Slap);
-        ObtainAbility(Ability.AbilityKey.Shoot);
-        ObtainAbility(Ability.AbilityKey.Engulf);
+        // ObtainAbility(Ability.AbilityKey.Slap);
+        // ObtainAbility(Ability.AbilityKey.Shoot);
+        // ObtainAbility(Ability.AbilityKey.Engulf);
     }
     private void OnEnable()
     {
