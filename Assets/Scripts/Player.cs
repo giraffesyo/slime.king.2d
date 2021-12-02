@@ -31,9 +31,9 @@ public class Player : BaseCharacter
     {
         slimeKingActions = new SlimeKingActions();
         _abilities = new List<Ability>();
-        ObtainAbility(Ability.AbilityKey.Slap);
-        ObtainAbility(Ability.AbilityKey.Shoot);
-        ObtainAbility(Ability.AbilityKey.Engulf);
+        // ObtainAbility(Ability.AbilityKey.Slap);
+        // ObtainAbility(Ability.AbilityKey.Shoot);
+        // ObtainAbility(Ability.AbilityKey.Engulf);
     }
     private void OnEnable()
     {
@@ -60,14 +60,14 @@ public class Player : BaseCharacter
         slimeKingActions.Player.SelectAbility3.Enable();
         slimeKingActions.Player.SelectAbility4.performed += (InputAction.CallbackContext ctx) => SelectAbility(ctx, 6);
         slimeKingActions.Player.SelectAbility4.Enable();
-        slimeKingActions.Player.UseAbility.performed += (InputAction.CallbackContext ctx) =>
-        {
-            if (activeAbility != null)
-            {
-                RequestUse(ctx, (int)activeAbility);
-            }
-        };
-        slimeKingActions.Player.UseAbility.Enable();
+        // slimeKingActions.Player.UseAbility.performed += (InputAction.CallbackContext ctx) =>
+        // {
+        //     if (activeAbility != null)
+        //     {
+        //         RequestUse(ctx, (int)activeAbility);
+        //     }
+        // };
+        // slimeKingActions.Player.UseAbility.Enable();
     }
 
 
@@ -81,6 +81,10 @@ public class Player : BaseCharacter
         else
         {
             activeAbility = null;
+        }
+        if (activeAbility != null)
+        {
+            RequestUse(ctx, (int)activeAbility);
         }
     }
 
@@ -96,7 +100,7 @@ public class Player : BaseCharacter
         slimeKingActions.Player.SelectAbility2.Disable();
         slimeKingActions.Player.SelectAbility3.Disable();
         slimeKingActions.Player.SelectAbility4.Disable();
-        slimeKingActions.Player.UseAbility.Disable();
+        // slimeKingActions.Player.UseAbility.Disable();
     }
 
     override protected void FixedUpdate()

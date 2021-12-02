@@ -318,7 +318,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Eric Garcia
 
-    Micheal McQuade'
+    Michael McQuade'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e935d0dccec0847448a73fcdbfab62d8, type: 2}
   m_sharedMaterial: {fileID: -844697660237126193, guid: e935d0dccec0847448a73fcdbfab62d8, type: 2}
@@ -1377,8 +1377,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -135, y: -6.600006}
-  m_SizeDelta: {x: -883, y: -523}
+  m_AnchoredPosition: {x: -135, y: 18.310005}
+  m_SizeDelta: {x: -883, y: -473.18002}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1316218574
 MonoBehaviour:
@@ -1403,8 +1403,6 @@ MonoBehaviour:
   m_text: 'Mohammed Anam
 
     SoundBible
-
-    Loom.com
 
     Mixkit'
   m_isRightToLeft: 0
