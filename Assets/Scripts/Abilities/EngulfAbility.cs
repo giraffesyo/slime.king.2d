@@ -28,7 +28,6 @@ public class EngulfAbility : Ability
         if (!onCooldown)
         {
             rotation = Mathf.Atan2(mousePositoin.y - transform.position.y, mousePositoin.x - transform.position.x) * Mathf.Rad2Deg - 90;
-            Debug.Log(rotation);
             soundManager.PlayAbilitySound(abilityKey);
             animator.SetTrigger("Engulf");
             onCooldown = true;

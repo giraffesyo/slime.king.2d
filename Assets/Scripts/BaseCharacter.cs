@@ -92,7 +92,7 @@ public class BaseCharacter : Damageable
         // play dying sound for this unit
     }
 
-    public void Knockback(float knockbackPower, Transform obj)
+    public virtual void Knockback(float knockbackPower, Transform obj)
     {
         StartCoroutine(doKnockback(knockbackPower, obj));
     }

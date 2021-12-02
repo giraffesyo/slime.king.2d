@@ -75,6 +75,7 @@ public class SlimeKingAi : AI
             switch (attackCounter)
             {
                 case 0:
+                    moveSpeed = 5f;
                     animator.SetTrigger("Melee");
                     break;
                 case 1:
@@ -128,6 +129,7 @@ public class SlimeKingAi : AI
     {
         melee.Use();
         attacking = false;
+        moveSpeed = 1f;
     }
 
     public override void TakeDamage(int damage)
@@ -216,5 +218,10 @@ public class SlimeKingAi : AI
 
             enemyChar.TakeDamage(1);
         }
+    }
+
+    public override void Knockback(float knockbackPower, Transform obj)
+    {
+       // Do Nothing, slime king shouldnt be knocked back
     }
 }
