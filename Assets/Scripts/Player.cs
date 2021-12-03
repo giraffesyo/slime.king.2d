@@ -15,6 +15,7 @@ public class Player : BaseCharacter
     // Hide the ability list from the inspector
     public ReadOnlyCollection<Ability> abilities => _abilities.AsReadOnly();
 
+
     private SlimeKingActions slimeKingActions;
     private InputAction movement;
     private InputAction aiming;
@@ -60,6 +61,7 @@ public class Player : BaseCharacter
         slimeKingActions.Player.SelectAbility3.Enable();
         slimeKingActions.Player.SelectAbility4.performed += (InputAction.CallbackContext ctx) => SelectAbility(ctx, 6);
         slimeKingActions.Player.SelectAbility4.Enable();
+
         // slimeKingActions.Player.UseAbility.performed += (InputAction.CallbackContext ctx) =>
         // {
         //     if (activeAbility != null)

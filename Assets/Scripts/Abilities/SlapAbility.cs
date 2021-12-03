@@ -19,6 +19,7 @@ public class SlapAbility : Ability
         enemyFilter = new ContactFilter2D();
         enemyFilter.SetLayerMask(enemyLayers);
         cooldown = 1;
+        meleeCollider = baseCharacter.meleeCollider;
     }
     public override bool RequestUse(InputAction.CallbackContext ctx, Vector2 mousePosition)
     {
@@ -47,11 +48,7 @@ public class SlapAbility : Ability
         base.Use(key);
 
         locked = false;
-        if (meleeCollider == null)
-        {
-            meleeCollider = gameObject.AddComponent<PolygonCollider2D>();
-            meleeCollider.isTrigger = true;
-        }
+
 
         List<Collider2D> hitEnemies = new List<Collider2D>();
 

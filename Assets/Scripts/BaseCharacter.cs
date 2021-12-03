@@ -28,6 +28,7 @@ public class BaseCharacter : Damageable
     public bool attacking = false;
     public bool shouldBeAbleToMove = true;
     protected SpriteRenderer spriteRenderer;
+    public PolygonCollider2D meleeCollider; // probably shouldnt be here
 
     protected virtual void Start()
     {
@@ -72,7 +73,7 @@ public class BaseCharacter : Damageable
                 facingRight = false;
             spriteRenderer.flipY = false;
             transform.rotation = Quaternion.identity;
-        }            
+        }
         if (shouldBeAbleToMove)
             moveDirection = direction.normalized;
     }
