@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Main.unity
     guid: 74f300065f3f36449a9b6e7cba733af3
   - enabled: 1
+    path: Assets/Scenes/Chi.unity
+    guid: 857abe3a77f964d3d99362126788eebe
+  - enabled: 1
     path: Assets/Scenes/Creditsv2.unity
     guid: 4f3534bd4add1004d90110f05da31875
   - enabled: 1
