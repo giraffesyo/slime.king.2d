@@ -5,13 +5,17 @@ using UnityEngine;
 public class Checkpoint : MonoBehaviour
 {
     public Transform spawnPoint;
-    bool hasBeenUsed = false;
+    bool previouslyActivated = false;
+    public SpriteRenderer indicatorSpriteRenderer;
+    public Sprite activatedSprite;
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (hasBeenUsed) return;
+        if (previouslyActivated) return;
         if (other.gameObject.CompareTag("Player"))
         {
-            hasBeenUsed = true;
+            previouslyActivated = true;
+            indicatorSpriteRenderer.sprite = activatedSprite;
             spawnPoint.transform.position = transform.position;
         }
     }
