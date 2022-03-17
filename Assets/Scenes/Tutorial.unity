@@ -19023,6 +19023,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 541131464, guid: 673ed205dafdc284ba579e8a43c8b960, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1198872340, guid: 673ed205dafdc284ba579e8a43c8b960, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2062345186, guid: 673ed205dafdc284ba579e8a43c8b960, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2924428367351548870, guid: 673ed205dafdc284ba579e8a43c8b960, type: 3}
       propertyPath: m_Name
       value: Essentials
