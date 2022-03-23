@@ -1,18 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
 
 
-public class SummonAbility: MonoBehaviour
+public class SummonAbility : MonoBehaviour
 {
 
-    GameObject MeleeSlime;
+    private List<GameObject> summonedEnemies = new List<GameObject>();
     Vector2[] spawnLocations = new Vector2[4];
-
-    void Start() {
-        var addressable = Addressables.LoadAssetAsync<GameObject>("MeleeEnemy");
-        addressable.Completed += (obj) => MeleeSlime = obj.Result;
+    public GameObject MeleeEnemyPrefab;
+    void Start()
+    {
         spawnLocations[0] = new Vector2(-3, -3);
         spawnLocations[1] = new Vector2(3, -3);
         spawnLocations[2] = new Vector2(-3, 3);
@@ -21,15 +19,32 @@ public class SummonAbility: MonoBehaviour
 
     public void Use(int stage)
     {
-        // If on stage 1, will spawn 2 slimes
-        for(int i = 0; i < stage + 1; i++)
-        {
-            GameObject slime = Instantiate(MeleeSlime, GetComponent<Transform>().position + (Vector3)spawnLocations[i], transform.rotation);
-            slime.layer = gameObject.layer;
-            slime.GetComponent<Damageable>().initialMaxHealth = 2;
-            slime.GetComponent<Damageable>().currentHealth = 2;
-        }
+
+
+        // foreach (GameObject enemy in summonedEnemies)
+        // {
+        //     Destroy(enemy);
+        // }
+        // summonedEnemies.Clear();
+        StartCoroutine(NextFrame(stage));
+
+
     }
 
+    private IEnumerator NextFrame(int stage)
+    {
+        yield return new WaitForEndOfFrame();
+        // If on stage 1, will spawn 2 slimes
+        for (int i = 0; i < stage + 1; i++)
+        {
+            GameObject slime = Instantiate(MeleeEnemyPrefab, transform.position + (Vector3)spawnLocations[i], transform.rotation);
+            summonedEnemies.Add(slime);
+            slime.layer = gameObject.layer;
+            Damageable damageable = slime.GetComponent<Damageable>();
+            damageable.initialMaxHealth = 2;
+            damageable.currentHealth = 2;
+
+        }
+    }
 
 }

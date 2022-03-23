@@ -39913,6 +39913,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3727692184470856902, guid: 23849c4e424bc4a4e9d0cee9f70b16ac, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3727692184470856904, guid: 23849c4e424bc4a4e9d0cee9f70b16ac, type: 3}
+      propertyPath: MeleeEnemyPrefab
+      value: 
+      objectReference: {fileID: 524629168777218292, guid: 724cc358a7620ba4e975fa6679fb047b, type: 3}
     - target: {fileID: 3727692184470856907, guid: 23849c4e424bc4a4e9d0cee9f70b16ac, type: 3}
       propertyPath: topLeftX
       value: 150
@@ -59749,11 +59757,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6186095729871883245, guid: 673ed205dafdc284ba579e8a43c8b960, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.78
+      value: 156.8
       objectReference: {fileID: 0}
     - target: {fileID: 6186095729871883245, guid: 673ed205dafdc284ba579e8a43c8b960, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4
+      value: 27.1
       objectReference: {fileID: 0}
     - target: {fileID: 7692142367669874863, guid: 673ed205dafdc284ba579e8a43c8b960, type: 3}
       propertyPath: m_Pivot.y

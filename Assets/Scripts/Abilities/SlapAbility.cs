@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class SlapAbility : Ability
 {
 
-    private PolygonCollider2D meleeCollider;
+    private CapsuleCollider2D meleeCollider;
     private ContactFilter2D enemyFilter;
 
     public int attackDamage = 1;
