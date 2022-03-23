@@ -200,7 +200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilityKey: 0
-  cooldown: 3
+  cooldown: 0.5
   onCooldown: 0
   currentCooldown: 0
   enemyLayers:

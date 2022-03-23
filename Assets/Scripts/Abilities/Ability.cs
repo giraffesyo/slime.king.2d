@@ -20,9 +20,9 @@ public abstract class Ability : MonoBehaviour
         Block
     }
     public AbilityKey abilityKey;
-    [SerializeField] protected int cooldown;
+    [SerializeField] protected float cooldown;
     [SerializeField] public bool onCooldown;
-    [SerializeField] protected int currentCooldown;
+    [SerializeField] protected float currentCooldown;
 
     [SerializeField] public LayerMask enemyLayers;  // All objects must be in a layer
 

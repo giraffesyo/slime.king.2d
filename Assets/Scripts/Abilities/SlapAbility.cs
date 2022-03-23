@@ -18,7 +18,12 @@ public class SlapAbility : Ability
         abilityKey = Ability.AbilityKey.Slap;
         enemyFilter = new ContactFilter2D();
         enemyFilter.SetLayerMask(enemyLayers);
-        cooldown = 1;
+        if (!isAi)
+        {
+            cooldown = 0f;
+        }
+
+
         meleeCollider = baseCharacter.meleeCollider;
     }
     public override bool RequestUse(InputAction.CallbackContext ctx, Vector2 mousePosition)

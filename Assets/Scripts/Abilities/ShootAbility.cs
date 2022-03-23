@@ -20,7 +20,7 @@ public class ShootAbility : Ability
         var addressable = Addressables.LoadAssetAsync<GameObject>("missile");
         addressable.Completed += (obj) => missilePrefab = obj.Result;
         this.abilityKey = Ability.AbilityKey.Shoot;
-        cooldown = 2;
+        cooldown = 1;
 
         // Makes sure enemy missiles will not hit enemies
         if (isAi)
