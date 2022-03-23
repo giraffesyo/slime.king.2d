@@ -46,10 +46,14 @@ public class Pause : MonoBehaviour
             }
         }
     }
-    public void LoadMenu(){
+    public void LoadMenu()
+    {
+        Time.timeScale = 1;
+        AudioListener.pause = false;
         SceneManager.LoadScene("Menu");
     }
-    public void QuitGame(){
+    public void QuitGame()
+    {
         Application.Quit();
     }
 }
