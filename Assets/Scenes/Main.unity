@@ -59730,7 +59730,7 @@ PrefabInstance:
     - target: {fileID: 5518491822806382752, guid: 673ed205dafdc284ba579e8a43c8b960, type: 3}
       propertyPath: musicObject
       value: 
-      objectReference: {fileID: 1594822222}
+      objectReference: {fileID: 1644866354}
     - target: {fileID: 6186095728246034419, guid: 673ed205dafdc284ba579e8a43c8b960, type: 3}
       propertyPath: m_UiScaleMode
       value: 1
@@ -59749,11 +59749,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6186095729871883245, guid: 673ed205dafdc284ba579e8a43c8b960, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.19
+      value: -8.65
       objectReference: {fileID: 0}
     - target: {fileID: 6186095729871883245, guid: 673ed205dafdc284ba579e8a43c8b960, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.86
+      value: -3.96
       objectReference: {fileID: 0}
     - target: {fileID: 7692142367669874863, guid: 673ed205dafdc284ba579e8a43c8b960, type: 3}
       propertyPath: m_Pivot.y
@@ -79255,9 +79255,9 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 524629168777218299, guid: 724cc358a7620ba4e975fa6679fb047b, type: 3}
   m_PrefabInstance: {fileID: 1797757665}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1594822222 stripped
+--- !u!1 &1644866354 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 7781593059081515482, guid: 673ed205dafdc284ba579e8a43c8b960, type: 3}
+  m_CorrespondingSourceObject: {fileID: 5332722386171653969, guid: 673ed205dafdc284ba579e8a43c8b960, type: 3}
   m_PrefabInstance: {fileID: 893232574}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1671214809
