@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6774084189301813494}
   - component: {fileID: 7486720954519182752}
   - component: {fileID: 353920968955917778}
+  - component: {fileID: 6817306511884427943}
   m_Layer: 10
   m_Name: UselessEnemy
   m_TagString: Untagged
@@ -155,6 +156,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   isAi: 1
+  rotation: 0
   attackDamage: 1
 --- !u!114 &353920968955917778
 MonoBehaviour:
@@ -171,19 +173,42 @@ MonoBehaviour:
   absoluteMaxHealth: 5
   initialMaxHealth: 3
   currentHealth: 0
+  isInvincible: 0
   beingKnockedBack: 0
   rb: {fileID: 6774084189301813495}
   moveSpeed: 3
   moveDirection: {x: 0, y: 0}
-  invincible: 0
   stunned: 0
   attacking: 0
   shouldBeAbleToMove: 1
+  meleeCollider: {fileID: 0}
   attackPoint: {fileID: 1214610667831318445}
   attackRange: 1
   playerLayer:
     serializedVersion: 2
     m_Bits: 2048
+  solidObjectsLayer:
+    serializedVersion: 2
+    m_Bits: 0
+--- !u!95 &6817306511884427943
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6774084189301813483}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c039f4b720abe4c40b5cbeedebfb7db0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7259103202565822874
 GameObject:
   m_ObjectHideFlags: 0
