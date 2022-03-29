@@ -51,6 +51,7 @@ public class EnemySpawner : MonoBehaviour
             // **Could be converted to a seperate function**
           }
           spawnClock = 0.0f;
+          spawnFlag = false;
         }
       }
       else
