@@ -17,7 +17,8 @@ public abstract class Ability : MonoBehaviour
         Engulf,
         Charge,
         Tornado,
-        Block
+        Block,
+        Drill
     }
     public AbilityKey abilityKey;
     [SerializeField] protected float cooldown;

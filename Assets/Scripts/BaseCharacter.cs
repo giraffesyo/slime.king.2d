@@ -13,7 +13,8 @@ public class BaseCharacter : Damageable
     public Vector2 moveDirection;
 
     private Animator anim;
-    public bool facingRight
+
+    public virtual bool facingRight
     {
         get
         {
@@ -53,6 +54,7 @@ public class BaseCharacter : Damageable
         if (!beingKnockedBack)
         {
             rb.velocity = moveDirection * moveSpeed;
+            rb.angularVelocity = moveSpeed;
         }
         // Fixes rotation getting stuck
         if (attacking && anim != null && anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
@@ -85,6 +87,7 @@ public class BaseCharacter : Damageable
     public void ResetSpeed()
     {
         moveSpeed = baseSpeed;
+
     }
 
     public virtual void Die()
