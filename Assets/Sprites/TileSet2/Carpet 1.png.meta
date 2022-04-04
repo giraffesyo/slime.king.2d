@@ -14,6 +14,21 @@ TextureImporter:
   - first:
       213: 5430072998902867862
     second: Carpet 1_3
+  - first:
+      213: 4536598999244289421
+    second: Carpet 1_4
+  - first:
+      213: -8127772645563637327
+    second: Carpet 1_5
+  - first:
+      213: -3671943100822998014
+    second: Carpet 1_6
+  - first:
+      213: 2269632117375985195
+    second: Carpet 1_7
+  - first:
+      213: 2383082274129312848
+    second: Carpet 1_8
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -58,7 +73,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 650
+  spritePixelsToUnits: 675
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -130,12 +145,12 @@ TextureImporter:
       name: Carpet 1_0
       rect:
         serializedVersion: 2
-        x: 325
-        y: 1012
-        width: 687
-        height: 687
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 1514
+        width: 519
+        height: 511
+      alignment: 9
+      pivot: {x: 1.2955098, y: -0.31880918}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -151,12 +166,12 @@ TextureImporter:
       name: Carpet 1_1
       rect:
         serializedVersion: 2
-        x: 1012
-        y: 1012
-        width: 688
-        height: 687
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 675
+        y: 1510
+        width: 675
+        height: 515
+      alignment: 9
+      pivot: {x: 0.50266826, y: -0.29042092}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -172,12 +187,12 @@ TextureImporter:
       name: Carpet 1_2
       rect:
         serializedVersion: 2
-        x: 325
-        y: 327
-        width: 687
-        height: 686
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1517
+        y: 1505
+        width: 508
+        height: 517
+      alignment: 9
+      pivot: {x: -0.33455363, y: -0.30394682}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -193,12 +208,12 @@ TextureImporter:
       name: Carpet 1_3
       rect:
         serializedVersion: 2
-        x: 1012
-        y: 327
-        width: 688
-        height: 686
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 675
+        width: 515
+        height: 675
+      alignment: 9
+      pivot: {x: 1.2836201, y: 0.4905845}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -206,6 +221,111 @@ TextureImporter:
       bones: []
       spriteID: 697ab0c6f9e7b5b40800000000000000
       internalID: 5430072998902867862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Carpet 1_4
+      rect:
+        serializedVersion: 2
+        x: 675
+        y: 675
+        width: 675
+        height: 675
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d85395ef0cc35fe30800000000000000
+      internalID: 4536598999244289421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Carpet 1_5
+      rect:
+        serializedVersion: 2
+        x: 1510
+        y: 675
+        width: 515
+        height: 675
+      alignment: 9
+      pivot: {x: -0.28233987, y: 0.4958949}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b1ea0677d9543f80800000000000000
+      internalID: -8127772645563637327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Carpet 1_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 514
+        height: 508
+      alignment: 9
+      pivot: {x: 1.3140299, y: 1.3290988}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 204bfff5433aa0dc0800000000000000
+      internalID: -3671943100822998014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Carpet 1_7
+      rect:
+        serializedVersion: 2
+        x: 675
+        y: 0
+        width: 675
+        height: 515
+      alignment: 9
+      pivot: {x: 0.4999999, y: 1.2846323}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b26630fb26a5f7f10800000000000000
+      internalID: 2269632117375985195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Carpet 1_8
+      rect:
+        serializedVersion: 2
+        x: 1511
+        y: 0
+        width: 514
+        height: 505
+      alignment: 9
+      pivot: {x: -0.3140297, y: 1.3340243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05cf104c3b8621120800000000000000
+      internalID: 2383082274129312848
       vertices: []
       indices: 
       edges: []

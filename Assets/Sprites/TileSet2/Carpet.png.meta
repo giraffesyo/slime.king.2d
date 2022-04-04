@@ -29,6 +29,27 @@ TextureImporter:
   - first:
       213: 6307645915033615906
     second: Carpet_8
+  - first:
+      213: 318293378224529130
+    second: Carpet_9
+  - first:
+      213: 1255886806578858968
+    second: Carpet_10
+  - first:
+      213: -1370053830823408383
+    second: Carpet_11
+  - first:
+      213: 4776764760275316961
+    second: Carpet_12
+  - first:
+      213: 3861012736743358608
+    second: Carpet_13
+  - first:
+      213: -5258542884374016614
+    second: Carpet_14
+  - first:
+      213: 882005818096186194
+    second: Carpet_15
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -73,7 +94,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 675
+  spritePixelsToUnits: 1030
   spriteBorder: {x: 326, y: 326, z: 326, w: 326}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -145,12 +166,12 @@ TextureImporter:
       name: Carpet_0
       rect:
         serializedVersion: 2
-        x: 325
+        x: 0
         y: 1350
-        width: 350
-        height: 349
-      alignment: 1
-      pivot: {x: 0, y: 1}
+        width: 675
+        height: 675
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -169,9 +190,9 @@ TextureImporter:
         x: 675
         y: 1350
         width: 675
-        height: 349
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        height: 675
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -189,10 +210,10 @@ TextureImporter:
         serializedVersion: 2
         x: 1350
         y: 1350
-        width: 350
-        height: 349
-      alignment: 6
-      pivot: {x: 0, y: 0}
+        width: 675
+        height: 675
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -208,12 +229,12 @@ TextureImporter:
       name: Carpet_3
       rect:
         serializedVersion: 2
-        x: 325
+        x: 0
         y: 675
-        width: 352
+        width: 675
         height: 675
-      alignment: 5
-      pivot: {x: 1, y: 0.5}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -226,36 +247,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Carpet_4
+      name: Carpet_5
       rect:
         serializedVersion: 2
-        x: 675
+        x: 1350
         y: 675
         width: 675
         height: 675
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 21b00f2f4dd1d8680800000000000000
-      internalID: -8751305700464915694
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Carpet_5
-      rect:
-        serializedVersion: 2
-        x: 1352
-        y: 675
-        width: 350
-        height: 675
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -271,12 +271,12 @@ TextureImporter:
       name: Carpet_6
       rect:
         serializedVersion: 2
-        x: 325
-        y: 327
-        width: 350
-        height: 348
-      alignment: 3
-      pivot: {x: 1, y: 1}
+        x: 0
+        y: 0
+        width: 675
+        height: 675
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -292,12 +292,12 @@ TextureImporter:
       name: Carpet_7
       rect:
         serializedVersion: 2
-        x: 677
-        y: 327
+        x: 675
+        y: 0
         width: 675
-        height: 348
-      alignment: 2
-      pivot: {x: 0.5, y: 1}
+        height: 675
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -314,11 +314,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1350
-        y: 327
-        width: 350
-        height: 348
-      alignment: 1
-      pivot: {x: 0, y: 1}
+        y: 0
+        width: 675
+        height: 675
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -326,6 +326,27 @@ TextureImporter:
       bones: []
       spriteID: 22eb5865a82498750800000000000000
       internalID: 6307645915033615906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Carpet_4
+      rect:
+        serializedVersion: 2
+        x: 494
+        y: 497
+        width: 1036
+        height: 1031
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21b00f2f4dd1d8680800000000000000
+      internalID: -8751305700464915694
       vertices: []
       indices: 
       edges: []

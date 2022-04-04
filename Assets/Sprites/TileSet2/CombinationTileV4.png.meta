@@ -17,6 +17,27 @@ TextureImporter:
   - first:
       213: -114204399296655927
     second: CombinationTileV4_4
+  - first:
+      213: 4991267262538783583
+    second: CombinationTileV4_9
+  - first:
+      213: 515204936958737507
+    second: CombinationTileV4_10
+  - first:
+      213: 8650533282423404407
+    second: CombinationTileV4_15
+  - first:
+      213: -6214119922629806335
+    second: CombinationTileV4_16
+  - first:
+      213: 4272195330811457227
+    second: CombinationTileV4_17
+  - first:
+      213: 7056249127334503277
+    second: CombinationTileV4_18
+  - first:
+      213: -671980516075355079
+    second: CombinationTileV4_19
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -61,7 +82,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 450
+  spritePixelsToUnits: 700
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -133,10 +154,10 @@ TextureImporter:
       name: CombinationTileV4_0
       rect:
         serializedVersion: 2
-        x: 450
-        y: 900
-        width: 450
-        height: 450
+        x: 0
+        y: 675
+        width: 675
+        height: 675
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,10 +175,10 @@ TextureImporter:
       name: CombinationTileV4_1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 450
-        width: 450
-        height: 450
+        x: 675
+        y: 675
+        width: 675
+        height: 675
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -175,10 +196,10 @@ TextureImporter:
       name: CombinationTileV4_2
       rect:
         serializedVersion: 2
-        x: 450
-        y: 450
-        width: 450
-        height: 450
+        x: 0
+        y: 0
+        width: 675
+        height: 675
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -196,10 +217,10 @@ TextureImporter:
       name: CombinationTileV4_3
       rect:
         serializedVersion: 2
-        x: 900
-        y: 450
-        width: 450
-        height: 450
+        x: 675
+        y: 0
+        width: 675
+        height: 675
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -209,27 +230,6 @@ TextureImporter:
       bones: []
       spriteID: 00d679dde77ec0ee0800000000000000
       internalID: -1293404460892590848
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CombinationTileV4_4
-      rect:
-        serializedVersion: 2
-        x: 450
-        y: 0
-        width: 450
-        height: 450
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9cdc22434b34a6ef0800000000000000
-      internalID: -114204399296655927
       vertices: []
       indices: 
       edges: []
