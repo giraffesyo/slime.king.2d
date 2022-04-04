@@ -12,6 +12,7 @@ public class AI : BaseCharacter
     protected Transform playerPos;    // Transform object of the controllable player
     protected float dist;
     public float attackRange;
+    public bool alwaysEngulfable;
 
     public LayerMask playerLayer;
     public LayerMask solidObjectsLayer;
@@ -24,7 +25,7 @@ public class AI : BaseCharacter
     {
         get
         {
-            return engulfStunned;
+            return alwaysEngulfable || engulfStunned;
         }
     }
 
@@ -96,7 +97,7 @@ public class AI : BaseCharacter
         Destroy(this.gameObject);
     }
 
-    private bool inLineofSight()
+    protected virtual bool inLineofSight()
     {
         float dist = Vector3.Distance(transform.position, playerPos.position);
         Vector3 direction = (playerPos.position - transform.position).normalized;

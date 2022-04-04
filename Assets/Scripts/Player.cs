@@ -151,7 +151,7 @@ public class Player : BaseCharacter
             Debug.LogError($"Could not add ability {key}");
             return;
         }
-        ability.enemyLayers = enemyLayer;
+        ability.enemyLayers = enemyLayer | (1 << LayerMask.NameToLayer("NoClipWallsEnemies")) | (1 << LayerMask.NameToLayer("Enemies")) | (1 << LayerMask.NameToLayer("NoClipPlayerEnemies"));
         _abilities.Add(ability);
         AbilitiesUpdated?.Invoke(key, _abilities.Count - 1);
     }

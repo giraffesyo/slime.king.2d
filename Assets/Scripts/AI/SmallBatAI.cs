@@ -3,26 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class ThornyAI : AI
+public class SmallBatAI : AI
 {
     Vector2 targetLocation;
     BaseCharacter baseChar;
-
-
-    override public bool engulfable
-    {
-        get
-        {
-            return true;
-        }
-    }
 
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
-
+        alwaysEngulfable = true;
         baseChar = GetComponent<BaseCharacter>();
+    }
+
+
+    override protected bool inLineofSight()
+    {
+        return true;
     }
 
     protected override bool Move()

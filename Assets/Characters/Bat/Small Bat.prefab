@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 5385073758735396259}
   - component: {fileID: 5385073758735396280}
   - component: {fileID: 5385073758735396281}
-  - component: {fileID: 5385073758735396261}
-  m_Layer: 10
+  - component: {fileID: 1422835394}
+  m_Layer: 7
   m_Name: Small Bat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -142,7 +142,7 @@ CircleCollider2D:
   m_Offset: {x: -0.2, y: 0.47}
   serializedVersion: 2
   m_Radius: 1
---- !u!114 &5385073758735396261
+--- !u!114 &1422835394
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -151,7 +151,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5385073758735396258}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ee8f4366eea244fe918b9250402ea6b, type: 3}
+  m_Script: {fileID: 11500000, guid: 2756ed2f195a347c6901023b8ce3c02e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   absoluteMaxHealth: 5
@@ -168,6 +168,7 @@ MonoBehaviour:
   meleeCollider: {fileID: 0}
   attackPoint: {fileID: 0}
   attackRange: 0
+  alwaysEngulfable: 1
   playerLayer:
     serializedVersion: 2
     m_Bits: 2048
