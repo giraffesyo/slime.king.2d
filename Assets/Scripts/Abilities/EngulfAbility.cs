@@ -67,9 +67,13 @@ public class EngulfAbility : Ability
             {
                 // grab a copy of their ability key
                 Ability enemyAbility = enemyChar.GetComponent<Ability>();
-                Ability.AbilityKey abilityKey = enemyAbility.abilityKey;
-                // Tell the player script we should obtain this ability
-                player.ObtainAbility(abilityKey);
+                if (enemyAbility != null)
+                {
+                    Ability.AbilityKey abilityKey = enemyAbility.abilityKey;
+                    // Tell the player script we should obtain this ability
+                    player.ObtainAbility(abilityKey);
+
+                }
                 // kill the enemy
                 enemyChar.Die();
                 if (player.atMaxHealth)

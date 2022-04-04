@@ -9,10 +9,19 @@ public class ThornyAI : AI
     BaseCharacter baseChar;
 
 
+    override public bool engulfable
+    {
+        get
+        {
+            return true;
+        }
+    }
+
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
+
         baseChar = GetComponent<BaseCharacter>();
     }
 
@@ -33,13 +42,11 @@ public class ThornyAI : AI
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!engulfable)
-            hitEnemy(collision);
+        hitEnemy(collision);
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (!engulfable)
-            hitEnemy(collision);
+        hitEnemy(collision);
     }
 
     private void hitEnemy(Collision2D collision)

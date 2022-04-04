@@ -20,7 +20,7 @@ public class AI : BaseCharacter
 
     Transform stunObject;
     bool engulfStunned = false;
-    public bool engulfable
+    virtual public bool engulfable
     {
         get
         {
