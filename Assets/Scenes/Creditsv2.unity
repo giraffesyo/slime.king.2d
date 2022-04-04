@@ -615,10 +615,24 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Kenneth Shepherd - Art\nMichael McQuade - Principal Engineer\nEric Garcia
-    - Engineer\nLyle Costo - Game Director\nChi Ngo - Level Design\nSantos Garcia
-    - Level Design\nRobert Welschhans - Level Design\x03\nYashomati Mukhopadhyay
-    - Music\n"
+  m_text: 'Kenneth Shepherd - Art
+
+    Michael McQuade - Principal Engineer
+
+    Eric
+    Garcia - Engineer
+
+    Lyle Costo - Game Director
+
+    Chi Ngo - Level Design
+
+    Santos
+    Garcia - Level Design
+
+    Robert Welschhans - Level Design
+
+    Yashomati Mukhopadhyay
+    - Music'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e935d0dccec0847448a73fcdbfab62d8, type: 2}
   m_sharedMaterial: {fileID: -844697660237126193, guid: e935d0dccec0847448a73fcdbfab62d8, type: 2}
@@ -661,7 +675,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
