@@ -2,7 +2,7 @@ name: Build
 on: [push]
 jobs:
   build:
-    name: Build/deploy Slime King
+    name: Build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
