@@ -33,7 +33,7 @@ jobs:
       - name: Download the build output
         uses: actions/download-artifact@v2
         with:
-          name: build
+          name: Build
       - name: Display structure of downloaded files
         run: ls -R
       - uses: amondnet/vercel-action@v19
