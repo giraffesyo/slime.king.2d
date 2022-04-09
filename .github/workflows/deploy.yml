@@ -1,4 +1,4 @@
-name: Build/Deploy Slime King
+name: Build
 on: [push]
 jobs:
   build:
