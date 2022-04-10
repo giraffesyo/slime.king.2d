@@ -26,5 +26,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Tutorial.unity
     guid: c859cd5276d5b44828e4b7af45d8d6c9
+  - enabled: 1
+    path: Assets/Scenes/DiffSelect.unity
+    guid: 11cc20673691481469d1aebfbc3f25e5
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: fa4091b36e66c43dfa2a9fda32180793, type: 2}

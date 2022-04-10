@@ -18,6 +18,8 @@ public class AI : BaseCharacter
     public LayerMask solidObjectsLayer;
     protected Animator animator;
 
+    static protected float HPMult;
+    protected float maxHealthNew;
 
     Transform stunObject;
     bool engulfStunned = false;
@@ -39,6 +41,19 @@ public class AI : BaseCharacter
         playerPos = GameObject.FindGameObjectWithTag("Player").transform;
         playerLayer = LayerMask.GetMask("Player");
         solidObjectsLayer = LayerMask.GetMask("SolidObjects");
+
+        setSpeed(baseSpeed*PlayerPrefs.GetFloat("EnemySpeed", 1.0f));
+        HPMult = PlayerPrefs.GetFloat("EnemyHPMult", 1.0f);
+        if (HPMult != 1.0f)
+        {
+          maxHealthNew = ((float)_maxHealth)*HPMult;
+          Mathf.RoundToInt(maxHealthNew);
+          if (maxHealthNew < 1.0f)
+          {
+            maxHealthNew = 1.0f;
+          }
+          SetMaxHealth((int)maxHealthNew);
+        }
 
     }
 

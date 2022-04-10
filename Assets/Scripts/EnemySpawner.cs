@@ -12,9 +12,9 @@ Instructions
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private float spawnTimer = 30.0f;
-    private float spawnClock = 0.0f;
-    private bool spawnFlag = true; // Indicates that the enemies need to be spawned
+    [SerializeField] private float spawnTimer;
+    private float spawnClock;
+    private bool spawnFlag;
 
     public GameObject[] enemyArr = new GameObject[0];
     public Vector3[] spawnArr = new Vector3[0];
@@ -23,33 +23,23 @@ public class EnemySpawner : MonoBehaviour
 
     void Start ()
     {
-      // Creates the first batch of enemies when the game is started
-      for (int i = 0; i < enemyArr.Length; i++)
-      {
-        Instantiate(enemyArr[i],spawnArr[i],Quaternion.identity,this.transform);
-        // Steps through the Enemy Array and spawns each enemy at its
-        // corresponding Vector3 indicated in the Spawn Array
-      }
+      spawnTimer = PlayerPrefs.GetFloat("RespawnRate", 30.0f);
+      SpawnOAP(enemyArr,spawnArr);
       spawnClock = 0.0f;
       spawnFlag = false;
     }
 
     void FixedUpdate()
     {
-      if (spawnFlag)
+      if (spawnFlag && spawnTimer != -1)
       {
-        if (spawnClock<spawnTimer)
+        if (spawnClock < spawnTimer)
         {
           spawnClock += Time.deltaTime;
         }
         else
         {
-          for (int i = 0; i < enemyArr.Length; i++)
-          {
-            Instantiate(enemyArr[i],spawnArr[i],Quaternion.identity,this.transform);
-            // This is the same function as in Start()
-            // **Could be converted to a seperate function**
-          }
+          SpawnOAP(enemyArr,spawnArr);
           spawnClock = 0.0f;
           spawnFlag = false;
         }
@@ -59,6 +49,22 @@ public class EnemySpawner : MonoBehaviour
         if (this.transform.childCount == 0)
         {
           spawnFlag = true;
+        }
+      }
+    }
+
+    private void SpawnOAP(GameObject[] objectArr, Vector3[] pointArr)
+    {
+      int maxSpawn = objectArr.Length;
+      for (int i = 0; i < maxSpawn; i++)
+      {
+        if (i < pointArr.Length)
+        {
+          Instantiate(enemyArr[i],spawnArr[i],Quaternion.identity,this.transform);
+        }
+        else
+        {
+          Instantiate(enemyArr[i],Vector3.zero,Quaternion.identity,this.transform);
         }
       }
     }

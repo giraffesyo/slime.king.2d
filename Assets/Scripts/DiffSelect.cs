@@ -4,44 +4,74 @@ using UnityEngine;
 
 public class DiffSelect : MonoBehaviour
 {
+    private int PlayerMaxHP;
+    private int PlayerStartHP;
+    private float PlayerSpeed;
+    private float EnemyHPMult;
+    private float EnemySpeed;
+    private float RespawnRate;
+    private GameObject toggle;
+
+    void Awake()
+    {
+      PlayerMaxHP = PlayerPrefs.GetInt("PlayerMaxHP", 5);
+      PlayerStartHP = PlayerPrefs.GetInt("PlayerStartHP", 3);
+      PlayerSpeed = PlayerPrefs.GetFloat("PlayerSpeed", 1.0f);
+      EnemyHPMult = PlayerPrefs.GetFloat("EnemyHPMult", 1.0f);
+      EnemySpeed = PlayerPrefs.GetFloat("EnemySpeed", 1.0f);
+      RespawnRate = PlayerPrefs.GetFloat("RespawnRate", 30.0f);
+    }
+
+    public void SaveSettings ()
+    {
+      PlayerPrefs.SetInt("PlayerMaxHP", PlayerMaxHP);
+      PlayerPrefs.SetInt("PlayerStartHP", PlayerStartHP);
+      PlayerPrefs.SetFloat("PlayerSpeed", PlayerSpeed);
+      PlayerPrefs.SetFloat("EnemyHPMult", EnemyHPMult);
+      PlayerPrefs.SetFloat("EnemySpeed", EnemySpeed);
+      PlayerPrefs.SetFloat("RespawnRate", RespawnRate);
+      PlayerPrefs.Save();
+    }
+
     // Player Section
     public void SetPlayerMaxHP (int val)
     {
-      PlayerPrefs.SetInt("PlayerMaxHP", val);
+      PlayerMaxHP = val;
     }
 
     public void SetPlayerStartHP (int val)
     {
-      if (PlayerPrefs.GetInt("PlayerMaxHP") > val)
+      if (PlayerStartHP < PlayerMaxHP)
       {
-        PlayerPrefs.SetInt("PlayerStartHP", PlayerPrefs.GetInt("PlayerMaxHP"));
+        PlayerStartHP = val;
       }
       else
       {
-        PlayerPrefs.SetInt("PlayerStartHP", val);
+        PlayerStartHP = PlayerMaxHP;
       }
     }
 
     public void SetPlayerSpeed (float val)
     {
-      PlayerPrefs.SetFloat("PlayerSpeed", val);
+      PlayerSpeed = val;
     }
 
     // Enemy Section
     public void SetEnemyHPMult (float val)
     {
-      PlayerPrefs.SetFloat("EnemyHPMult", val);
+      EnemyHPMult = val;
     }
 
     public void SetEnemySpeed (float val)
     {
-      PlayerPrefs.SetFloat("EnemySpeed", val);
+      EnemySpeed = val;
     }
 
     public void SetRespawnRate (float val)
     {
-      PlayerPrefs.SetFloat("RespawnRate", val);
+      RespawnRate = val;
     }
+
 
     // Score Calculator
     // UNDER CONSTRUCTION

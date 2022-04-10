@@ -35,6 +35,11 @@ public class Player : BaseCharacter
         ObtainAbility(Ability.AbilityKey.Slap);
         ObtainAbility(Ability.AbilityKey.Shoot);
         ObtainAbility(Ability.AbilityKey.Engulf);
+
+        baseSpeed = 5;
+        setSpeed(baseSpeed*PlayerPrefs.GetFloat("PlayerSpeed", 1.0f));
+        absoluteMaxHealth = PlayerPrefs.GetInt("PlayerMaxHP", 5);
+        initialMaxHealth = PlayerPrefs.GetInt("PlayerStartHP", 3);
     }
     private void OnEnable()
     {

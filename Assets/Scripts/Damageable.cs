@@ -5,7 +5,7 @@ using UnityEngine;
 public class Damageable : MonoBehaviour
 {
     // Max Health can never exceed absolute max
-    [SerializeField] protected int absoluteMaxHealth = 5;
+    [SerializeField] protected int absoluteMaxHealth = 20;
     // Max health beings at this number
     [SerializeField] public int initialMaxHealth = 1;
     // The current value of max health, can be increased up to absolute max
@@ -76,7 +76,7 @@ public class Damageable : MonoBehaviour
             currentHealth = absoluteMaxHealth;
             _maxHealth = absoluteMaxHealth;
         }
-        
+
         if (MaxHealthSet != null)
              MaxHealthSet.Invoke(currentHealth);
     }
