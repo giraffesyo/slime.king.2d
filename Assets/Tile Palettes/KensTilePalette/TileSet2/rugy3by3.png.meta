@@ -1,34 +1,34 @@
 fileFormatVersion: 2
-guid: d50b7b211df36b844812a386f988fd66
+guid: cadad6cdb21f94b66a77ef726613185a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -503116852167401900
-    second: Carpet 1_0
+      213: 8848936493109617601
+    second: rugy3by3_0
   - first:
-      213: 4718217101043832948
-    second: Carpet 1_1
+      213: 8969761062182673922
+    second: rugy3by3_1
   - first:
-      213: 211525842911377773
-    second: Carpet 1_2
+      213: -8544091979180740978
+    second: rugy3by3_2
   - first:
-      213: 5430072998902867862
-    second: Carpet 1_3
+      213: -4220682565358845369
+    second: rugy3by3_3
   - first:
-      213: 4536598999244289421
-    second: Carpet 1_4
+      213: -9090212526333445392
+    second: rugy3by3_4
   - first:
-      213: -8127772645563637327
-    second: Carpet 1_5
+      213: 8997270440219216
+    second: rugy3by3_5
   - first:
-      213: -3671943100822998014
-    second: Carpet 1_6
+      213: 4558921611455228684
+    second: rugy3by3_6
   - first:
-      213: 2269632117375985195
-    second: Carpet 1_7
+      213: 1985755478627823760
+    second: rugy3by3_7
   - first:
-      213: 2383082274129312848
-    second: Carpet 1_8
+      213: 8875308360446979061
+    second: rugy3by3_8
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -70,10 +70,10 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 670
+  spritePixelsToUnits: 675
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -126,107 +126,95 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Windows Store Apps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Carpet 1_0
+      name: rugy3by3_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 1512
-        width: 519
-        height: 511
-      alignment: 9
-      pivot: {x: 1.2955098, y: -0.31880918}
+        y: 1350
+        width: 675
+        height: 675
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 45e9c0a73e19409f0800000000000000
-      internalID: -503116852167401900
+      spriteID: 1c32ac75bdcbdca70800000000000000
+      internalID: 8848936493109617601
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Carpet 1_1
+      name: rugy3by3_1
       rect:
         serializedVersion: 2
         x: 675
-        y: 1510
+        y: 1350
         width: 675
-        height: 515
-      alignment: 9
-      pivot: {x: 0.5026684, y: -0.3065624}
+        height: 675
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 47814e884797a7140800000000000000
-      internalID: 4718217101043832948
+      spriteID: 20e5787892efa7c70800000000000000
+      internalID: 8969761062182673922
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Carpet 1_2
+      name: rugy3by3_2
       rect:
         serializedVersion: 2
-        x: 1517
-        y: 1505
-        width: 508
-        height: 517
-      alignment: 9
-      pivot: {x: -0.33455363, y: -0.30394682}
+        x: 1350
+        y: 1350
+        width: 675
+        height: 675
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d693c8722ad7fe200800000000000000
-      internalID: 211525842911377773
+      spriteID: e8eeaac0d994d6980800000000000000
+      internalID: -8544091979180740978
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Carpet 1_3
+      name: rugy3by3_3
       rect:
         serializedVersion: 2
         x: 0
         y: 675
-        width: 515
+        width: 675
         height: 675
-      alignment: 9
-      pivot: {x: 1.2997614, y: 0.4946895}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 697ab0c6f9e7b5b40800000000000000
-      internalID: 5430072998902867862
+      spriteID: 7420a16a19f1d65c0800000000000000
+      internalID: -4220682565358845369
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Carpet 1_4
+      name: rugy3by3_4
       rect:
         serializedVersion: 2
         x: 675
@@ -234,98 +222,98 @@ TextureImporter:
         width: 675
         height: 675
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d85395ef0cc35fe30800000000000000
-      internalID: 4536598999244289421
+      spriteID: 0fab61b8ed319d180800000000000000
+      internalID: -9090212526333445392
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Carpet 1_5
+      name: rugy3by3_5
       rect:
         serializedVersion: 2
-        x: 1510
+        x: 1350
         y: 675
-        width: 515
+        width: 675
         height: 675
-      alignment: 9
-      pivot: {x: -0.2984811, y: 0.4958949}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1b1ea0677d9543f80800000000000000
-      internalID: -8127772645563637327
+      spriteID: 052998448f6ff1000800000000000000
+      internalID: 8997270440219216
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Carpet 1_6
+      name: rugy3by3_6
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 514
-        height: 508
-      alignment: 9
-      pivot: {x: 1.3140299, y: 1.3290988}
+        width: 675
+        height: 675
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 204bfff5433aa0dc0800000000000000
-      internalID: -3671943100822998014
+      spriteID: c0be3a92d0b844f30800000000000000
+      internalID: 4558921611455228684
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Carpet 1_7
+      name: rugy3by3_7
       rect:
         serializedVersion: 2
         x: 675
         y: 0
         width: 675
-        height: 515
-      alignment: 9
-      pivot: {x: 0.4999999, y: 1.3061541}
+        height: 675
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b26630fb26a5f7f10800000000000000
-      internalID: 2269632117375985195
+      spriteID: 090b56a3612de8b10800000000000000
+      internalID: 1985755478627823760
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Carpet 1_8
+      name: rugy3by3_8
       rect:
         serializedVersion: 2
-        x: 1511
+        x: 1350
         y: 0
-        width: 514
-        height: 505
-      alignment: 9
-      pivot: {x: -0.3140297, y: 1.3340243}
+        width: 675
+        height: 675
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 05cf104c3b8621120800000000000000
-      internalID: 2383082274129312848
+      spriteID: 5fb2f703eed6b2b70800000000000000
+      internalID: 8875308360446979061
       vertices: []
       indices: 
       edges: []
