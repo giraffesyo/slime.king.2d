@@ -55,16 +55,20 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnOAP(GameObject[] objectArr, Vector3[] pointArr)
     {
+      // Spawn Objects At Points
+      // Objects are spawned as children of the object this script is attached to,
+      // at points relative to the position of the parent.
       int maxSpawn = objectArr.Length;
+      Vector3 thisPos = this.transform.position;
       for (int i = 0; i < maxSpawn; i++)
       {
         if (i < pointArr.Length)
         {
-          Instantiate(enemyArr[i],spawnArr[i],Quaternion.identity,this.transform);
+          Instantiate(enemyArr[i],spawnArr[i]+thisPos,Quaternion.identity,this.transform);
         }
         else
         {
-          Instantiate(enemyArr[i],Vector3.zero,Quaternion.identity,this.transform);
+          Instantiate(enemyArr[i],Vector3.zero+thisPos,Quaternion.identity,this.transform);
         }
       }
     }
@@ -75,3 +79,4 @@ public class EnemySpawner : MonoBehaviour
 This could technically be renamed "Spawner", since it just spawns GameObjects
 That's up to you, Michael, whether you want to rename it or not.
 */
+// Edited by Lyle Costo [4/27/2022]: Added documentation to SpawnOAP function. Added relative position spawning to SpawnOAP function.
