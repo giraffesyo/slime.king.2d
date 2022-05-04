@@ -11,6 +11,7 @@ public class Player : BaseCharacter
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private float damageInvincibilitySeconds = 1.0f;
 
+
     private List<Ability> _abilities;
     // Hide the ability list from the inspector
     public ReadOnlyCollection<Ability> abilities => _abilities.AsReadOnly();
@@ -37,7 +38,7 @@ public class Player : BaseCharacter
         ObtainAbility(Ability.AbilityKey.Engulf);
 
         baseSpeed = 5;
-        setSpeed(baseSpeed*PlayerPrefs.GetFloat("PlayerSpeed", 1.0f));
+        setSpeed(baseSpeed * PlayerPrefs.GetFloat("PlayerSpeed", 1.0f));
         absoluteMaxHealth = PlayerPrefs.GetInt("PlayerMaxHP", 5);
         initialMaxHealth = PlayerPrefs.GetInt("PlayerStartHP", 3);
     }
@@ -50,13 +51,15 @@ public class Player : BaseCharacter
         aiming.Enable();
 
 
-        slimeKingActions.Player.Slap.performed += (InputAction.CallbackContext ctx) => RequestUse(ctx, (int)Ability.AbilityKey.Slap);
+        slimeKingActions.Player.Slap.performed += (InputAction.CallbackContext ctx) => RequestUse(ctx, Ability.AbilityKey.Slap);
         slimeKingActions.Player.Slap.Enable();
-        slimeKingActions.Player.Shoot.performed += (InputAction.CallbackContext ctx) => RequestUse(ctx, (int)Ability.AbilityKey.Shoot);
+
+        slimeKingActions.Player.Shoot.performed += (InputAction.CallbackContext ctx) => RequestUse(ctx, Ability.AbilityKey.Shoot);
         slimeKingActions.Player.Shoot.Enable();
 
-        slimeKingActions.Player.Engulf.performed += (InputAction.CallbackContext ctx) => RequestUse(ctx, (int)Ability.AbilityKey.Engulf);
+        slimeKingActions.Player.Engulf.performed += (InputAction.CallbackContext ctx) => RequestUse(ctx, Ability.AbilityKey.Engulf);
         slimeKingActions.Player.Engulf.Enable();
+
         // Add 2 to index to account for the fact that the basic abilities are at indices 0, 1, 2
         slimeKingActions.Player.SelectAbility1.performed += (InputAction.CallbackContext ctx) => SelectAbility(ctx, 3);
         slimeKingActions.Player.SelectAbility1.Enable();
@@ -91,7 +94,7 @@ public class Player : BaseCharacter
         }
         if (activeAbility != null)
         {
-            RequestUse(ctx, (int)activeAbility);
+            RequestUse(ctx, (Ability.AbilityKey)activeAbility);
         }
     }
 
@@ -135,10 +138,15 @@ public class Player : BaseCharacter
         SetCurrentHealth(_maxHealth);
     }
 
-    private void RequestUse(InputAction.CallbackContext ctx, int abilityIndex)
+    private void RequestUse(InputAction.CallbackContext ctx, Ability.AbilityKey abilityIndex)
     {
         Vector3 worldPos = Camera.main.ScreenToWorldPoint(aimingDirection);
-        _abilities[abilityIndex].RequestUse(ctx, worldPos);
+        int idx = _abilities.FindIndex(ability => ability.abilityKey == abilityIndex);
+        if (idx == -1)
+        {
+            return;
+        }
+        _abilities[idx].RequestUse(ctx, worldPos);
     }
 
     public void ObtainAbility(Ability.AbilityKey key)
