@@ -31,7 +31,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: spinning
+    m_ConditionEvent: Spinning
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 5347714481525967625}
@@ -83,7 +83,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: spin
+    m_ConditionEvent: Spin
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -6626527007358277252}
@@ -157,13 +157,13 @@ AnimatorController:
   m_Name: mummy
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: spin
+  - m_Name: Spin
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: spinning
+  - m_Name: Spinning
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
