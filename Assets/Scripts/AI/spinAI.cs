@@ -11,17 +11,17 @@ public class SpinAI : AI
         base.Start();
     }
 
-    override public bool facingRight
-    {
-        get
-        {
-            return spriteRenderer.flipX;
-        }
-        set
-        {
-            spriteRenderer.flipX = value;
-        }
-    }
+    // override public bool facingRight
+    // {
+    //     get
+    //     {
+    //         return spriteRenderer.flipX;
+    //     }
+    //     set
+    //     {
+    //         spriteRenderer.flipX = value;
+    //     }
+    // }
 
     protected override bool Move()
     {
