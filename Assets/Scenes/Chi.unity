@@ -2594,6 +2594,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6934678946340416279, guid: 0837fb1058a584d3eb37d684b37db679, type: 3}
+      propertyPath: m_Size.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6934678946340416279, guid: 0837fb1058a584d3eb37d684b37db679, type: 3}
+      propertyPath: m_Size.y
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6934678947062830009, guid: 0837fb1058a584d3eb37d684b37db679, type: 3}
       propertyPath: m_Name
       value: Mummy
