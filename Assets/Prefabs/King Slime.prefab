@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3330108469680190323
 Transform:
   m_ObjectHideFlags: 0
@@ -197,7 +197,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3929613330396537951
 Transform:
   m_ObjectHideFlags: 0
@@ -411,6 +411,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3946305b2c2b28540891887c4151e458, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MeleeEnemyPrefab: {fileID: 0}
 --- !u!50 &3727692184470856903
 Rigidbody2D:
   serializedVersion: 4
@@ -761,8 +762,10 @@ MonoBehaviour:
   stunned: 0
   attacking: 0
   shouldBeAbleToMove: 1
+  meleeCollider: {fileID: 0}
   attackPoint: {fileID: 0}
   attackRange: 0
+  alwaysEngulfable: 0
   playerLayer:
     serializedVersion: 2
     m_Bits: 2048

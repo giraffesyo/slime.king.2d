@@ -909,11 +909,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flagOpen: 0
-  timer: 0
-  timeLimit: 1
   doorAnimator: {fileID: 6626157389529820839}
   doorCollider: {fileID: 4060448964675906822}
   pressedButton: {fileID: 874838603491831218}
+  soundEffect: {fileID: 8300000, guid: d1f5d975f42e42642a78a2f9e7a69210, type: 3}
+  soundPlayer: {fileID: 0}
 --- !u!61 &4060448964434510361
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1457,11 +1457,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flagOpen: 0
-  timer: 0
-  timeLimit: 1
   doorAnimator: {fileID: 6626157389529820839}
   doorCollider: {fileID: 4060448964675906822}
   pressedButton: {fileID: 6755643764104130865}
+  soundEffect: {fileID: 0}
+  soundPlayer: {fileID: 0}
 --- !u!61 &6843661870795065065
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2053,13 +2053,13 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 7182480372026638938, guid: cb67e4aa6ed4847da9d97eb2c5e6fcf6, type: 3}
   m_PrefabInstance: {fileID: 4060448964675906813}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &6626157389529820836 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7182480372026638937, guid: cb67e4aa6ed4847da9d97eb2c5e6fcf6, type: 3}
-  m_PrefabInstance: {fileID: 4060448964675906813}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6626157389529820833 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7182480372026638940, guid: cb67e4aa6ed4847da9d97eb2c5e6fcf6, type: 3}
+  m_PrefabInstance: {fileID: 4060448964675906813}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6626157389529820836 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7182480372026638937, guid: cb67e4aa6ed4847da9d97eb2c5e6fcf6, type: 3}
   m_PrefabInstance: {fileID: 4060448964675906813}
   m_PrefabAsset: {fileID: 0}
