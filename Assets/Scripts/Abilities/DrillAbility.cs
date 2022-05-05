@@ -67,7 +67,7 @@ public class DrillAbility : Ability
         isDrilling = false;
         //baseChar.Move(Vector2.zero);
         baseChar.ResetSpeed();
-
+        baseChar.attacking = false;
         baseChar.shouldBeAbleToMove = true;
     }
 
@@ -86,6 +86,7 @@ public class DrillAbility : Ability
             stopDrilling();
             return;
         }
+        baseChar.attacking = true;
         alreadyHit = false;
         stopping = false;
         rb.freezeRotation = false;
@@ -99,7 +100,10 @@ public class DrillAbility : Ability
 
         float angle = Mathf.Atan2(targ.y, targ.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
-        spriteRenderer.flipX = true;
+        if (isAi)
+        {
+            spriteRenderer.flipX = true;
+        }
 
         startedFrom = transform.position;
         base.Use(key);
