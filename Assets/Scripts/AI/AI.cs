@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 
@@ -60,6 +61,10 @@ public class AI : BaseCharacter
     // Update is called once per frame
     void Update()
     {
+        if (SceneManager.GetActiveScene().name == "Louis" && currentHealth == 1)
+        {
+            StartCoroutine(Stun(1800));
+        }
         //StartCoroutine(Move());
         Move();
     }
@@ -82,11 +87,11 @@ public class AI : BaseCharacter
         base.TakeDamage(damage);
         if (currentHealth == 1)
         {
-            StartCoroutine(Stun());
+            StartCoroutine(Stun(3));
         }
     }
 
-    IEnumerator Stun()
+    IEnumerator Stun(int time)
     {
         if (stunObject != null)
         {
@@ -97,7 +102,7 @@ public class AI : BaseCharacter
             transform.rotation = Quaternion.identity;
             spriteRenderer.flipY = false;
 
-            yield return new WaitForSecondsRealtime(3.0f);
+            yield return new WaitForSecondsRealtime(time);
             SetCurrentHealth(currentHealth + 1);
             engulfStunned = false;
             attacking = false;
