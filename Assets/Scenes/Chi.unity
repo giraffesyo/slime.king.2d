@@ -2602,6 +2602,26 @@ PrefabInstance:
       propertyPath: m_Size.y
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 6934678947062829954, guid: 0837fb1058a584d3eb37d684b37db679, type: 3}
+      propertyPath: m_LinearDrag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6934678947062829954, guid: 0837fb1058a584d3eb37d684b37db679, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6934678947062829955, guid: 0837fb1058a584d3eb37d684b37db679, type: 3}
+      propertyPath: attackRange
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6934678947062829955, guid: 0837fb1058a584d3eb37d684b37db679, type: 3}
+      propertyPath: playerLayer.m_Bits
+      value: 2048
+      objectReference: {fileID: 0}
+    - target: {fileID: 6934678947062829955, guid: 0837fb1058a584d3eb37d684b37db679, type: 3}
+      propertyPath: solidObjectsLayer.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
     - target: {fileID: 6934678947062830009, guid: 0837fb1058a584d3eb37d684b37db679, type: 3}
       propertyPath: m_Name
       value: Mummy
