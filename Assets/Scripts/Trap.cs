@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Trap : MonoBehaviour
 {
@@ -20,6 +21,14 @@ public class Trap : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        trapDoors.SetActive(true);        
+        trapDoors.SetActive(true);
+        StartCoroutine(GoToMenu());
+    }
+
+    private IEnumerator GoToMenu()
+    {
+        yield return new WaitForSecondsRealtime(10f);
+        SceneManager.LoadScene("Level Select", LoadSceneMode.Single);
+
     }
 }
