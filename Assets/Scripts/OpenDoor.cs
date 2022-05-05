@@ -26,7 +26,6 @@ public class OpenDoor : MonoBehaviour
             pressedButton.SetActive(true);
             flagOpen = false;
             doorAnimator.SetTrigger("open");
-
         }
     }
 }
