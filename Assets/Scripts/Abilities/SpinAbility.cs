@@ -66,7 +66,7 @@ public class SpinAbility : Ability
         isSpinning = false;
         //baseChar.Move(Vector2.zero);
         baseChar.ResetSpeed();
-
+        baseChar.attacking = false;
         baseChar.shouldBeAbleToMove = true;
     }
 
@@ -85,6 +85,7 @@ public class SpinAbility : Ability
             stopSpinning();
             return;
         }
+        baseChar.attacking = true;
         alreadyHit = false;
         stopping = false;
         rb.freezeRotation = false;
@@ -106,7 +107,7 @@ public class SpinAbility : Ability
         // baseChar.setSpeed(10);
         // baseChar.Move(direction, shouldBeAttacking: true);
         baseChar.shouldBeAbleToMove = false;
-        baseChar.moveDirection = direction.normalized * 5;
+        baseChar.moveDirection = direction.normalized * 3;
 
         isSpinning = true;
     }
