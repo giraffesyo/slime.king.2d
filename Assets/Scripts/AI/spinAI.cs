@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class spinAI : AI
+public class SpinAI : AI
 {
     // Start is called before the first frame update
     protected override void Start()
@@ -51,7 +51,7 @@ public class spinAI : AI
         // When hit by slapAbility, there is no collision, slapability works with overlapcollider which means stopCharging will not be called
         // Temporary fix until i think of something better
 
-        spinAbility sa = GetComponent<spinAbility>();
+        SpinAbility sa = GetComponent<SpinAbility>();
         if (sa != null)
         {
             sa.stopSpinning();

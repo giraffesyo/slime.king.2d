@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class spinAbility : Ability
+public class SpinAbility : Ability
 {
 
     [SerializeField] int attackDamage = 1;
@@ -37,7 +37,7 @@ public class spinAbility : Ability
             if ((transform.position - startedFrom).sqrMagnitude > spinRange && !stopping)
             {
                 stopping = true;
-                Debug.Log("Signalling stop to drilling because of range");
+                Debug.Log("Signalling stop to spinning because of range");
                 StartCoroutine(stopSpinningAfterTime(0.2f));
 
             }
