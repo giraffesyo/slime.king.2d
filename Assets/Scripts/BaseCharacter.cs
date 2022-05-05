@@ -70,14 +70,20 @@ public class BaseCharacter : Damageable
         if (!attacking && !stunned)
         {
             if (direction.x > 0)
+            {
                 facingRight = true;
+            }
             else if (direction.x < 0)
+            {
                 facingRight = false;
+            }
             spriteRenderer.flipY = false;
             transform.rotation = Quaternion.identity;
         }
         if (shouldBeAbleToMove)
+        {
             moveDirection = direction.normalized;
+        }
     }
 
     public void setSpeed(float speed)
