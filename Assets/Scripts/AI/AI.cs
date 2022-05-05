@@ -61,7 +61,7 @@ public class AI : BaseCharacter
     // Update is called once per frame
     void Update()
     {
-        if (SceneManager.GetActiveScene().name == "Louis" && currentHealth == 1)
+        if (SceneManager.GetActiveScene().name == "Tutorial" && currentHealth == 1)
         {
             StartCoroutine(Stun(1800));
         }
